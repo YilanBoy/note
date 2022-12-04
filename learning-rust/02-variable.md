@@ -34,7 +34,7 @@ let spaces = "    ";
 let spaces = spaces.len()
 ```
 
-如果改用可變變數就會有問題，因為第二次賦值時，變數類型並不一樣
+- 如果改用可變變數就會有問題，因為第二次賦值時，變數類型並不一樣
 
 ```rust
 let mut spaces = "    ";
