@@ -148,7 +148,7 @@ let s2 = s1;
 
 ![ownership-1](https://doc.rust-lang.org/book/img/trpl04-02.svg)
 
-舉例來說，如果 `s1` 與 `s2` 都離開作用域，會導致 Rust 嘗試重複釋放相同的記憶體，導致二次釋放的錯誤 (double free)
+舉例來說，如果 `s1` 與 `s2` 都離開作用域，會導致 Rust 重複釋放相同的記憶體而出現二次釋放的錯誤 (double free)
 
 為了確保記憶體安全，如果**嘗試拷貝被分配的記憶體空間**，在剛才的範例中 Rust 就不會認為 `s1` 有效
 
