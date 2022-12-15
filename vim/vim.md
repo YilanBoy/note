@@ -180,7 +180,8 @@ set surround
 針對某一個範圍加上成對符號
 
 1. 先選取一段範圍
-2. `S` : 選擇成對符號
+2. `S` (注意是大寫)
+3. 選擇你要的成對符號，如果想在加上括號後頭尾預留空白，請使用開頭的成對符號，如 `(`、`[` 與 `{`，反之如果不想頭尾預留空白，請使用結束的成對符號，如 `)`、`]` 與 `}`
 
 ## 視窗
 
@@ -191,3 +192,4 @@ set surround
 - [將 Vim 中程式碼排版的 Tab 字元轉為等寬的空白字元](https://blog.gtwang.org/linux/vim-convert-tab-to-space-character/)
 - [菜鳥教程 - Linux Vi/Vim](https://www.runoob.com/linux/linux-vim.html)
 - [wilon/vim-surround 使用指南.MD](https://gist.github.com/wilon/ac1fc66f4a79e7b0c161c80877c75c94)
+- [Vim Surround inserts extra space around the word](https://stackoverflow.com/questions/9164405/vim-surround-inserts-extra-space-around-the-word)
