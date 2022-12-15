@@ -81,7 +81,7 @@ let s = "hello";
 
 ## String 類型
 
-字符串字面量 (string literal) 雖然很方便，但不適合使用文本的每一種場景，因為字符串字面量是不可變的
+字符串字面量 (string literal) 雖然很方便，但並不適合使用文本的每一種場景，因為字符串字面量是不可變的
 
 並不是所有字符串總是能在寫程式碼的時候提前得知，例如需要請用戶輸入的資料
 
@@ -97,9 +97,9 @@ let s = "hello" // 這個 hello 就是 string literal
 let s = String::from("hello");
 ```
 
-`::` 是運算符，允許將 `from` 函數放置於 `String` 類型的命名空間 (namespace) 下
+`::` 是運算符，用來調用放置於 `String` 類型命名空間 (namespace) 底下的 `from` 函數
 
-注意 `String` 字符串是可以修改的
+注意 `String` 字符串是可以被修改的
 
 ```rust
 let mut s = String::from("hello");
@@ -141,9 +141,9 @@ let x = 5;
 let y = x;
 ```
 
-上述的程式碼，我們將 `5` 賦值給 `x`，接著將 `x` 的值在賦值給 `y`，因此我們有兩個變數
+如果以其他程式碼的角度去猜測上述程式碼做了什麼，應該是將 `5` 賦值給 `x`，接著將 `x` 的值在賦值給 `y`。因此我們有兩個變數 `x` 與 `y`，且其值都是 `5`。
 
-因為 `5` 為固定的整數，所以 `x` 與 `y` 這兩個 `5` 都被放入了 Stack 中，在記憶體中保留了起來
+事實上在 Rust 中也是這麼運作的，因為 `5` 為固定的整數，所以 `x` 與 `y` 這兩個變數都被放入了 Stack 中，並在記憶體中保留了起來。
 
 ```rust
 let s1 = String::from("hello");
@@ -280,5 +280,3 @@ fn calculate_length(s: String) -> (String, usize) {
 ```
 
 但這好像還是有點麻煩，Rust 為此提供另外一個功能，叫做引用 (references)
-
----

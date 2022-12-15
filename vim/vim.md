@@ -117,7 +117,11 @@ set relativenumber
 - `s` : 刪除字元
 - `S` : 刪除整行
 
-`y` 與 `Y` : 選取範圍或是拷貝整行拷貝 YY
+`y`、`Y` 與 `yy` : 選取範圍進行拷貝
+
+- `y` : 拷貝選取範圍
+- `Y` : 拷貝整行
+- `yy` : 拷貝整行，等同 `Y`
 
 `p` 與 `P` : 在字元的後方貼上與前方貼上
 
@@ -186,3 +190,4 @@ set surround
 
 - [將 Vim 中程式碼排版的 Tab 字元轉為等寬的空白字元](https://blog.gtwang.org/linux/vim-convert-tab-to-space-character/)
 - [菜鳥教程 - Linux Vi/Vim](https://www.runoob.com/linux/linux-vim.html)
+- [wilon/vim-surround 使用指南.MD](https://gist.github.com/wilon/ac1fc66f4a79e7b0c161c80877c75c94)
