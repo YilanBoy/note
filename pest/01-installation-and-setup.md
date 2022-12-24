@@ -14,7 +14,7 @@ composer require pestphp/pest-plugin-laravel --dev
 php artisan pest:install
 ```
 
-Pest 是建構在 PHPUnit 上的，**因此原本 PHPUnit 的測試寫法，Pest 完全兼容，你不需要修改舊的測試**
+Pest 是建構在 PHPUnit 上的，**因此原本 PHPUnit 的測試寫法，Pest 完全兼容，並不需要修改舊的測試**
 
 以下為原本 PHPUnit 的測試寫法
 
@@ -23,6 +23,7 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use Models\User;
 
 class ExampleTest extends TestCase
 {
@@ -36,6 +37,15 @@ class ExampleTest extends TestCase
     public function test_the_application_returns_a_successful_response()
     {
         $response = $this->get('/');
+
+        $response->assertStatus(200);
+    }
+
+    public function test_guest_can_visit_someone_information_page()
+    {
+        $user = User::factory()->create();
+
+        $response = $this->get(route('users.index', $user->id))
 
         $response->assertStatus(200);
     }
@@ -53,6 +63,12 @@ uses(RefreshDatabase::class);
 
 test('the application returns a successful response', function () {
     get('/')->assertStatus(200);
+});
+
+test('guest can visit someone information page', function () {
+    $user = User::factory()->create();
+
+    get(route('users.index', $user->id))->assertStatus(200)
 });
 ```
 
