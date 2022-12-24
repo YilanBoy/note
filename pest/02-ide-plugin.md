@@ -19,4 +19,4 @@ Pest 官方有提供多種 IDE 的 plugin，詳細可以上官方網站查看 : 
 
 ## 參考資料
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/umVUEq4yGIQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![Discovering the Pest Plugin](https://img.youtube.com/vi/umVUEq4yGIQ/sddefault.jpg)](https://www.youtube.com/watch?v=umVUEq4yGIQ)

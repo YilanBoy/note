@@ -1,6 +1,6 @@
 {
   "MD033": {
-    "allowed_elements": ["img", "iframe"]
+    "allowed_elements": ["img"]
   },
   "MD013": false
 }
