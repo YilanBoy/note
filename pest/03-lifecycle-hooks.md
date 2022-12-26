@@ -64,7 +64,7 @@ string(10) "After Each"
 string(9) "After All"
 ```
 
-需要注意的是，`beforeAll()` 與 `afterAll()` 沒有辦法使用 Laravel 所提供的功能，因為 Laravel 此時還沒有完成啟動 (boot)
+需要注意的是，`beforeAll()` 沒有辦法使用 Laravel 所提供的功能，因為 Laravel 此時還沒有完成啟動 (boot)
 
 ```php
 // error: Target class [config] does not exist
