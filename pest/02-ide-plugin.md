@@ -8,7 +8,7 @@ Pest 官方有提供多種 IDE 的 plugin，詳細可以上官方網站查看 : 
 - 每個 Pest 測試檔案的最上方都會有一個按鈕可以讓你直接執行該檔案的測試
 - 此外點選 Menu -> Navigate -> File Structure 就可以查看該測試檔案所包含的所有測試
 
-  - Mac 快捷鍵為 `Cmd + Y`
+  - Mac 快捷鍵為 `Cmd + F12`
   - Windows 快捷鍵為 `Ctrl + F12`
 
 - 可以使用 `Shift x 2` 直接搜尋測試名稱並跳轉
