@@ -1,6 +1,6 @@
-# Exception
+# 斷定是否會拋出例外 (Exception)
 
-測試中我們也可以斷定這個測試是否會拋出例外 (Exception)
+如果要測試一個流程在遭遇問題時是否會拋出例外 (Exception)，斷定中也有 `expectException()` 的方法可以使用
 
 ```php
 it('can validate an email', function () {
@@ -14,7 +14,7 @@ it('can validate an email', function () {
 });
 ```
 
-Pest 提供一個更直覺的方法 `throws()`
+Pest 為這種情況提供一個更直覺的方法 `throws()`
 
 ```php
 it('can validate an email', function () {
@@ -25,7 +25,7 @@ it('can validate an email', function () {
 ->throws(InvalidArgumentException::class);
 ```
 
-除了斷定丟出哪一種例外，也可以對例外的錯誤訊息進行斷定
+除了斷定丟出哪一種例外，也可以對例外的錯誤訊息進行斷定，就算例外的類型對上了，只要訊息不對，斷定還是會失敗
 
 ```php
 it('can validate an email', function () {

@@ -1,10 +1,10 @@
-# Datasets
+# 使用 Datasets 測試多組資料
 
-如果你的測試，想要測試多筆資料，雖然我們可以為每筆資料都寫一個測試，但因為測試邏輯與流程是一樣的，每一筆資料都寫一個測試會顯得非常多餘
+如果你想要在一個流程測試中，測試多筆資料，你會怎麼做呢？
+
+雖然我們可以把測試拆開，為每筆資料都寫一個測試，但因為測試邏輯與流程是一樣的，如果每一筆資料都寫一個測試，會讓程式碼顯得冗長且非常多餘
 
 遇到這樣的情況，可以考慮使用 Datasets
-
-## 測試多組資料
 
 我們可以在匿名函數中放入一個參數 `$email`，並呼叫 `with()` 方法代入一個有多筆信箱資料的陣列
 
@@ -138,7 +138,7 @@ it('can store a contact', function ($email) {
 
 ## Combined Datasets
 
-你可以組合多個 Datasets，測試更多種組合資料
+你可以組合多個 Datasets，測試更多種組合資料。
 
 例如我想測試一個上傳圖片後顯示圖片規格的功能，除了測試圖片類型，例如 jpg、png 或是 webp，每個類型也想測試不同的大小尺寸
 
@@ -153,19 +153,19 @@ it('can show supported image formats and options', function ($path, $options) {
 
     expect($response->streamedContent())->not->toBeEmpty()->toBeString();
 })->with([
+    ['example.jpg', ['w' => 10, 'h' => 10, 'fit' => 'crop']],
     ['example.jpg', ['w' => 40, 'h' => 40, 'fit' => 'crop']],
     ['example.jpg', ['w' => 50, 'h' => 50, 'fit' => 'crop']],
-    ['example.jpg', ['w' => 10, 'h' => 10, 'fit' => 'crop']],
+    ['example.png', ['w' => 10, 'h' => 10, 'fit' => 'crop']],
     ['example.png', ['w' => 40, 'h' => 40, 'fit' => 'crop']],
     ['example.png', ['w' => 50, 'h' => 50, 'fit' => 'crop']],
-    ['example.png', ['w' => 10, 'h' => 10, 'fit' => 'crop']],
+    ['example.webp', ['w' => 10, 'h' => 10, 'fit' => 'crop']],
     ['example.webp', ['w' => 40, 'h' => 40, 'fit' => 'crop']],
     ['example.webp', ['w' => 50, 'h' => 50, 'fit' => 'crop']],
-    ['example.webp', ['w' => 10, 'h' => 10, 'fit' => 'crop']],
 ]);
 ```
 
-上面的寫法重複度有些高，為了測試 40、50 與 10 的尺寸，我們每個圖片都要特地寫三種尺寸，這時候就可以考慮使用組合 Datasets
+上面的寫法重複度有些高，為了測試 10、40 與 50 的尺寸，我們每個圖片都要特地寫三種尺寸，這時候就可以考慮使用組合 Datasets
 
 ```php
 use Illuminate\Support\Facades\Storage;

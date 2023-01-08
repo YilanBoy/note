@@ -10,7 +10,7 @@ $user = User::factory()->create();
 $this->actingAs($user);
 ```
 
-我們可以在 `tests/Pest.php` 中自己定義一個 `login()` 方法，並將上面的程式碼包含在其中
+我們可以在 `tests/Pest.php` 中自己定義一個 `login()` 方法，並將上面的流程放進去
 
 ```php
 use App\Models\User;
@@ -20,7 +20,7 @@ function login($user = null) {
 }
 ```
 
-之後我們就可以在測試中使用
+之後我們就可以在測試中重複使用剛剛定義的登入方法，貫徹 DRY 原則
 
 ```php
 test('can view contents', function () {

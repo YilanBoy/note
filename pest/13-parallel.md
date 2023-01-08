@@ -10,7 +10,7 @@ Pest 提供 parallel 套件，讓你可以使用多線程的方式執行測試�
 composer require pestphp/pest-plugin-parallel --dev --with-all-dependencies
 ```
 
-安裝好之後就可以使用 `--parallel` 這個 flag
+安裝好在執行測試時就可以使用 `--parallel` 這個參數
 
 ```bash
 php artisan test --parallel
