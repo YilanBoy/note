@@ -33,7 +33,7 @@ pub fn eat_at_restaurant() {
 
 如果你將 `eat_at_restaurant` 移動到 `dining` 模組底下，則絕對路徑不需要更動，相對路徑需要變更
 
-一般來說，**我們傾向於指定絕對路徑**，因為我們更有可能想獨立地移動代碼定義和項目調用
+一般來說，**我們傾向於指定絕對路徑**，因為我們更有可能想獨立地移動程式碼和項目調用
 
 如果編譯上述的程式碼，會發生以下的錯誤
 
@@ -72,9 +72,11 @@ error: could not compile `restaurant` due to 2 previous errors
 
 歸納一個重點，**父模組不能夠使用子模組的私有項目，但子模組可以使用父模組的私有項目**
 
-在 Rust 中，子模組包裹並隱藏了它們的實現細節，但子模組可以看到它們被定義的背景 (context)
+> This is because child modules wrap and hide their implementation details, but the child modules can see the context in which they’re defined
+>
+> 因為子模組將它們的實作細節包裹並隱藏了起來，但子模組可以看到它們被定義的背景
 
-我們可以使用 `pub` 關鍵字使項目變成公有
+雖然模組預設為私有，但我們可以使用 `pub` 關鍵字使項目變成公有
 
 以下方的程式碼為例，我們可以幫 `hosting` 加上 `pub` 使其變成公有
 
@@ -83,7 +85,7 @@ error: could not compile `restaurant` due to 2 previous errors
 ```rust
 mod front_of_house {
     pub mod hosting {
-        fn add_to_waitlist() {} // error: function add_to_waitlist() is private
+        fn add_to_waitlist() {} // error: function add_to_waitlist is private
     }
 }
 
@@ -96,7 +98,7 @@ pub fn eat_at_restaurant() {
 }
 ```
 
-因此需要注意的是，**父模組為公有的，不代表其子模組也是公有的**
+因此需要注意的是，**父模組為公有的，不代表其子模組也是公有的，模組是公有的，不代表內部的項目也是公有的**
 
 我們必須幫 `add_to_waitlist` 加上 `pub`，程式碼才能使程式碼成功編譯
 
@@ -139,7 +141,7 @@ mod back_of_house {
 
 ## 讓 Structs 與 Enums 公有化
 
-struct 也可以加上 `pub`，使其公有化，但要注意的是，其內容不會變成公有的
+Struct 也可以加上 `pub`，使其公有化，但要注意的是，其內容不會變成公有的
 
 ```rust
 mod back_of_house {
@@ -173,9 +175,9 @@ pub fn eat_at_restaurant() {
 
 以上述的程式碼為例，`Breakfast` 設定為公有，但其中的 `seasonal_fruit` 仍舊為私有的
 
-而 `Breakfast` 中的 `toast` 與 `summer` 方法也需要特別加上 `pub` 才能使其變為公有
+而 `Breakfast` 中的 `toast` 與 `summer` 也需要特別加上 `pub` 才能使其變為公有
 
-enum 則不一樣，只要一宣告為公有的，其內容也通通都是公有的
+Enum 則不一樣，只要一宣告為公有的，其內容也通通都是公有的
 
 ```rust
 mod back_of_house {
