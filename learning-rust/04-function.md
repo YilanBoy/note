@@ -1,12 +1,12 @@
-# 函數
+# 函式
 
-函數需要在前面加上 `fn` 關鍵字
+函式需要在前面加上 `fn` 關鍵字
 
-Rust 中函數名稱與變數名稱使用 **snake_case** 規範
+Rust 中函式名稱與變數名稱使用 **snake_case** 規範
 
-Rust 程式碼的入口點是 `main` 函數
+Rust 程式碼的入口點是 `main` 函式
 
-函數的順序並不重要，只要一定義好，你可以在其前或其後進行呼叫 (編譯型語言的特徵)
+函式的順序並不重要，只要一定義好，你可以在其前或其後進行呼叫 (編譯型語言的特徵)
 
 ```rust
 fn main() {
@@ -20,9 +20,9 @@ fn another_function() {
 }
 ```
 
-函數可以設定參數
+函式可以設定參數
 
-函數的參數**必須定義好類型**
+函式的參數**必須定義好類型**
 
 ```rust
 fn main() {
@@ -79,7 +79,7 @@ fn main() {
 }
 ```
 
-函數如果有返回值，也需要事先定義好返回值的類型
+函式如果有返回值，也需要事先定義好返回值的類型
 
 ```rust
 fn plus_one(x: i32) -> i32 {
@@ -96,4 +96,4 @@ fn main() {
 
 ## 參考資料
 
-- [learnku - Rust 程式語言 - 函數如何工作](https://learnku.com/docs/rust-lang/2018/ch03-03-how-functions-work/4501)
+- [learnku - Rust 程式語言 - 函式如何工作](https://learnku.com/docs/rust-lang/2018/ch03-03-how-functions-work/4501)

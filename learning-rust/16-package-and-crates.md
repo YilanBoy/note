@@ -27,7 +27,7 @@ Crate 有兩種形式，一種為 Binary Crate，另外一種為 Library Crate
 
 Binary Crate 可以編譯並產生一個可執行程式，例如我們常用的命令行工具，前面筆記所有寫的程式碼都屬於 Binary Crate
 
-Library Crate 不會有 `main` 函數，他們也不會被編譯成可執行程式，他們會定義許多功能，並用在其他專案上，例如之前用來產生一組隨機數的 `rand` 就是一種 Library Crate，通常 Rustaceans 提到 Crate 的時候，更多是指 Library Crate
+Library Crate 不會有 `main` 函式，他們也不會被編譯成可執行程式，他們會定義許多功能，並用在其他專案上，例如之前用來產生一組隨機數的 `rand` 就是一種 Library Crate，通常 Rustaceans 提到 Crate 的時候，更多是指 Library Crate
 
 ## Crate Root
 

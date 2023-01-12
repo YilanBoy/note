@@ -31,7 +31,7 @@ let six = IpAddrKind::V6;
 
 注意列舉的成員位於其標示符的命名空間中
 
-因為 `IpAddrKind` 為我們自定義的資料類型，所以能用來註明函數的參數類型
+因為 `IpAddrKind` 為我們自定義的資料類型，所以能用來註明函式的參數類型
 
 ```rust
 enum IpAddrKind {
@@ -148,7 +148,7 @@ struct WriteMessage(String); // 元組結構體
 struct ChangeColorMessage(i32, i32, i32); // 元組結構體
 ```
 
-這種方式讓我們無法像列舉一樣，定義一種能夠處理不同類型結構體的函數
+這種方式讓我們無法像列舉一樣，定義一種能夠處理不同類型結構體的函式
 
 struct 與列舉都可以使用 `impl` 來定義方法
 

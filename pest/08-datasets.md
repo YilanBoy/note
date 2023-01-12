@@ -6,7 +6,7 @@
 
 遇到這樣的情況，可以考慮使用 Datasets
 
-我們可以在匿名函數中放入一個參數 `$email`，並呼叫 `with()` 方法代入一個有多筆信箱資料的陣列
+我們可以在匿名函式中放入一個參數 `$email`，並呼叫 `with()` 方法代入一個有多筆信箱資料的陣列
 
 ```php
 it('can store a contact', function ($firstName) {

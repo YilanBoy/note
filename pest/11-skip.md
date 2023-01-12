@@ -43,7 +43,7 @@ it('can validate an email', function () {
 ->skip(config('app.name') === 'foo', 'we don\'t need this test in this condition');
 ```
 
-想使用 Laravel 提供的方法，就必須**將其放入匿名函數中**
+想使用 Laravel 提供的方法，就必須**將其放入匿名函式中**
 
 ```php
 it('can validate an email', function () {

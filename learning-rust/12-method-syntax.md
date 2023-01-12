@@ -1,12 +1,12 @@
 # 方法語法
 
-struct 可以定義方法，方法與函數類似，使用 `fn` 關鍵字，也擁有參數與回傳值
+struct 可以定義方法，方法與函式類似，使用 `fn` 關鍵字，也擁有參數與回傳值
 
-與函數不同，方法的第一個參數總是 `self`，它代表調用該方法的 struct 實例
+與函式不同，方法的第一個參數總是 `self`，它代表調用該方法的 struct 實例
 
 ## 定義方法
 
-將之前的 `area` 函數改寫成 `Rectangle` struct 上的一個 `area` 方法
+將之前的 `area` 函式改寫成 `Rectangle` struct 上的一個 `area` 方法
 
 ```rust
 #[derive(Debug)]
@@ -95,11 +95,11 @@ impl Rectangle {
 }
 ```
 
-## 關聯函數
+## 關聯函式
 
-`impl` 還有另外一個功能，允許在其中定義一個不以 `self` 當作第一個參數的函數，也被稱為關聯函數
+`impl` 還有另外一個功能，允許在其中定義一個不以 `self` 當作第一個參數的函式，也被稱為關聯函式
 
-關聯函數與 struct 相關聯，但並不是方法，**因為他們與 struct 的實例無關**，前面使用的 `String::from` 就是一種關聯函數
+關聯函式與 struct 相關聯，但並不是方法，**因為他們與 struct 的實例無關**，前面使用的 `String::from` 就是一種關聯函式
 
 ```rust
 #[derive(Debug)]
@@ -116,7 +116,7 @@ impl Rectangle {
 }
 ```
 
-關聯函數使用 `::` 調用，例如下方的例子
+關聯函式使用 `::` 調用，例如下方的例子
 
 ```rust
 let sq = Rectangle::square(10);

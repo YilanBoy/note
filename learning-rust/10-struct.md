@@ -2,7 +2,7 @@
 
 struct 或者稱 structure，是一個自定義的資料類型，允許你命名和包裝多個相關的值，形成一個有意義的組合
 
-struct 可以定義方法與關連函數來指定與 struct 資料相關的行為
+struct 可以定義方法與關連函式來指定與 struct 資料相關的行為
 
 在程式碼中基於 struct 與枚舉 (enum) 創建新類型，可以充分利用 Rust 的編譯時檢查
 
@@ -36,7 +36,7 @@ let user1 = User {
 user1.email = String::from("another@example.com");
 ```
 
-**注意整個實例必須是可變的**，我們也可以使用一個函數來建立實體
+**注意整個實例必須是可變的**，我們也可以使用一個函式來建立實體
 
 ```rust
 fn build_user(email: String, username: String) -> User {
@@ -51,7 +51,7 @@ fn build_user(email: String, username: String) -> User {
 
 ## 變數名稱與 struct key 值相同的簡單寫法
 
-重複寫 struct 中的的 key 值可能有些囉嗦，當函數的參數名稱與 key 值相同，Rust 允許下方這種更方便的寫法
+重複寫 struct 中的的 key 值可能有些囉嗦，當函式的參數名稱與 key 值相同，Rust 允許下方這種更方便的寫法
 
 ```rust
 fn build_user(email: String, username: String) -> User {

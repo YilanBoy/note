@@ -44,7 +44,7 @@ Heap 是缺乏組織的，當要向 Heap 放入資料時，需要請求一定大
 
 ### Rust 所有權要處理的問題
 
-當你的程式碼調用函數時，傳遞給函數的值 (包括可能指向 Heap 上資料的指標) 和函數的局部變數會被加入 Stack 中，當函數結束時，這些值就會被移出 Stack
+當你的程式碼調用函式時，傳遞給函式的值 (包括可能指向 Heap 上資料的指標) 和函式的局部變數會被加入 Stack 中，當函式結束時，這些值就會被移出 Stack
 
 跟蹤哪部分程式碼正在使用 Heap 上的哪些資料，最大限度地減少 Heap 上重複資料的數量，以及清理 Heap 上不再被使用的資料，確保記憶體空間不會耗盡，這些問題正是 Rust 所有權所要處理的問題
 
@@ -97,7 +97,7 @@ let s = "hello" // 這個 hello 就是 string literal
 let s = String::from("hello");
 ```
 
-`::` 是運算符，用來調用放置於 `String` 類型命名空間 (namespace) 底下的 `from` 函數
+`::` 是運算符，用來調用放置於 `String` 類型命名空間 (namespace) 底下的 `from` 函式
 
 注意 `String` 字符串是可以被修改的
 
@@ -132,7 +132,7 @@ Rust 採取了一個不同於垃圾回收的策略，**一旦擁有該記憶體�
                                    // s 不再有效
 ```
 
-當 `s` 離開作用域，Rust 會自動幫我們調用一個特殊函數 `drop` 釋放記憶體
+當 `s` 離開作用域，Rust 會自動幫我們調用一個特殊函式 `drop` 釋放記憶體
 
 ## 變數與資料交互的方式 : 移動 (Move)
 
@@ -173,7 +173,7 @@ println!("{}, world!", s1); // error, value used here after move
 
 ## 變數與資料交互的方式 : 克隆 (Clone)
 
-如果我們確實需要複製 Heap 上的資料，可以使用 `clone` 這個通用函數
+如果我們確實需要複製 Heap 上的資料，可以使用 `clone` 這個通用函式
 
 ```rust
 let s1 = String::from("hello");
@@ -209,18 +209,18 @@ Rust 有一個叫做 `Copy` 的特殊註解，可以用在類似整數這樣儲�
 - 字符相關，例如 `char`
 - 元組，且其元素都是 `Copy` 的時候，例如 `(i32, i32)`，而 `(i32, String)` 就不是
 
-## 所有權與函數
+## 所有權與函式
 
 ```rust
 fn main() {
     let s = String::from("hello");        // s 進入作用域
 
-    takes_ownership(s);                   // s 的值進入函數中
+    takes_ownership(s);                   // s 的值進入函式中
                                           // 這裡 s 不再有效
 
     let x = 5;                            // x 進入作用域
 
-    makes_copy(x);                        // x 應該進入函數中
+    makes_copy(x);                        // x 應該進入函式中
                                           // 但是 x 為 i32 類型，屬於 Copy
                                           // 所以 x 後續可以繼續使用
 
@@ -249,19 +249,19 @@ fn main() {
 }                                                     // 這裡 s3 移出作用域並被 dropped，s2 已經被移走，所以不會有任何操作
                                                       // s1 移出作用域並被 dropped
 
-fn gives_ownership() -> String {                      // gives_ownership 將返回值移動給調用它的函數
+fn gives_ownership() -> String {                      // gives_ownership 將返回值移動給調用它的函式
     let some_string = String::from("yours");          // some_string 進入作用域
 
-    some_string                                       // 返回 some_string 給調用它的函數
+    some_string                                       // 返回 some_string 給調用它的函式
 }
 
 // 傳入 String 並返回該值
 fn takes_and_gives_back(a_string: String) -> String { // a_string 進入作用域
-    a_string                                          // 返回 a_string 給調用它的函數
+    a_string                                          // 返回 a_string 給調用它的函式
 }
 ```
 
-如果傳入函數的值，後續想要繼續使用的話，可以使用元組來返回多個值
+如果傳入函式的值，後續想要繼續使用的話，可以使用元組來返回多個值
 
 ```rust
 fn main() {

@@ -96,7 +96,7 @@ mod front_of_house {
 
 我們訂一個模組 `front_of_house`，模組中還可以包含模組，例如上述例子中的 `hosting` 與 `serving`
 
-也可以包含其他如 struct (結構體)、enum (列舉)、constants (常數)、traits 與上述例子中的各種 function (函數)
+也可以包含其他如 struct (結構體)、enum (列舉)、constants (常數)、traits 與上述例子中的各種 function (函式)
 
 藉由模組，我們可以將有相關性的定義放在一起，這樣開發者就可以根據名稱來尋找需要的定義，而不是辛苦地翻遍所有定義
 
