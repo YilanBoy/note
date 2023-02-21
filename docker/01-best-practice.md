@@ -1,22 +1,22 @@
 # Best Practice
 
-使用 Docker 的最佳實踐
+詢問 ChatGPT 有關於使用 Docker 的最佳實踐
+
+feat. ChatGPT
 
 ## Use Non-Root User to Start the Main Process in Container
 
-Ask the ChatGPT this question
-
-### Question
+Q:
 
 When we build a container image. Is there a suggestion that we should create a new user to start the main process, instead of using root user, right?
 
-> 提問：當我們建立一個容器映像檔，是不是建議應該新建一個用戶來啟動容器中的主程序，而非使用 root 來啟動？
+> 當我們建立一個容器映像檔，是不是建議應該新建一個用戶來啟動容器中的主程序，而非使用 root 來啟動？
 
-### Answer
+A:
 
 Yes, it is generally recommended to use a non-root user to run the main process in a container, rather than running the process as the root user. This is considered a security best practice.
 
-> 回答：是的，通常建議使用一個非 root 用戶來執行容器中的主程序，而不是以 root 用戶的身份執行。這被認為是一種安全的最佳做法。
+> 是的，通常建議使用一個非 root 用戶來執行容器中的主程序，而不是以 root 用戶的身份執行。這被認為是一種安全的最佳做法。
 
 Running the process as a non-root user can help to limit the potential damage if the process is compromised or if there is a security vulnerability in the application running inside the container. If the process is running as the root user, an attacker who gains access to the process may be able to take control of the entire container and potentially even the host system.
 
@@ -28,7 +28,7 @@ In addition to using a non-root user for the main process, it is also a good pra
 
 > 除了使用非 root 用戶執行主程序之外，以最小的權限運行容器，並酌情限制對敏感資源（如端口和文件系統）的訪問，也是一種良好的做法。這可以幫助減少攻擊面，提高容器的安全性。
 
-### Example
+Example
 
 Create a group and a user, both of their names are octane
 
@@ -45,3 +45,84 @@ ARG WWWGROUP=1000
 RUN groupadd --force -g $WWWGROUP octane \
     && useradd -ms /bin/bash --no-log-init --no-user-group -g $WWWGROUP -u $WWWUSER octane
 ```
+
+## Use Multiple Stage Build to Reduce the Image Size
+
+Q:
+
+In docker, what is the main purpose of the "Multiple Stage Build"?
+
+> docker 的 Multiple Stage Build 功能主要用途為？
+
+A:
+
+The main purpose of the "Multiple Stage Build" feature in Docker is to create smaller and more efficient Docker images.
+
+> Multiple Stage Build 功能在 Docker 中的主要目的是幫助創建更小、更高效的 Docker 映像檔案。
+
+With multiple stage builds, you can use separate Docker images to build different parts of your application, and then combine those parts into a single final image. Each stage can have its own dependencies and environment, and you can copy files between stages.
+
+> 藉由 Multiple Stage Builds，您可以使用不同的 Docker 映像構建應用程式的不同部分，然後將這些部分組合成單個最終映像檔案。每個階段可以擁有自己的依賴和環境，並且您可以使用複製在不同階段之間分享檔案。
+
+The benefit of this approach is that you can keep your build and runtime dependencies separate, which helps reduce the size of the final image. This is particularly useful in cases where you have a complex application with many dependencies, or when you need to build an image for a small, lightweight container.
+
+> 這種方法的好處是可以將構建和執行時依賴項分開，從而有助於減少最終映像檔案的大小。在應用程式具有許多依賴項或需要為小型、輕量級容器構建鏡像的情況下，這特別有用。
+
+By using multiple stages, you can also improve the security of your Docker images, since you can reduce the attack surface by only including the necessary dependencies in the final image.
+
+> 通過使用多個階段，還可以提高 Docker 映像的安全性，因為我們僅在最終映像中包含必要的依賴項，以此減少攻擊面。
+
+Overall, multiple stage builds are a powerful tool in Docker that can help you create more efficient, secure, and streamlined Docker images.
+
+> 總的來說，多個構建階段是 Docker 中的一個強大工具，可以幫助您創建更高效、安全和簡化的 Docker 映像。
+
+簡單來說，假設今天要打包 Laravel App 的映像檔案，我們會有以下步驟
+
+- 安裝 composer，並使用 composer 安裝 App 的 PHP 依賴套件
+- 安裝 PHP，並使用 PHP 運行 Laravel App
+
+我們需要 composer 幫我們安裝 App 的 PHP 依賴套件，但最終運行 App 時，我們只需要 PHP，並不需要 composer
+
+這時我們可以使用 multiple stage build，將安裝依賴的**建構階段**與運行程式的**運行階段**給分開。使用 composer 映像幫 App 安裝所需的 PHP 依賴，並將這些依賴檔案複製到最終運行 App 的映像中，如此一來，最終運行 App 的映像不會有 composer，但依然會有運行 App 所需的 PHP 依賴檔案，以此縮小映像檔案的大小
+
+Example
+
+```dockerfile
+ARG COMPOSER_VERSION=latest
+ARG PHP_VERSION=8.2
+
+############################################
+# build stage
+############################################
+
+# use AS to name this stage to "vendor"
+FROM composer:${COMPOSER_VERSION} AS vendor
+WORKDIR /var/www/html
+COPY composer* ./
+RUN composer install \
+    --no-dev \
+    --no-interaction \
+    --prefer-dist \
+    --ignore-platform-reqs \
+    --optimize-autoloader \
+    --apcu-autoloader \
+    --ansi \
+    --no-scripts \
+    --audit
+
+############################################
+# final stage to run the app
+############################################
+
+FROM php:${PHP_VERSION}-cli-buster
+WORKDIR /var/www/html
+
+# copy dependencies from build stage, which is "vendor" stage
+COPY --from=vendor /var/www/html/vendor vendor
+
+CMD ["php", "artisan", "serve"]
+```
+
+## 參考資料
+
+- [透過 Multiple Stage Builds 編譯出最小的 Docker Image](https://jiepeng.me/2018/06/09/use-docker-multiple-stage-builds)
