@@ -2,5 +2,7 @@
   "MD033": {
     "allowed_elements": ["img"]
   },
-  "MD013": false
+  "MD013": false,
+  "MD024": false,
+  "MD026": false
 }
