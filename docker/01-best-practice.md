@@ -1,4 +1,4 @@
-# Best Practice
+# Docker Best Practice
 
 詢問 ChatGPT 有關於使用 Docker 的最佳實踐
 
@@ -6,13 +6,13 @@ feat. ChatGPT
 
 ## Use Non-Root User to Start the Main Process in Container
 
-Q:
+### Q:
 
 When we build a container image. Is there a suggestion that we should create a new user to start the main process, instead of using root user, right?
 
 > 當我們建立一個容器映像檔，是不是建議應該新建一個用戶來啟動容器中的主程序，而非使用 root 來啟動？
 
-A:
+### A:
 
 Yes, it is generally recommended to use a non-root user to run the main process in a container, rather than running the process as the root user. This is considered a security best practice.
 
@@ -28,9 +28,9 @@ In addition to using a non-root user for the main process, it is also a good pra
 
 > 除了使用非 root 用戶執行主程序之外，以最小的權限運行容器，並酌情限制對敏感資源（如端口和文件系統）的訪問，也是一種良好的做法。這可以幫助減少攻擊面，提高容器的安全性。
 
-Example
+### Example
 
-Create a group and a user, both of their names are octane
+在 Debian 映像上建立一個群組與用戶，它們的名稱都是 octane
 
 ```dockerfile
 # create user and group in Dockerfile
@@ -48,13 +48,13 @@ RUN groupadd --force -g $WWWGROUP octane \
 
 ## Use Multiple Stage Build to Reduce the Image Size
 
-Q:
+### Q:
 
 In docker, what is the main purpose of the "Multiple Stage Build"?
 
 > docker 的 Multiple Stage Build 功能主要用途為？
 
-A:
+### A:
 
 The main purpose of the "Multiple Stage Build" feature in Docker is to create smaller and more efficient Docker images.
 
@@ -68,24 +68,26 @@ The benefit of this approach is that you can keep your build and runtime depende
 
 > 這種方法的好處是可以將構建和執行時依賴項分開，從而有助於減少最終映像檔案的大小。在應用程式具有許多依賴項或需要為小型、輕量級容器構建鏡像的情況下，這特別有用。
 
-By using multiple stages, you can also improve the security of your Docker images, since you can reduce the attack surface by only including the necessary dependencies in the final image.
+By using multiple stage builds, you can also improve the security of your Docker images, since you can reduce the attack surface by only including the necessary dependencies in the final image.
 
-> 通過使用多個階段，還可以提高 Docker 映像的安全性，因為我們僅在最終映像中包含必要的依賴項，以此減少攻擊面。
+> 藉由使用 Multiple Stage Builds，還可以提高 Docker 映像的安全性，因為我們僅在最終映像中包含必要的依賴項，以此減少攻擊面。
 
 Overall, multiple stage builds are a powerful tool in Docker that can help you create more efficient, secure, and streamlined Docker images.
 
-> 總的來說，多個構建階段是 Docker 中的一個強大工具，可以幫助您創建更高效、安全和簡化的 Docker 映像。
+> 總的來說，Multiple Stage Builds 是 Docker 中的一個強大工具，可以幫助您創建更高效、安全和簡化的 Docker 映像。
 
-簡單來說，假設今天要打包 Laravel App 的映像檔案，我們會有以下步驟
+### Example
+
+舉個例子來說，假設今天我們要打包 Laravel App 的映像檔案，我們會有以下步驟
 
 - 安裝 composer，並使用 composer 安裝 App 的 PHP 依賴套件
 - 安裝 PHP，並使用 PHP 運行 Laravel App
 
 我們需要 composer 幫我們安裝 App 的 PHP 依賴套件，但最終運行 App 時，我們只需要 PHP，並不需要 composer
 
-這時我們可以使用 multiple stage build，將安裝依賴的**建構階段**與運行程式的**運行階段**給分開。使用 composer 映像幫 App 安裝所需的 PHP 依賴，並將這些依賴檔案複製到最終運行 App 的映像中，如此一來，最終運行 App 的映像不會有 composer，但依然會有運行 App 所需的 PHP 依賴檔案，以此縮小映像檔案的大小
+這時我們可以使用 Multiple Stage Builds，將安裝依賴的**建構階段**與運行程式的**運行階段**給分開。
 
-Example
+使用 composer 映像幫 App 安裝所需的 PHP 依賴，並將這些依賴檔案複製到最終運行 App 的映像中，如此一來，最終運行 App 的映像不會有 composer，但依然會有運行 App 所需的 PHP 依賴檔案，以此縮小映像檔案的大小
 
 ```dockerfile
 ARG COMPOSER_VERSION=latest
@@ -123,6 +125,91 @@ COPY --from=vendor /var/www/html/vendor vendor
 CMD ["php", "artisan", "serve"]
 ```
 
+## Log to STDOUT and STDERR in Docker Container
+
+### Q:
+
+Why we should log to `/dev/stdout` or `/dev/stderr` in docker container?
+
+> 為什麼在 docker 容器中，我們應該把 log 導向 `/dev/stdout` 或者是 `/dev/stderr`？
+
+### A:
+
+In a Docker container, it is generally recommended to output logs to `/dev/stdout` or `/dev/stderr`. Here are some reasons why:
+
+> 在 Docker 容器中，建議將日誌輸出到 `/dev/stdout` 或 `/dev/stderr`。以下是一些原因：
+
+Standardization: By outputting logs to /dev/stdout and /dev/stderr, you are using the standard output and standard error streams. This makes it easier to integrate your container with other tools, as they are more likely to be able to consume logs from these standard streams.
+
+> 標準化：通過將日誌輸出到 `/dev/stdout` 和 `/dev/stderr`，您使用標準輸出和標準錯誤流。
+>
+> 這使得更容易將您的容器與其他工具集成，因為它們更有可能使用這些標準流中的日誌。
+
+Logging drivers: Docker has built-in logging drivers that can capture logs from standard streams and send them to various destinations, such as the host's syslog or a cloud-based logging service. By using standard streams, you can take advantage of these logging drivers without having to modify your application's code.
+
+> 日誌驅動程序：Docker 具有內置的日誌驅動程序，可以捕獲從標準流輸出的日誌並將其發送到各種目的地，例如主機的 syslog 或基於雲的日誌服務。
+>
+> 通過使用標準流，您可以利用這些日誌驅動程序，而無需修改應用程序代碼。
+
+Visibility: When logs are output to standard streams, they are visible in real-time to anyone who is monitoring the container's output. This can be useful for debugging or troubleshooting issues.
+
+> 可見性：當日誌輸出到標準流時，它們即時可見，供任何監視容器輸出的人使用。這對除錯或解決問題非常有用。
+
+Debugging: In a containerized environment, it can be difficult to debug issues that arise. By outputting logs to standard streams, you can easily see what your application is doing and quickly diagnose any problems that may arise.
+
+> 除錯：在容器化環境中，很難針對問題除錯。
+>
+> 通過將日誌輸出到標準流，您可以輕鬆查看應用程序的運行情況，快速診斷可能出現的任何問題。
+
+Overall, using /dev/stdout and /dev/stderr to output logs in Docker containers can help standardize your logging, make it easier to integrate with other tools, and improve visibility and debugging capabilities.
+
+> 總之，在 Docker 容器中使用 `/dev/stdout` 和 `/dev/stderr` 來輸出日誌可以幫助標準化日誌，使其更容易與其他工具集成，以及提高可見性和除錯能力。
+
+### Example
+
+在 docker compose 中，我們可以設定 docker 的 log driver
+
+以下方的 docker compose 當作範例，我們跑一個 nginx 服務，並將其 log 傳送到 fluent-bit
+
+> nginx 的官方映像，預設即使用軟連結 (symbolic link) 把 log 連結到 `/dev/stdout` 和 `/dev/stderr`，所以下面設定 log driver 是可以接到 nginx 的 log 的
+
+```yaml
+version: "3"
+
+services:
+  nginx:
+    logging:
+      # 我們在這裡設定 nginx 的 log driver 為 fluentd
+      driver: fluentd
+      options:
+        fluentd-address: localhost:24224
+        tag: nginx
+    image: nginx
+    ports:
+      - "8080:80"
+    depends_on:
+      - fluent-bit
+    hostname: nginx
+
+  # 使用 fluent-bit 去接 nginx 的 log
+  fluent-bit:
+    image: fluent/fluent-bit
+    # 你可以自己寫一個 fluent-bit 的設定檔案，看要如何處理接收到的 log，你可以把 log 轉傳送到自己搭建，或是雲端的日誌分析平台進行分析
+    volumes:
+      - ./conf:/fluent-bit/etc
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
+    hostname: fluent-bit
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 100m
+        max-file: "5"
+```
+
 ## 參考資料
 
 - [透過 Multiple Stage Builds 編譯出最小的 Docker Image](https://jiepeng.me/2018/06/09/use-docker-multiple-stage-builds)
+- [https://docs.docker.com/config/containers/logging/](https://docs.docker.com/config/containers/logging/)
+- [Configure logging drivers](https://docs.docker.com/config/containers/logging/configure/)
