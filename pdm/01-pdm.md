@@ -110,6 +110,7 @@ pdm add requests
 ```
 
 > **Note**
+>
 > 注意 `__pypackages__` 這個資料夾不應該加入版本控制，請在 `.gitignore` 中將此資料夾排除
 
 此時 `pyproject.toml` 的 `dependencies` 內容也會一起更新
