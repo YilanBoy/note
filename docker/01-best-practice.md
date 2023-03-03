@@ -4,6 +4,49 @@
 
 feat. ChatGPT
 
+## Minimize the Number of Layers
+
+在 Docker 中，一個映像檔 (image) 是由一系列的層（layer）構成的。每一層都是由上一層所做的更改而來，而這些更改通常是基於前一層的內容而進行的
+
+這些層的存在可以讓映像檔變得非常輕量、易於傳輸和管理。當您下載或共享一個映像檔時，**Docker 只會下載或共享這個映像檔中新增或修改的那一層**，而不是整個映像檔。這種方式可以減少傳輸和儲存所需的時間和空間
+
+在寫 `Dockerfile` 建立映像檔的時候，部分操作會增加映像檔的層數，以下方的 `Dockerfile` 為範例
+
+```dockerfile
+# syntax=docker/dockerfile:1
+FROM ubuntu:22.04
+COPY . /app
+RUN make /app
+CMD python /app/app.py
+```
+
+在 `Dockerfile` 中，以下這些操作都會增加 layer，讓最終建立出來的 image 的容量變大
+
+- `FROM`: 指令指定基底映像檔。Docker 映像檔是基於現有映像檔建立的，該指令可以指定您要從哪個映像檔開始建立您的映像檔
+- `COPY`: 指令將本地檔案複製到映像檔中的指定位置。該指令將在映像檔建立期間執行
+- `RUN`: 指令執行容器中的命令，例如安裝軟體套件、更新套件資訊等等。該指令會在建立映像檔時被執行
+- `CMD`: 指令定義容器啟動時要執行的預設命令。該指令只能在 Dockerfile 中使用一次，若多次使用僅會使用最後一次的指令
+
+為了讓建立 image 的速度加快與減少 image 的容量，我們應該盡可能減少層數，以下方的 `Dockerfile` 為範例
+
+```dockerfile
+FROM ubuntu:22.04
+
+RUN apt update
+RUN apt upgrade -yqq
+RUN apt install wget
+```
+
+我們應該改寫成
+
+```dockerfile
+FROM ubuntu:22.04
+
+RUN apt update \
+  && apt upgrade -yqq \
+  && apt install wget
+```
+
 ## Use Non-Root User to Start the Main Process in Container
 
 ### Q:
