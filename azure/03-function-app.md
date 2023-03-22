@@ -1,4 +1,4 @@
-# Azure Function
+# App Function
 
 Azure 的無伺服器 (serverless) 服務
 
