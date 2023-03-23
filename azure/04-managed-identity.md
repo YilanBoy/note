@@ -19,10 +19,60 @@ Azure Managed Identity 可以為應用程式提供一個自動化的管理識別
 
 ### Example
 
-例如我建立一個 azure function，我想要讓 azure function 獲取能夠 ingest 資料到 azure data explorer database 的權限，那我需要這麼設定
+例如我建立一個 azure function app，我想要讓 function app 獲取能夠輸入資料到 azure data explorer database 的權限，那我需要這麼設定
 
 - 在 azure function 頁面上，點選側邊欄的 **Settings -> Identity**，**將 System assigned managed identity 給開啟**
-- 到 azure data explorer 的 database 頁面上，點選 **Overview -> Permissions**，點選上方的 **Add**，賦予 **azure function managed identity** Database Admin 的權限
+- 到 azure data explorer 的 database 頁面上，點選 **Overview -> Permissions**，點選上方的 **Add**，選擇 Ingestor 角色，並加入 **function app managed identity**
+
+Python SDK 的範例程式碼
+
+```python
+# https://learn.microsoft.com/zh-tw/azure/azure-functions/functions-event-grid-blob-trigger?pivots=programming-language-python
+# https://learn.microsoft.com/zh-tw/python/api/azure-functions/azure.functions.blob.inputstream?view=azure-python
+import logging
+
+import azure.functions as func
+from azure.kusto.data import DataFormat, KustoConnectionStringBuilder
+from azure.kusto.ingest import (IngestionProperties, QueuedIngestClient,
+                                StreamDescriptor)
+
+
+def ingest_blob_to_data_explorer(blob_stream):
+    ingestion_client_url = "https://ingest-adx-cluster.eastus.kusto.windows.net"
+
+    # use managed identity to get the ingestion permission
+    kcsb = KustoConnectionStringBuilder.with_aad_managed_service_identity_authentication(
+        ingestion_client_url)
+    ingestion_client = QueuedIngestClient(kcsb)
+
+    # All ingestion properties are documented here: 
+    # https://learn.microsoft.com/azure/kusto/management/data-ingest#ingestion-properties
+    ingestion_properties = IngestionProperties(
+        database="TestDatabase",
+        table="TestTable",
+        data_format=DataFormat.JSON,
+        ingestion_mapping_reference="TestMapping"
+    )
+
+    stream_descriptor = StreamDescriptor(blob_stream)
+
+    ingestion_client.ingest_from_stream(
+        stream_descriptor=stream_descriptor,
+        ingestion_properties=ingestion_properties
+    )
+
+    logging.info("Done queuing up ingestion with Azure Data Explorer")
+
+
+# parameter 'myblob' will set in 'function.json' file
+def main(myblob: func.InputStream):
+
+    ingest_blob_to_data_explorer(myblob)
+
+    logging.info(f"Python blob trigger function processed blob \n"
+                 f"Name: {myblob.name}\n"
+                 f"Blob Size: {myblob.length} bytes")
+```
 
 ## References
 
