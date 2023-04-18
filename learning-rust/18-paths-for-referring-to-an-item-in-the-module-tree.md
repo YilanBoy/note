@@ -37,7 +37,7 @@ pub fn eat_at_restaurant() {
 
 如果編譯上述的程式碼，會發生以下的錯誤
 
-```text
+```shell
 $ cargo build
    Compiling restaurant v0.1.0 (file:///projects/restaurant)
 error[E0603]: module `hosting` is private
@@ -68,11 +68,13 @@ For more information about this error, try `rustc --explain E0603`.
 error: could not compile `restaurant` due to 2 previous errors
 ```
 
-在 Rust 中，所有項目 (function、method、struct、enums、 modules 與 constant) 對於**父模組來說都是私有的**，如果你想讓一個項目變成私有，可以將其放入模組中
+在 Rust 中，所有項目 (function、method、struct、enums、 modules 與 constant) 對於**父模組來說都是私有的**
+，如果你想讓一個項目變成私有，可以將其放入模組中
 
 歸納一個重點，**父模組不能夠使用子模組的私有項目，但子模組可以使用父模組的私有項目**
 
-> This is because child modules wrap and hide their implementation details, but the child modules can see the context in which they’re defined
+> This is because child modules wrap and hide their implementation details, but the child modules can see the context in
+> which they’re defined
 >
 > 因為子模組將它們的實作細節包裹並隱藏了起來，但子模組可以看到它們被定義的背景
 
