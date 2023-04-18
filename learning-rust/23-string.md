@@ -59,7 +59,7 @@ let hello = String::from("Hola");
 
 `String` 的內容可以變更
 
-你也可以使用 `+` 或 `!format` 宏來拼接 `String` 的值
+你也可以使用 `+` 或 `!format` 巨集來拼接 `String` 的值
 
 ### 使用 push_str 與 push 附加字串
 
