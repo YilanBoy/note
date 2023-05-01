@@ -169,6 +169,16 @@ gcloud components install COMPONENT_ID
 gcloud components update
 ```
 
+## 生成 Credentials
+
+登入並設定
+
+```shell
+gcloud auth application-default login
+```
+
+登入之後會生成一個 `/home/<username>/.config/gcloud/application_default_credentials.json`，第三方的 library 或是 Terraform 都會直接使用這個 Credentials
+
 ## 參考資料
 
 - [StackOverflow - How to change Region / Zone in Google Cloud?](https://stackoverflow.com/questions/45125143/how-to-change-region-zone-in-google-cloud)
