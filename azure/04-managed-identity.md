@@ -45,7 +45,7 @@ def ingest_blob_to_data_explorer(blob_stream):
         ingestion_client_url)
     ingestion_client = QueuedIngestClient(kcsb)
 
-    # All ingestion properties are documented here: 
+    # All ingestion properties are documented here:
     # https://learn.microsoft.com/azure/kusto/management/data-ingest#ingestion-properties
     ingestion_properties = IngestionProperties(
         database="TestDatabase",

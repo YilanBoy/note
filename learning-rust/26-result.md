@@ -132,3 +132,131 @@ fn main() {
 thread 'main' panicked at 'Failed to open hello.txt: Error { repr: Os { code:
 2, message: "No such file or directory" } }', src/libcore/result.rs:906:4
 ```
+
+## 傳播錯誤 (Propagating)
+
+當編寫一個可能會失敗的函式時，除了可以在這個函式中處理錯誤，你也可以讓調用函式的人自行決定該如何處理這個錯誤，稱為傳播 (propagating) 錯誤
+
+下面這段程式碼是一個從文件中讀取用戶明的函式。如果文件不存在或不能讀取，函式會把錯誤返回給調用它的程式碼
+
+```rust
+use std::io;
+use std::io::Read;
+use std::fs::File;
+
+// 這個函式會返回一個 Result<T, E>
+// T 的具體類型是 String，E 的具體類型是 io::Error
+// 如果函式沒有遇到錯誤，會返回一個包含 String 的 Ok 值
+fn read_username_from_file() -> Result<String, io::Error> {
+    let f = File::open("hello.txt");
+
+    let mut f = match f {
+        Ok(file) => file,
+        // 如果有錯誤錯誤，直接將錯誤返回
+        Err(e) => return Err(e),
+    };
+
+    let mut s = String::new();
+
+    match f.read_to_string(&mut s) {
+        Ok(_) => Ok(s),
+        Err(e) => Err(e),
+    }
+}
+```
+
+## 傳播錯誤的簡寫 `?`
+
+上面的寫法可以用 `?` 簡寫成下面的寫法
+
+> match 表達式與 `?` 所做的事情有點不同
+>
+> `?` 會將錯誤傳遞給 `from` 函式，它定義在標準庫的 `From` trait 中，**用來將錯誤從一個類型轉換到另外一個類型**
+>
+> 當 `?` 調用 `from` 時，會自動將錯誤轉成當前函式返回的錯誤類型也就是 `io::Error`
+>
+> 即使函式有可能因為多種原因而發生錯誤，但只要錯誤類型有實現 from 函式來定義如何轉換這些錯誤類型，`?` 會自動幫你進行轉換
+
+```rust
+use std::io;
+use std::io::Read;
+use std::fs::File;
+
+fn read_username_from_file() -> Result<String, io::Error> {
+    let mut f = File::open("hello.txt")?;
+    let mut s = String::new();
+
+    // 如果沒有錯誤，將繼續執行下面的 Ok(s)，反之則返回 Err
+    f.read_to_string(&mut s)?;
+
+    Ok(s)
+}
+```
+
+`?` 可以使用鏈式寫法
+
+```rust
+use std::io;
+use std::io::Read;
+use std::fs::File;
+
+fn read_username_from_file() -> Result<String, io::Error> {
+    let mut s = String::new();
+
+    File::open("hello.txt")?.read_to_string(&mut s)?;
+
+    Ok(s)
+}
+```
+
+或是使用更簡短的 `fs` 函式
+
+```rust
+use std::io;
+use std::fs;
+
+fn read_username_from_file() -> Result<String, io::Error> {
+    fs::read_to_string("hello.txt")
+}
+```
+
+## `?` 只能用於返回 `Result` 的函式
+
+```rust
+use std::fs::File;
+
+// main() 返回值的類型預設為空 tuple 也就是 ()，不符合 ? 的要求
+fn main() {
+    let f = File::open("hello.txt")?;
+}
+```
+
+嘗試編譯上面的程式碼會出現下面的錯誤
+
+```text
+error[E0277]: the `?` operator can only be used in a function that returns `Result` or `Option` (or another type that implements `std::ops::Try`)
+ --> src/main.rs:4:13
+  |
+4 |     let f = File::open("hello.txt")?;
+  |             ^^^^^^^^^^^^^^^^^^^^^^^^ cannot use the `?` operator in a function that returns `()`
+  |
+  = help: the trait `std::ops::Try` is not implemented for `()`
+  = note: required by `std::ops::Try::from_error`
+```
+
+可以修改 `main` 函式，讓其返回一個 `Result<T, E>`
+
+> main 可以返回 Result 為 1.26 版本之後加入的新特性
+
+```rust
+use std::error::Error;
+use std::fs::File;
+
+fn main() -> Result<(), Box<dyn Error>> {
+    let f = File::open("hello.txt")?;
+
+    Ok(())
+}
+```
+
+`Box<dyn Error>` 被稱為 **trait 物件** (trait object)。可以暫時將 `Box<dyn Error>` 理解為任何類型的錯誤
