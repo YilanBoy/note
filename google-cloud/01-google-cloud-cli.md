@@ -179,6 +179,12 @@ gcloud auth application-default login
 
 登入之後會生成一個 `/home/<username>/.config/gcloud/application_default_credentials.json`，第三方的 library 或是 Terraform 都會直接使用這個 Credentials
 
+如果要更換帳戶，可以撤銷原來的 credentials
+
+```shell
+gcloud auth application-default revoke
+```
+
 ## 參考資料
 
 - [StackOverflow - How to change Region / Zone in Google Cloud?](https://stackoverflow.com/questions/45125143/how-to-change-region-zone-in-google-cloud)
