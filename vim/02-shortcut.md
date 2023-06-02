@@ -1,33 +1,6 @@
-# Vim
+# Shortcut
 
-簡單紀錄 Vim 的一些快捷鍵
-
-## 模式 (Mode)
-
-Vim 有三種模式
-
-- Normal Mode (Keep Mode)
-- Insert Mode
-- Visual Mode
-
-## 設定
-
-可以輸入 `:` 進入指令模式，可以輸入指令或修改 Vim 的設定
-
-```text
-set rnu
-set tabstop=4
-set shiftwidth=4
-set expandtab
-set autoindent
-colorscheme slate
-```
-
-想要儲存 Vim 的設定可以使用 `~/.vimrc`
-
-## Normal Mode
-
-### 移動
+## 移動
 
 游標移動 `h j k l` 對應 `← ↓ ↑ →`
 
@@ -37,9 +10,10 @@ colorscheme slate
 - 建議開啟 vim 的 set relative number 功能，這樣就可以很方便的使用數字鍵進行移動
 
 ```text
-set rnu
 set relativenumber
 ```
+
+也可以簡寫成 `set rnu`
 
 `w` 與 `W` : 根據字串在行上往後移動，會移動到字串的**首字元**
 
@@ -70,7 +44,7 @@ set relativenumber
 
 `M` : 移動至視窗的正中間
 
-### 搜尋
+## 搜尋
 
 `f` 與 `F` : 在該行上搜尋字元並跳過去，一樣可以搭配數字使用
 
@@ -139,11 +113,11 @@ set relativenumber
 - 在單行下，可以使用 `>>` 與 `<<` 快速進行縮排與反縮排
 - 多行縮排需要先選取想要的範圍在輸入 `> <`，可以搭配數字 `5>` 使用
 
-> 預設中，刪除與複製的內容都會進入預設共用的剪貼簿
+> 預設中，刪除、複製與剪下的內容都會進入預設共用的剪貼簿
 >
 > 但剪貼簿有多個，也有給複製單獨使用的剪貼簿
 >
-> 可以在複製時選擇要使用哪個剪貼簿
+> 如果你只想要貼上複製的內容，可以使用快捷鍵 `"0p`
 
 ## 編輯進階技巧
 
@@ -194,13 +168,6 @@ set surround
 - `Ctrl + y` 與 `Ctrl + e` : 以一行為單位上下滾動
 - `Ctrl + u` 與 `Ctrl + d` : 以半個畫面為單位上下滾動
 - `Ctrl + b` 與 `Ctrl + f` : 以整個畫面為單位上下滾動
-
-## 指令
-
-在 normal mode 輸入 `:` 即可開始輸入指令
-
-- `:/keyword` : 在當前檔案中搜尋
-- `:% s/target/replace/gc` : 在當前檔案中搜尋並取代，取代有多種模式 (y/n/a/q/l)
 
 ## 參考資料
 
