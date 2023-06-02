@@ -33,7 +33,7 @@ colorscheme slate
 
 - 因為雙手在鍵盤上的固定位置，`j` 是在右手食指上，且程式碼照理說是往下寫，因此 `j` 很自然是往下鍵
 - 可以搭配數字使用，例如輸入 `5j`，代表往下移動五行
-- 斜向的移動，IDE 建立可以使用 AceJump 這個套件來進行移動
+- 斜向的移動，IDE 建議可以使用 AceJump 這個套件來進行移動，vim 上面可以使用 Easymotion
 - 建議開啟 vim 的 set relative number 功能，這樣就可以很方便的使用數字鍵進行移動
 
 ```text
