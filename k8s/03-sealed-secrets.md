@@ -66,8 +66,66 @@ brew install kubeseal
 
 ```shell
 # option 1
-kubeseal <mysql-secrets.yaml > mysql-sealed-secrets.yaml
+kubeseal <mysql-secret.yaml -o yaml > mysql-sealed-secret.yaml
 
 # option 2
-cat mysql-secrets.yaml | kubeseal > mysql-sealed-secrets.yaml
+cat mysql-secret.yaml | kubeseal -o yaml > mysql-sealed-secret.yaml
+```
+
+## 將 SealedSecret 部署到叢集中，讓 Controller 幫我們解密並部署 Secret
+
+假設我們有一個 `mysql-secret.yaml`，其內容如下
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  namespace: mysql
+  name: mysql-secret
+type: Opaque
+stringData:
+  root-password: "oPKcjfYqRUuzi7Mi"
+  password: "oPAspyYdAEHRqhU5"
+```
+
+使用 `kubeseal` 將其轉換成 `SealedSecret`
+
+```shell
+cat mysql-secret.yaml | kubeseal -o yaml > mysql-sealed-secret.yaml
+```
+
+`mysql-sealed-secret.yaml` 的內容如下
+
+```yaml
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: mysql-secret
+  namespace: mysql
+spec:
+  encryptedData:
+    password: AgAYrXLOxXW+TyTw9CpNBJGclc+6f2ZMxCNwi4DqQgDTuCZ5kCtyvXSGlI8bN4o1stzHHAD+Abl9mPSbT6rv9e/m7ivgZim+OV7hR2Ofy+5pFuxo4wvo5WmEHAawFHLwKEvOljOHPJYbsAjd5xCeVah247+QknytvDMOss18N2z3quCge1jc1eMsi2s3joFKWP8frLbuvDOuo2HlH8je7RBPvnoMieGbFM+XMOBCVAj+ECIKigNQK6i2hNW11zzox3UMTuiZ1aoqhcP1XlppVOeVuTRVNTjr1ufM8s96ep9XxABSHyLXHOB1K1TJ/AUvju6DilhKBiiXEHapCj+Ep/n2HUsiKk2v52mdYIk7rAgm5Y/y2ga0iIl5KX35qKFgi4CH36/K9XEG/Fb/a91PCeIvYRsTpadYV15GQecMURgc/xs6DnCxEKWoUSBpEsAE4mcjPOFQ8nxtoaeJkqaFyPLGrxK6RSTPO80u9K6LAr3P3DUIxf7WYfddyD4A5dxS0uU455mgKZ4qTQgPS+ui9s8yjQAjXLMrzQbs7ryqlOP0xlzAepLuIGEqf5qNdjxk2JbogpChqpLwk73Zb8kYn+rQ7VTqEhQTUxZDunRfQdkp2YzzP6SYwhDVLEC4xEazYHpc5YMT1pNvHCqkorD+IU2FVXKf61hgp3Vd3w+9nxTtg30P07d+xS3uJ3mhYlfmaxkPMlM2r81EszcpOxxcY24C
+    root-password: AgDOYVakO0Zekv16s+NGCoeDPVLHUL+96j9zgiUPL1OS0V8hP8ibeRcDD6cTNIKEBLS+/rKwpc5YbdGGCmUC0o+uHs5Noxr0ZTCeLEgNcDP3G4ZHX8TXXYkeSeklV4+bCBM+BNrfEiOx4DpOle+p7MeVMdtHnSSBjYo+aclgwtrIGfiCoKKuz+qTuGcm97vTaIy+vNwZNn1yreDcsaix10xitypI+z+Yq5/r0bTSP/r7IHtV7hAoMtXMkkPjCP7UHnsu6m7m9zAhxSVwyKfIvjAbbD6ymguq/o06GSwS6JuZPz9YbPXnlc/a2Ku/m+OzzVHECNUTQ7x50X0E33bAJlOlM9nMk1k2nOaut0qNOnZ3+RVsact0JLSXLMP4Vm8thXl/1ZBfN814cH0tooiaEsv82dwHjJdJFju5KfN+1jLhkflNmlgKGU/BIyaXOPJeCT7eXpD9Ks0uZhFuJYaLxcMzJEpZvvJst9NQBqOoHB9BMm63GDVHyv8ojHXzEfzLbbgsCt0cqsFFrFkJeWLBcnz42FY0SIE7HM9FcRICcGARjSD2PcFEEOpLLLWTVPZQGRZgojVDw4dD36qpHrytfSmyWFQbo5X+ouyWKzx+thO0f/BW4Sv3D1Z3OYO/FfzR/apHAjhgNkf5/54u5Fel/fBS4nhq/xbfceD+3acvAWdgY910vsztiwdJQkKbw2oQm8WS2q2f3xZ33CUxHNHMTyza
+  template:
+    metadata:
+      creationTimestamp: null
+      name: mysql-secret
+      namespace: mysql
+    type: Opaque
+```
+
+我們先建立 `mysql-sealed-secrets.yaml` 對應的 namespace `mysql`
+
+```shell
+kubectl create namespace mysql
+```
+
+之後將 `mysql-sealed-secrets.yaml` 部署到叢集中
+
+使用 `kubectl get secret -n docfunc` 查看，你會發現 controller 已經自動幫我們解密並生成 Secret
+
+```text
+NAME           TYPE     DATA   AGE
+mysql-secrets   Opaque   2      20s
 ```
