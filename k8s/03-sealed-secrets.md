@@ -115,17 +115,17 @@ spec:
     type: Opaque
 ```
 
-我們先建立 `mysql-sealed-secrets.yaml` 對應的 namespace `mysql`
+我們先建立 `mysql-sealed-secret.yaml` 對應的 namespace `mysql`
 
 ```shell
 kubectl create namespace mysql
 ```
 
-之後將 `mysql-sealed-secrets.yaml` 部署到叢集中
+之後將 `mysql-sealed-secret.yaml` 部署到叢集中
 
-使用 `kubectl get secret -n docfunc` 查看，你會發現 controller 已經自動幫我們解密並生成 Secret
+使用 `kubectl get secret -n mysql` 查看，會發現 controller 已經自動幫我們解密 `SealedSecret`，並生成 `Secret`
 
 ```text
 NAME           TYPE     DATA   AGE
-mysql-secrets   Opaque   2      20s
+mysql-secret   Opaque   2      20s
 ```
