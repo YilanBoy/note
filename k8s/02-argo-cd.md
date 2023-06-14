@@ -69,7 +69,7 @@ argocd admin initial-password -n argocd
 
 首先關閉 `argocd-server` 的 TLS 設定，這裡使用 `kubectl patch` 更新部署的設定
 
-> kubectl patch 的更新立刻套用，不需要重新啟動 k8s 上的資源
+> kubectl patch 的的更動會立刻套用，不需要重新啟動 k8s 上的資源
 
 ```shell
 # declared merge key in containers is "name"
@@ -96,6 +96,8 @@ kubectl get svc argocd-server -n argocd -o yaml
 ```
 
 ## 修改 Nginx 的設定，將外部流量轉發到 Argo CD Server
+
+假設 k3s server 的內網 IP 為 10.0.0.10，而 argo server 使用的 node port 為 30080
 
 在 `/etc/nginx/sites-available` 中新增一個檔案 `argocd.example.com.conf`，內容如下
 
@@ -129,7 +131,7 @@ server {
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection $connection_upgrade;
 
-        proxy_pass http://127.0.0.1:8000;
+        proxy_pass http://10.0.0.10:30081;
     }
 }
 ```
