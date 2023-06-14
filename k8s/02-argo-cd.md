@@ -97,7 +97,7 @@ kubectl get svc argocd-server -n argocd -o yaml
 
 ## 修改 Nginx 的設定，將外部流量轉發到 Argo CD Server
 
-假設 k3s server 的內網 IP 為 10.0.0.10，而 argo server 使用的 node port 為 30080
+假設 k3s server 的內網 IP 為 10.0.0.10，而 argo server 使用的 node port 為 30081
 
 在 `/etc/nginx/sites-available` 中新增一個檔案 `argocd.example.com.conf`，內容如下
 
