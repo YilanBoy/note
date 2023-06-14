@@ -21,7 +21,7 @@ NAME                                                READY   STATUS    RESTARTS  
 argocd-application-controller-0                     1/1     Running   0          111m
 argocd-applicationset-controller-5c64658ff9-dlfts   1/1     Running   0          111m
 argocd-dex-server-78659867d9-7txm7                  1/1     Running   0          111m
-argocd-notifications-controller-749b96fd4d-mtp5x     1/1     Running   0          111m
+argocd-notifications-controller-749b96fd4d-mtp5x    1/1     Running   0          111m
 argocd-redis-74cb89f466-866sq                       1/1     Running   0          111m
 argocd-repo-server-69746cbd47-jf5tn                 1/1     Running   0          111m
 argocd-server-79d6c44f4c-7zmxv                      1/1     Running   0          108m
@@ -34,7 +34,7 @@ NAME                                      TYPE        CLUSTER-IP       EXTERNAL-
 argocd-applicationset-controller          ClusterIP   10.97.226.89     <none>        7000/TCP,8080/TCP            115m
 argocd-dex-server                         ClusterIP   10.100.148.137   <none>        5556/TCP,5557/TCP,5558/TCP   115m
 argocd-metrics                            ClusterIP   10.99.60.187     <none>        8082/TCP                     114m
-argocd-notifications-controller-metrics    ClusterIP   10.105.63.55     <none>        9001/TCP                     114m
+argocd-notifications-controller-metrics   ClusterIP   10.105.63.55     <none>        9001/TCP                     114m
 argocd-redis                              ClusterIP   10.97.64.209     <none>        6379/TCP                     114m
 argocd-repo-server                        ClusterIP   10.102.192.219   <none>        8081/TCP,8084/TCP            114m
 argocd-server                             NodePort    10.96.119.73     <none>        80/TCP,443/TCP               114m
