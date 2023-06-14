@@ -78,6 +78,10 @@ kubectl patch deployment argocd-server --namespace argocd --patch '{"spec":{"tem
 
 更新完成之後可以使用 `kubectl get deploy` 來查看修改後的設定
 
+```shell
+kubectl get deploy argocd-server -n argocd -o yaml
+```
+
 更新 `argocd-server` 的 service，將網路類型修改為 `NodePort`，並指定 80 port 的 `NodePort` 為 30081 port
 
 ```shell
