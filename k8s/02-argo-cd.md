@@ -60,7 +60,7 @@ brew install argocd
 argocd admin initial-password -n argocd
 ```
 
-這時候你就可以透過
+你可以透過該組帳號密碼登入 Argo CD
 
 ## 關閉 TLS 與開啟 NodePort
 
