@@ -1,6 +1,9 @@
 # Sealed Secrets
 
-Sealed secrets 是由 Bitnami 所開發，是一種幫助你管理 k8s 上 secrets 的工具
+K8s 上面的 secrets 通常都是以 base64 編碼的方式儲存，這樣的方式有個缺點就是 secrets 會以明文的方式儲存在 k8s 上面，
+所以 secrets 是無法放入版本控制中的，因為這樣就會有洩漏的風險，而且也不安全
+
+為了解決這麼問題，Bitnami 推出了 Sealed Secrets 這個工具，可以將 secrets 加密後，再放入版本控制中
 
 ## 概念
 
@@ -9,10 +12,10 @@ Sealed secrets 由兩個部分組成
 - A cluster-side controller / operator
 - A client-side utility: `kubeseal`
 
-它的原理是會在 k8s 叢集上面啟動一個 sealed secrets controller，用戶端可以使用 `kubeseal` 與該 controller 溝通並取得憑證，
-`kubeseal` 會使用這個憑證來加密 `Secret` 資源，使其變成 `SealedSecret` 資源
+Sealed secrets 的概念是會在 k8s 叢集上面啟動一個 sealed secrets controller，用戶端可以使用 `kubeseal` 與該 controller 溝通並取得憑證，
+`kubeseal` 會使用這個憑證來加密 `Secret` 資源，使其變成 `SealedSecret`
 
-原本的 `Secret` 設定檔案
+假設我們有一個 `Secret` 設定檔案如下
 
 ```yaml
 apiVersion: v1
@@ -24,7 +27,7 @@ data:
   foo: YmFy  # <- base64 encoded "bar"
 ```
 
-經過加密後的 `SealedSecret` 設定檔案，**可以安心的將其放入版本控制中**
+我們可以使用 sealed secret 將其變成加密後的 `SealedSecret` 設定檔案
 
 ```yaml
 apiVersion: bitnami.com/v1alpha1
@@ -37,7 +40,7 @@ spec:
     foo: AgBy3i4OJSWK+PiTySYZZA9rO43cGDEq.....
 ```
 
-當你將 `SealedSecret` 部署到叢集時，sealed secrets controller 會自動將你的 `SealedSecret` 解密，並建立對應的 `Secret`
+當你將 `SealedSecret` 部署到叢集時，**sealed secrets controller 會自動將你的 `SealedSecret` 解密，並建立對應的 `Secret`**
 
 ## 使用 Helm 部署 Sealed Secrets Controller
 
