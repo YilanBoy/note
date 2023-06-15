@@ -161,3 +161,4 @@ sudo systemctl restart nginx
 - [Argo CD - Getting Started](https://argo-cd.readthedocs.io/en/stable/getting_started/)
 - [Argo CD - Ingress Configuration](https://argo-cd.readthedocs.io/en/stable/operator-manual/ingress/)
 - ["argocd-server --insecure": executable file not found in $PATH: unknown](https://github.com/argoproj/argo-cd/discussions/8520)
+- [Argo CD 保姆級入門教程](https://www.readfog.com/a/1676342497667813376)
