@@ -132,3 +132,8 @@ kubectl create namespace mysql
 NAME           TYPE     DATA   AGE
 mysql-secret   Opaque   2      20s
 ```
+
+## 參考資料
+
+- ["Sealed Secrets" for Kubernetes](https://github.com/bitnami-labs/sealed-secrets)
+- [Day 25 - Secret 使用範例: sealed-secrets](https://ithelp.ithome.com.tw/articles/10251551)
