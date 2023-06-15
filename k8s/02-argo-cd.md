@@ -14,6 +14,8 @@ kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 ```
 
+> 如果需要 HA (High Availability) 部署，官方有提供 HA 部署的 yaml 檔案，可以參考[官方文件](https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/)
+
 使用 `kubectl get pod -n argocd` 查看一下 Argo CD 啟用了哪些容器
 
 ```text
