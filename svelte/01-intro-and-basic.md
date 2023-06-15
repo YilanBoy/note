@@ -92,5 +92,5 @@ Counter 的內容
 
 ## 參考資料
 
-- [Laracasts - svelte Crash Course](https://laracasts.com/series/svelte-crash-course)
+- [Laracasts - Svelte Crash Course](https://laracasts.com/series/svelte-crash-course)
 - [Component party](https://component-party.dev/)
