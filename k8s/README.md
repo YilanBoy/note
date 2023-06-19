@@ -16,7 +16,7 @@
 
 與前輩討論後，便規劃了下面的網路架構
 
-![k8s architecture](https://allen-files.s3.ap-northeast-1.amazonaws.com/images/k8s-architecture.jpg)
+![k8s architecture](https://allen-files.s3.ap-northeast-1.amazonaws.com/images/k8s/k8s-architecture.jpg)
 
 - 在一個 VPC 底下，有兩個 subnet，一個是可以與外部直接連線的 public subnet，一個是只能透過 NAT 與外部連線的 private subnet
 - Public subnet 底下有一個用 nginx 做的 proxy
