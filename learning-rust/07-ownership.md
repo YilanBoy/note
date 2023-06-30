@@ -156,7 +156,7 @@ let s2 = s1;
 
 假設不建立記憶體而是採用指針指向同一個記憶體空間的方式 (類似 PHP 的引用)，這會與 Rust 所有權的特性相衝突。
 
-<img src="https://doc.rust-lang.org/book/img/trpl04-02.svg" alt="ownership-1" width="40%">
+<img src="https://allen-files.s3.ap-northeast-1.amazonaws.com/images/rust/ownership-1.jpg" alt="ownership-1" width="40%">
 
 舉例來說，如果 `s1` 與 `s2` 都離開作用域，會導致 Rust 重複釋放相同的記憶體而出現二次釋放的錯誤 (double free)。
 
@@ -171,7 +171,7 @@ println!("{}, world!", s1); // error, value used here after move
 
 在 Rust 中，這種操作被稱為**移動 (Move)**，如下圖所示：
 
-<img src="https://doc.rust-lang.org/book/img/trpl04-04.svg" alt="ownership-2" width="40%">
+<img src="https://allen-files.s3.ap-northeast-1.amazonaws.com/images/rust/ownership-2.jpg" alt="ownership-2" width="40%">
 
 ## 變數與資料交互的方式 : 克隆 (Clone)
 
