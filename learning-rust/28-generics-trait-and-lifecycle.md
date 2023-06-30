@@ -116,7 +116,7 @@ fn main() {
 這兩個函式的邏輯完全相同，如果想要避免重複撰寫一樣的邏輯，泛型也許是個可行的方法，嘗試使用泛型修改上面的程式碼
 
 ```rust
-fn largest<T>(list: &[T]) -> &T {
+fn largest<T>(list: &[T]) -> T {
     let mut largest = list[0];
 
     for &item in list.iter() {
@@ -166,6 +166,20 @@ error: could not compile `playground` (bin "playground") due to previous error
 
 此時我們可以根據建議，利用 trait 來限制 `T` 的類型，只有實現 `std::cmp::PartialOrd` 的類型才能夠使用比較運算
 
+```rust
+fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {
+    let mut largest = list[0];
+
+    for &item in list.iter() {
+        if item > largest {
+            largest = item;
+        }
+    }
+
+    largest
+}
+```
+
 這時我們可以根據錯誤提示，修改 `T` 的類型，或是明確指定 `T` 的類型為 `i32` 或是 `chat`
 
 ## 結構體定義中的泛型
@@ -198,7 +212,6 @@ fn main() {
 ```
 
 如果 `x` 與 `y` 的類型不同，可以使用多個泛型參數
-
 
 ```rust
 struct Point<T, U> {
