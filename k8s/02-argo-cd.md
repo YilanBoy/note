@@ -1,10 +1,10 @@
 # Argo CD
 
-Argo CD 是用於 Kubernetes 的宣告式 (Declarative) GitOps 持續交付工具
+Argo CD 是用於 Kubernetes 的宣告式 (Declarative) GitOps 持續交付工具。
 
 ## 在 K3s 上面部署 Argo CD
 
-要在 k3s 上面部署 Argo CD 非常簡單，只需要兩行指令
+要在 k3s 上面部署 Argo CD 非常簡單，只需要兩行指令。
 
 ```shell
 # 建立一個 namespace，名稱是 argocd
@@ -18,7 +18,7 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 >
 > 如果需要 HA (High Availability) 部署，官方有提供 HA 部署的 yaml 檔案，可以參考[官方文件](https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/)
 
-使用 `kubectl get pod -n argocd` 查看一下 Argo CD 啟用了哪些容器
+使用 `kubectl get pod -n argocd` 查看一下 Argo CD 啟用了哪些容器。
 
 ```text
 NAME                                                READY   STATUS    RESTARTS   AGE
@@ -31,7 +31,7 @@ argocd-repo-server-69746cbd47-jf5tn                 1/1     Running   0         
 argocd-server-79d6c44f4c-7zmxv                      1/1     Running   0          108m
 ```
 
-使用 `kubectl get svc -n argocd` 查看一下 Argo CD 啟用了哪些服務
+使用 `kubectl get svc -n argocd` 查看一下 Argo CD 啟用了哪些服務。
 
 ```text
 NAME                                      TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                      AGE
@@ -45,14 +45,14 @@ argocd-server                             NodePort    10.96.119.73     <none>   
 argocd-server-metrics                     ClusterIP   10.107.181.67    <none>        8083/TCP                     114m
 ```
 
- `argocd-server` 主要提供 Web UI 與 gRPC API 給用戶進行操作
+ `argocd-server` 主要提供 Web UI 與 gRPC API 給用戶進行操作。
 
 - 443 - gRPC/HTTPS
 - 80 - HTTP (redirects to HTTPS)
 
-你可以使用 Argo CLI，然後透過 gRPC API 操作 Argo CD，或是打開瀏覽器通過 Web UI 操作
+你可以使用 Argo CLI 或是 Web UI 來操作 Argo CD。
 
-在 Mac 與 Linux 上，你可以使用 Homebrew 安裝 Argo CD CLI
+在 Mac 與 Linux 上，你可以使用 Homebrew 安裝 Argo CD CLI。
 
 ```shell
 brew install argocd
@@ -60,46 +60,48 @@ brew install argocd
 
 > **Note**
 >
-> 其他 argo CLI 安裝方式可以參考[這裡](https://argo-cd.readthedocs.io/en/stable/cli_installation/)
+> 其他 argo CLI 安裝方式可以參考[這裡](https://argo-cd.readthedocs.io/en/stable/cli_installation/)。
 
-安裝完成之後 Argo CD 會有預設的帳號密碼，帳號為 `admin`，密碼可以使用下面的指令得知
+安裝完成之後 Argo CD 會有預設的帳號密碼，帳號為 `admin`，密碼可以使用下面的指令得知。
 
 ```shell
 argocd admin initial-password -n argocd
 ```
 
-你可以透過該組帳號密碼登入 Argo CD
+你可以透過該組帳號密碼登入 Argo CD。
+
+> 建議登入後立刻修改密碼並刪除 argocd namespace 底下的 `argocd-initial-admin-secret` secret。
 
 ## 關閉 TLS 與開啟 NodePort
 
 我打算透過 nginx 當作 reverse proxy，將外部的流量導入到 `argocd-server`，
-外部到 nginx 的請求會進行加密。而內網的部分，從 nginx 轉發到 `argocd-server` 的請求就不進行加密
+外部到 nginx 的請求會進行加密。而內網的部分，從 nginx 轉發到 `argocd-server` 的請求就不進行加密。
 
-首先關閉 `argocd-server` 的 TLS 設定，這裡使用 `kubectl patch` 更新部署的設定
+首先關閉 `argocd-server` 的 TLS 設定，這裡使用 `kubectl patch` 更新部署的設定。
 
 > **Note**
 >
-> kubectl patch 的的更動會立刻套用，不需要重新啟動 k8s 上的資源
+> kubectl patch 的的更動會立刻套用，不需要重新啟動 k8s 上的資源。
 
 ```shell
 # declared merge key in containers is "name"
 kubectl patch deployment argocd-server --namespace argocd --patch '{"spec":{"template":{"spec":{"containers":[{"args":["/usr/local/bin/argocd-server","--insecure"],"name":"argocd-server"}]}}}}'
 ```
 
-更新完成之後可以使用 `kubectl get deploy` 來查看修改後的設定
+更新完成之後可以使用 `kubectl get deploy` 來查看修改後的設定。
 
 ```shell
 kubectl get deploy argocd-server -n argocd -o yaml
 ```
 
-更新 `argocd-server` 的 service，將網路類型修改為 `NodePort`，並指定 80 port 的 `NodePort` 為 30081 port
+更新 `argocd-server` 的 service，將網路類型修改為 `NodePort`，並指定 80 port 的 `NodePort` 為 30081 port。
 
 ```shell
 # declared merge key in ports is "port"
 kubectl patch svc argocd-server -n argocd -p '{"spec":{"type":"NodePort","ports":[{"port":80,"nodePort":30081}]}}'
 ```
 
-更新完成之後可以使用 `kubectl get svc` 來查看修改後的設定
+更新完成之後可以使用 `kubectl get svc` 來查看修改後的設定。
 
 ```shell
 kubectl get svc argocd-server -n argocd -o yaml
@@ -107,13 +109,13 @@ kubectl get svc argocd-server -n argocd -o yaml
 
 ## 修改 Nginx 的設定，將外部流量轉發到 Argo CD Server
 
-假設 k3s server 的內網 IP 為 10.0.0.10，而 argo server 使用的 node port 為 30081
+假設 k3s server 的內網 IP 為 10.0.0.10，而 argo server 使用的 node port 為 30081。
 
-在 `/etc/nginx/sites-available` 中新增一個檔案 `argocd.example.com.conf`，內容如下
+在 `/etc/nginx/sites-available` 中新增一個檔案 `argocd.example.com.conf`，內容如下：
 
 > **Note**
 >
-> `argocd.example.com` 需要修改成你自己的網域
+> `argocd.example.com` 需要修改成你自己的網域。
 
 ```nginx
 map $http_upgrade $connection_upgrade {
@@ -150,19 +152,19 @@ server {
 }
 ```
 
-設定好了之後建立軟連結，啟用剛剛建立的設定檔案
+設定好了之後建立軟連結，啟用剛剛建立的設定檔案。
 
 ```shell
 sudo ln -s /etc/nginx/sites-available/argocd.example.com.conf /etc/nginx/sites-enabled/argocd.example.com.conf
 ```
 
-重啟 nginx 之前，先使用 nginx 的指令進行檢查
+重啟 nginx 之前，先使用 nginx 的指令進行檢查。
 
 ```shell
 sudo nginx -t
 ```
 
-確認無誤之後就可以重新啟動了
+確認無誤之後就可以重新啟動了。
 
 ```shell
 sudo systemctl restart nginx
@@ -170,11 +172,11 @@ sudo systemctl restart nginx
 
 ## 如何使用 Argo CD 將應用部署到 K3s 中
 
-準備一個用 yaml 寫的 k3s 配置清單 (manifest)，內容為啟動一個 nginx pod，並在叢集上開啟 30080 port，讓叢集外部可以訪問 pod 裡面的 nginx server
+準備一個用 yaml 寫的 k3s 配置清單 (manifest)，內容為啟動一個 nginx pod，並在叢集上開啟 30080 port，讓叢集外部可以訪問 pod 裡面的 nginx server。
 
 ### 準備 K3s 的配置清單
 
-建立一個 `nginx` 專案，並在下面新增幾個 k3s 的配置清單檔案
+建立一個 `nginx` 專案，並在下面新增幾個 k3s 的配置清單檔案。
 
 ```text
 tree nginx/
@@ -187,7 +189,7 @@ nginx/
 2 directories, 2 files
 ```
 
-`nginx-pod.yaml` 的內容
+`nginx-pod.yaml` 的內容：
 
 ```yaml
 apiVersion: v1
@@ -209,7 +211,7 @@ spec:
         - containerPort: 80
 ```
 
-`nginx-service.yaml` 的內容
+`nginx-service.yaml` 的內容：
 
 ```yaml
 apiVersion: v1
@@ -229,30 +231,31 @@ spec:
 
 ### 使用 Argo CD Web UI 建立 Application，將 Nginx 部署到 K3s 上
 
-將剛剛的 `nginx` 專案推送至 github 上，這會是我們 Argo CD 的**部署來源**
+將剛剛的 `nginx` 專案推送至 github 上，這會是我們 Argo CD 的**部署來源**。
 
-打開瀏覽器，登入 Argo CD Web UI，點選 + NEW APP
+打開瀏覽器，登入 Argo CD Web UI，點選 + NEW APP。
 
 ![create new app in argo cd](https://allen-files.s3.ap-northeast-1.amazonaws.com/images/k8s/argo-cd-new-app.png)
 
-在 GENERAL 區塊，填寫 Application Name、Project Name 與 SYNC POLICY
+在 GENERAL 區塊，填寫 Application Name、Project Name 與 SYNC POLICY。
 
-Project 是 application 底下的一個邏輯群組，可以用來管理部署來源、部署的內容與部署的目標叢集，project 預設一定會有一個 `default`
+Project 是 application 底下的一個邏輯群組，可以用來管理部署來源、部署的內容與部署的目標叢集，project 預設一定會有一個 `default`。
 
-SYNC POLICY 可以設定自動 (Automatic) 與手動 (Manual)。Argo CD 提供 rollback 的功能，可以跳回前一個部署版本，但是 SYNC POLICY 必須選擇手動
+SYNC POLICY 可以設定自動 (Automatic) 與手動 (Manual)。Argo CD 提供 rollback 的功能，
+可以跳回前一個部署版本，但是 SYNC POLICY 必須選擇手動。
 
 ![general setting](https://allen-files.s3.ap-northeast-1.amazonaws.com/images/k8s/argo-cd-general-setting.png)
 
-設定部署來源，為 github 儲存庫的連結
+設定部署來源，為 github 儲存庫的連結。
 
 ![source setting](https://allen-files.s3.ap-northeast-1.amazonaws.com/images/k8s/argo-cd-source-setting.png)
 
-設定部署目標叢集，如果 namespace 還沒有建立的話，可以自行建立或是勾選 GENERAL 區塊的 AUTO-CREATE NAMESPACE
+設定部署目標叢集，如果 namespace 還沒有建立的話，可以自行建立或是勾選 GENERAL 區塊的 AUTO-CREATE NAMESPACE。
 
 ![destination setting](https://allen-files.s3.ap-northeast-1.amazonaws.com/images/k8s/argo-cd-destination-setting.png)
 
 設定完成後就可以按下 CREATE 建立 application，如果 SYNC POLICY 設定 Automatic，
-應該就會發現 Argo CD 已經開始在部署 nginx 到 k3s 上了
+應該就會發現 Argo CD 已經開始在部署 nginx 到 k3s 上了。
 
 ## 參考資料
 

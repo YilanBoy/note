@@ -1,21 +1,20 @@
 # Sealed Secrets
 
-K8s 上面的 secrets 通常都是以 base64 編碼的方式儲存，這樣的方式有個缺點就是 secrets 會以明文的方式儲存在 k8s 上面，
-所以 secrets 是無法放入版本控制中的，因為這樣就會有洩漏的風險，而且也不安全
+K8s 的 Secret 主要用來存放敏感資訊，但它是以 base64 的編碼來儲存，並非使用加密，所以 Secret 不能放入版本控制中的，避免洩漏機密的風險。
 
-為了解決這麼問題，Bitnami 推出了 Sealed Secrets 這個工具，可以將 secrets 加密後，再放入版本控制中
+為了解決這麼問題，Bitnami 推出了 Sealed Secrets 這個工具，可以將 secrets 加密後，再放入版本控制中。
 
 ## 概念
 
-Sealed secrets 由兩個部分組成
+Sealed secrets 由兩個部分組成。
 
 - A cluster-side controller / operator
 - A client-side utility: `kubeseal`
 
 Sealed secrets 的概念是會在 k8s 叢集上面啟動一個 sealed secrets controller，用戶端可以使用 `kubeseal` 與該 controller 溝通並取得憑證，
-`kubeseal` 會使用這個憑證來加密 `Secret` 資源，使其變成 `SealedSecret`
+`kubeseal` 會使用這個憑證來加密 `Secret` 資源，使其變成 `SealedSecret`。
 
-假設我們有一個 `Secret` 設定檔案如下
+假設我們有一個 `Secret` 設定檔案如下：
 
 ```yaml
 apiVersion: v1
@@ -27,7 +26,7 @@ data:
   foo: YmFy  # <- base64 encoded "bar"
 ```
 
-我們可以使用 sealed secret 將其變成加密後的 `SealedSecret` 設定檔案
+我們可以使用 sealed secret 將其變成加密後的 `SealedSecret` 設定檔案：
 
 ```yaml
 apiVersion: bitnami.com/v1alpha1
@@ -40,11 +39,11 @@ spec:
     foo: AgBy3i4OJSWK+PiTySYZZA9rO43cGDEq.....
 ```
 
-當你將 `SealedSecret` 部署到叢集時，**sealed secrets controller 會自動將你的 `SealedSecret` 解密，並建立對應的 `Secret`**
+當你將 `SealedSecret` 部署到叢集時，**sealed secrets controller 會自動將你的 `SealedSecret` 解密，並建立對應的 `Secret`**。
 
 ## 使用 Helm 部署 Sealed Secrets Controller
 
-可以使用 Helm 部署 Sealed Secrets Controller
+可以使用 Helm 部署 Sealed Secrets Controller。
 
 ```shell
 helm repo add sealed-secrets https://bitnami-labs.github.io/sealed-secrets
@@ -52,20 +51,20 @@ helm repo add sealed-secrets https://bitnami-labs.github.io/sealed-secrets
 helm install sealed-secrets -n kube-system --set-string fullnameOverride=sealed-secrets-controller sealed-secrets/sealed-secrets
 ```
 
-Sealed secrets controller 的預設名稱為 `sealed-secrets`
+Sealed secrets controller 的預設名稱為 `sealed-secrets`。
 
 因為 `kubeseal` 預設會找尋名稱為 `sealed-secrets-controller` 的 controller，
-因此這裡使用 `--set-string fullnameOverride=sealed-secrets-controller` 將 controller 的預設名稱修改為 `sealed-secrets-controller`
+因此這裡使用 `--set-string fullnameOverride=sealed-secrets-controller` 將 controller 的預設名稱修改為 `sealed-secrets-controller`。
 
 ## 使用 Kubeseal 將 Secret 轉換成 SealedSecret
 
-Mac 上可以使用 Homebrew 安裝 `kubeseal`
+Mac 上可以使用 Homebrew 安裝 `kubeseal`。
 
 ```shell
 brew install kubeseal
 ```
 
-安裝完成之後就可以使用 kubeseal 將原本的 `Secret` 轉換成 `SealedSecret`
+安裝完成之後就可以使用 kubeseal 將原本的 `Secret` 轉換成 `SealedSecret`。
 
 ```shell
 # option 1
@@ -77,7 +76,7 @@ cat mysql-secret.yaml | kubeseal -o yaml > mysql-sealed-secret.yaml
 
 ## 將 SealedSecret 部署到叢集中，讓 Controller 幫我們解密並部署 Secret
 
-假設我們有一個 `mysql-secret.yaml`，其內容如下
+假設我們有一個 `mysql-secret.yaml`，其內容如下：
 
 ```yaml
 apiVersion: v1
@@ -91,13 +90,13 @@ stringData:
   password: "oPAspyYdAEHRqhU5"
 ```
 
-使用 `kubeseal` 將其轉換成 `SealedSecret`
+使用 `kubeseal` 將其轉換成 `SealedSecret`。
 
 ```shell
 cat mysql-secret.yaml | kubeseal -o yaml > mysql-sealed-secret.yaml
 ```
 
-`mysql-sealed-secret.yaml` 的內容如下
+`mysql-sealed-secret.yaml` 的內容如下。
 
 ```yaml
 apiVersion: bitnami.com/v1alpha1
@@ -118,15 +117,15 @@ spec:
     type: Opaque
 ```
 
-我們先建立 `mysql-sealed-secret.yaml` 對應的 namespace `mysql`
+我們先建立 `mysql-sealed-secret.yaml` 對應的 namespace `mysql`。
 
 ```shell
 kubectl create namespace mysql
 ```
 
-之後將 `mysql-sealed-secret.yaml` 部署到叢集中
+之後將 `mysql-sealed-secret.yaml` 部署到叢集中。
 
-使用 `kubectl get secret -n mysql` 查看，會發現 controller 已經自動幫我們解密 `SealedSecret`，並生成 `Secret`
+使用 `kubectl get secret -n mysql` 查看，會發現 controller 已經自動幫我們解密 `SealedSecret`，並生成 `Secret`。
 
 ```text
 NAME           TYPE     DATA   AGE
