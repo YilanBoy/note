@@ -81,6 +81,28 @@ sudo systemctl daemon-reload
 sudo systemctl start prometheus
 ```
 
+## Prometheus Configuration
+
+在 `/etc/prometheus/` 目錄下建立一個 `prometheus.yml` 檔案，並且將內容貼上。
+
+```yaml
+global:
+  scrape_interval: 60s
+
+scrape_configs:
+  - job_name: k3s
+    static_configs:
+      - targets: ['10.0.1.10:9100', '10.0.1.11:9100', '10.0.1.12:9100']
+
+remote_write:
+  - url: '<grafana cloud prometheus>'
+    basic_auth:
+      username: <username>
+      password: <password>
+```
+
+這樣 prometheus 就可以收集到 node exporter 的資料，並將 node exporter 的資料送往 Grafana Cloud 的 Prometheus。
+
 ## 參考資料
 
 - [教學課程：在 Amazon Lightsail 中於以 Linux 為基礎的執行個體上安裝 Prometheus](https://lightsail.aws.amazon.com/ls/docs/zh_tw/articles/amazon-lightsail-install-prometheus)
