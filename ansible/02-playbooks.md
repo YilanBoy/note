@@ -1,10 +1,10 @@
-# Playbook
+# Playbooks
 
-Ansible playbook 提供了一個更進階的方式來管理主機上的設定，它是一個 YAML 格式的檔案。
+Ansible playbooks 提供了一個更進階的方式來管理主機上的設定，它是一個 YAML 格式的檔案。
 
-你可以使用 playbook 在多台主機上執行一系列有順序性的任務，例如安裝套件、設定檔案、啟動服務等等。
+你可以使用 playbooks 在多台主機上執行一系列有順序性的任務，例如安裝套件、設定檔案、啟動服務等等。
 
-以下是一個簡易的 playbook 範例：
+以下是一個簡易的 playbooks 範例：
 
 ```yaml
 # playbook.yml
