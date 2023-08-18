@@ -9,27 +9,30 @@ Ansible playbooks 提供了一個更進階的方式來管理主機上的設定�
 ```yaml
 # playbook.yml
 - name : update apt packages
-  hosts: webservers
-  become: yes
+  hosts: web_servers
+  become: true
   tasks:
     - name: Update all packages to their latest version
       ansible.builtin.apt:
         name: "*"
         state: latest
 
-- name : install nginx and start it
-  hosts: webservers
-  become: yes
+- name: Install nginx and start it
+  hosts: web_servers
+  become: true
   tasks:
-    - name: install nginx
+    - name: Install nginx
       ansible.builtin.apt:
         name: nginx
-        state: latest
-    - name: copy nginx config
+        state: present
+
+    - name: Copy local nginx config to remote
       ansible.builtin.copy:
         src: nginx.conf
         dest: /etc/nginx/nginx.conf
-    - name: start nginx
+        mode: '0644'
+
+    - name: Start nginx
       ansible.builtin.service:
         name: nginx
         state: started

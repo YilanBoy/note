@@ -52,7 +52,7 @@ ungrouped:
       ansible_connection: winrm
       ansible_user: win
       ansible_password: win
-webserver:
+web_server:
   hosts:
     web:
       ansible_host: foo.example.com
@@ -70,17 +70,17 @@ Ansible 預設會有 `all` 與 `ungrouped` 兩個 group，`all` 代表所有的 
 可以建立一個 `inventory.ini` 檔案，並且加入下面的內容：
 
 ```ini
-[webservers]
+[web_servers]
 web  ansible_host=foo.example.com ansible_connection=ssh ansible_user=ubuntu ansible_password=ubuntu
 ```
 
 並使用以下的指令測試連線是否成功：
 
 ```bash
-ansible webservers -i inventory.ini -m ping
+ansible web_servers -i inventory.ini -m ping
 ```
 
-`webservers` 是 inventory 中的 group 名稱，你可以輸入 host 名稱，也可以使用 `all` 來指定所有的 host。
+`web_servers` 是 inventory 中的 group 名稱，你可以輸入 host 名稱，也可以使用 `all` 來指定所有的 host。
 
 `-i` 參數用來指定 inventory 的檔案路徑
 
@@ -103,7 +103,7 @@ Host foo
 你只需要在 inventory 中設定：
 
 ```ini
-[webservers]
+[web_servers]
 foo
 ```
 
@@ -128,5 +128,5 @@ inventory = inventory.ini
 這樣你就不需要在指令中加入 `-i inventory.ini` 了。
 
 ```bash
-ansible webservers -m ping
+ansible web_servers -m ping
 ```

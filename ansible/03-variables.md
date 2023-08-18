@@ -6,14 +6,14 @@
 # playbook.yml
 - name : update apt packages
   hosts: web_servers
-  become: yes
+  become: true
   vars:
     package_name: nginx
   tasks:
     - name: install nginx
       ansible.builtin.apt:
         name: "{{ package_name }}"
-        state: latest
+        state: present
 ```
 
 你也可以在 inventory 中設定要給 host 使用的變數，例如：

@@ -11,19 +11,19 @@ Ansible 提供控制流程，可以讓你根據條件來決定是否執行某個
 ```yaml
 - name: Install Nginx
   hosts: web_servers
-  become: yes
+  become: true
   tasks:
     - name: Install Nginx on Ubuntu
       ansible.builtin.apt:
         name: nginx
         state: latest
-      when: ansible_distribution == "Ubuntu"
+      when: ansible_distribution == 'Ubuntu'
 
     - name: Install Nginx on CentOS
       ansible.builtin.yum:
         name: nginx
         state: latest
-      when: ansible_distribution == "CentOS"
+      when: ansible_distribution == 'CentOS'
 ```
 
 ### or 與 and
@@ -33,7 +33,7 @@ Ansible 提供控制流程，可以讓你根據條件來決定是否執行某個
 ```yaml
 - name: Install Nginx
   hosts: web_servers
-  become: yes
+  become: true
   tasks:
     - name: Install Nginx on Ubuntu
       ansible.builtin.apt:
@@ -55,7 +55,7 @@ Ansible 提供控制流程，可以讓你根據條件來決定是否執行某個
 ```yaml
 - name: Install packages
   hosts: web_servers
-  become: yes
+  become: true
   tasks:
     - name: Install packages
       ansible.builtin.apt:
