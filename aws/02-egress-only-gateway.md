@@ -6,6 +6,8 @@ Egress only gateway 是 VPC 的一個 component，可以讓 VPC 內的 instance 
 
 首先建立一個 VPC 與 subnet，這個 VPC 會有一個 ipv6 的 CIDR block。
 
+> AWS 的 ipv6 不提供 private address，所以只能使用 public address。
+
 ```hcl
 resource "aws_vpc" "main" {
   cidr_block                       = "10.0.0.0/16"
@@ -123,3 +125,4 @@ resource "aws_security_group" "egress_only_for_ipv6" {
 
 - [Enable outbound IPv6 traffic using an egress-only internet gateway](https://docs.aws.amazon.com/vpc/latest/userguide/egress-only-internet-gateway.html)
 - [cidrsubnet Function](https://developer.hashicorp.com/terraform/language/functions/cidrsubnet)
+- [小信豬的原始部落 - AWS SOA 學習筆記 - VPC(Virtual Private Cloud)](https://godleon.github.io/blog/AWS/AWS-SOA-VPC/)
