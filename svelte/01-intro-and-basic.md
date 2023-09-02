@@ -1,17 +1,19 @@
 # Intro and Basics
 
-Svelte 是一個新穎的現代前端框架
+Svelte 是一個新穎的現代前端框架。
 
 與其他前端框架相比，他並不是將整個框架包在前端網頁中，而是採用預先編譯的方式，
-因此相較於其他框架，打包後的檔案會更小
+因此相較於其他框架，打包後的檔案會更小，效能會更好。
 
-此外 svelte 的語法也非常容易學習，幾乎快要與原生 javascript 相同
+此外 svelte 的語法也非常容易學習，幾乎快要與原生 javascript 相同。
 
-比較一下 vue 與 svelte 在宣告狀態的寫法 (declare state)
+比較一下 vue 與 svelte 在宣告狀態的寫法 (declare state)。
 
-Vue 3
+## 語法比較
 
-```html
+### Vue 3
+
+```vue
 <script setup>
   import { ref } from "vue";
   const name = ref("John");
@@ -22,9 +24,9 @@ Vue 3
 </template>
 ```
 
-Svelte
+### Svelte
 
-```html
+```svelte
 <script>
   let name = "John";
 </script>
@@ -36,11 +38,11 @@ Svelte
 
 ## 實作一個計數器
 
-用 svelte 實作一個 counter
+用 svelte 實作一個 counter。
 
-首先是首頁的樣板
+首先是首頁的樣板：
 
-```html
+```svelte
 <script>
   // 引入 counter
   import Counter from "./Counter.svelte";
@@ -52,9 +54,9 @@ Svelte
 </main>
 ```
 
-Counter 的內容
+Counter 的內容：
 
-```html
+```svelte
 <script>
   // 接收參數
   export let title = "My default title";
