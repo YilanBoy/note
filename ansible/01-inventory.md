@@ -2,7 +2,7 @@
 
 Ansible 的 inventory 是一個用來定義主機連線資訊的清單。你可以在 inventory 中設定主機的 IP 位址、使用者名稱、密碼、SSH 金鑰等等。Ansible 會根據 inventory 的設定來連線主機並且執行指令。
 
-Ansible 是 **Agentless** 的，不需要在主機上安裝任何 agent，只要主機可以使用 SSH 連線即可。
+Ansible 是 **Agentless** 的，不需要在主機上安裝任何 agent。只要主機上有**安裝 Python** 與可以使用 SSH 連線即可。
 
 ## Inventory 的格式
 

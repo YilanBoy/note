@@ -42,9 +42,9 @@ Ansible playbooks 提供了一個更進階的方式來管理主機上的設定�
 
 `ansible.builtin.apt`、`ansible.builtin.copy` 與 `ansible.builtin.service` 是 Ansible 的模組，這種寫法被稱為 FQCN (Fully Qualified Collection Name)，可以避免模組名稱衝突的問題。
 
-模組 `ansible.builtin.apt` 底下的 `name` 與 `state` 為模組的參數，不同的模組會有不同的參數，可以參考官方文件了解其使用方式。
+> 在使用模組時，盡量使用 fqcn 的寫法，例如 `ansible.builtin.copy` 而不是 `copy`。
 
-在使用模組時，盡量使用 fqcn 的寫法，例如 `ansible.builtin.copy` 而不是 `copy`。
+模組 `ansible.builtin.apt` 底下的 `name` 與 `state` 為模組的參數，不同的模組會有不同的參數，可以參考官方文件了解其使用方式。
 
 ## 執行 Playbook
 
