@@ -119,3 +119,25 @@
 ```
 
 注意 `key` 屬性必須是一個唯一的值，否則 Svelte 會拋出一個錯誤 `Cannot have duplicate keys in a keyed`。
+
+## Await Blocks
+
+大多數 Web 應用程序在某些時候都必須處理異步數據。 Svelte 可以輕鬆地直接在標記中等待 Promise 的值：
+
+```svelte
+{#await promise}
+    <p>...waiting</p>
+{:then number}
+    <p>The number is {number}</p>
+{:catch error}
+    <p style="color: red">{error.message}</p>
+{/await}
+```
+
+如果你知道 promise 的結果不會改變，你可以省略 `catch`。
+
+```svelte
+{#await promise then value}
+    <p>The value is {value}</p>
+{/await}
+```
