@@ -59,3 +59,5 @@ worker 重啟次數越少 OPcache 的幫助的確是越有限，但 JIT 對於 C
 ## 參考資料
 
 - [我問問題的地方 - Facebook](https://www.facebook.com/groups/laravel.tw/posts/6083135688422096)
+- [PHP 8: JIT performance in real-life web applications](https://stitcher.io/blog/jit-in-real-life-web-applications)
+- [PHP 8 新特性之 JIT 簡介](https://www.laruence.com/2020/06/27/5963.html)
