@@ -45,7 +45,7 @@ crate 根目錄為 `src/main.rs`，其內容為
 use crate::garden::vegetables::Asparagus;
 
 pub mod garden;
-、
+
 fn main() {
     let plant = Asparagus {};
     println!("I'm growing {:?}!", plant);
