@@ -6,6 +6,10 @@
 
 但在體驗 v3 的 SPA mode 之前，按照慣例一些坑還是得踩，下面就來分享一下我的升級踩坑筆記 😆。
 
+> 本篇文章不會詳細說明如何升級到 v3，只能說明一些升級過程踩到的坑。
+>
+> 詳細的升級方可以看官方的[文件](https://livewire.laravel.com/docs/upgrading)。
+
 ## 在 SPA Mode 中，事件一註冊就會一直存在
 
 在 v3 的 SPA mode 中，換頁並不會觸發瀏覽器的重新整理頁面，因此要注意的是 ...
@@ -42,7 +46,7 @@ Livewire.hook("commit", ({ component, commit, respond, succeed, fail }) => {
 });
 ```
 
-## JS 的載入與執行
+## JavaScript 的載入與執行
 
 一般來說在 v2 ，我們可能會這樣使用第三方的前端套件。
 
