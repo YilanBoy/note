@@ -147,9 +147,9 @@ impl Summary for Tweet {
 }
 ```
 
-## Trait 作為參數
+## 用 Trait 來限制參數類型
 
-Trait 可以作為函數參數，這樣可以讓函數接受不同類型的參數。
+Trait 可以用來限制函數參數的類型。
 
 ```rust
 // 在 notify 函數中，item 參數的類型是實作了 Summary trait 的類型
