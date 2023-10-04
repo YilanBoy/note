@@ -58,7 +58,7 @@ az login --user <myAlias@myCompany.com> -password <myPassword>
 >
 > 指的是一個獨立可以分配給組織的 Azure AD (Active Directory) 實例，每個 Tenant 都可以單獨管理用戶的帳戶、訪問控制策略與應用程式
 >
-> 例如一個公司可以為其部門創建不同的 Azure AD Tenan$$t，以隔離其用戶資料與訪問控制
+> 例如一個公司可以為其部門創建不同的 Azure AD Tenant，以隔離其用戶資料與訪問控制
 
 ## 切換 Subscription
 
