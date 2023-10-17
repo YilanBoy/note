@@ -5,4 +5,4 @@
 ## 學習資源
 
 - [The Rust Programming Language](https://doc.rust-lang.org/book/title-page.html)
-- [learnku - Rust 程式語言 (2018)](https://learnku.com/docs/rust-lang/2018)
+- [The Rust Programming Language - 正體中文版本](https://github.com/rust-tw/book-tw)
