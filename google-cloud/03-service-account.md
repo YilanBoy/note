@@ -34,3 +34,16 @@ resource "google_bigquery_dataset_iam_member" "editor" {
   member     = "serviceAccount:${google_service_account.access_big_query.email}"
 }
 ```
+
+## 產出 credentials.json
+
+你可以產出一個 credentials.json，然後讓你的程式中使用這個檔案來取得權限，並以此操作雲端資源。
+
+```bash
+gcloud iam service-accounts keys create KEY_FILE \
+    --iam-account=SERVICE_ACOUNT_NAME@PROJECT_ID.iam.gserviceaccount.com
+```
+
+## 參考資料
+
+- [Create and delete service account keys](https://cloud.google.com/iam/docs/keys-create-delete)
