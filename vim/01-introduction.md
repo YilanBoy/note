@@ -32,7 +32,7 @@ Vim 有三種模式
 
 設定預設不會保留，如果想要儲存 vim 的設定可以建立一個檔案 `~/.vimrc`，然後將你要的檔案設定寫上
 
-```text
+```vim
 syntax on
 colorscheme onedark
 

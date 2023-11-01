@@ -16,14 +16,14 @@ nmap zl $
 除此之外還有一種 `nore` 前綴，代表非遞迴，這樣就可以避免重複對應。例如：
 
 ```vim
-:map a b
-:map c a
+map a b
+map c a
 ```
 
 這樣對 `c` 來說，效果等同於：
 
 ```vim
-:map c a
+map c a
 ```
 
 ## 參考資料
