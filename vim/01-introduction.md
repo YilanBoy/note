@@ -33,10 +33,29 @@ Vim 有三種模式
 設定預設不會保留，如果想要儲存 vim 的設定可以建立一個檔案 `~/.vimrc`，然後將你要的檔案設定寫上
 
 ```text
+syntax on
+colorscheme onedark
+
+set clipboard=unnamedplus
+set clipboard+=unnamed
+set number
 set rnu
+set smartindent
 set tabstop=4
 set shiftwidth=4
 set expandtab
-set autoindent
-colorscheme slate
+set backspace=indent,eol,start
+set scrolloff=8
+
+nmap zh ^
+nmap zl $
+nmap ,p "0p
+
+vmap < <gv
+vmap > >gv
 ```
+
+## 參考資料
+
+- [Why doesn't the backspace key work in insert mode?](https://vi.stackexchange.com/questions/2162/why-doesnt-the-backspace-key-work-in-insert-mode)
+- [onedark.vim](https://github.com/joshdick/onedark.vim)
