@@ -1,6 +1,6 @@
 # 寫一個使用 struct 的範例程式
 
-使用 Rust 寫一個計算長方形面積的程式
+使用 Rust 寫一個計算長方形面積的程式。
 
 ```rust
 fn main() {
@@ -18,9 +18,9 @@ fn area(widht: u32, height: u32) -> u32 {
 }
 ```
 
-上面的函式 `area()` 的參數為長方形的長與寬，雖然相關聯，但從程式碼的設計上卻看不出這一點
+上面的函式 `area()` 的參數為長方形的長與寬，雖然意思是這樣，但從程式碼的設計上卻看不出這一點。
 
-試著使用元組類型重構
+試著使用元組類型重構。
 
 ```rust
 fn main() {
@@ -37,7 +37,7 @@ fn area(dimensions: (u32, u32)) -> u32 {
 }
 ```
 
-雖然只需要一個參數，但誰是長誰是寬反而看不出來，這時候我們可以使用 struct
+雖然只需要一個參數，但誰是長誰是寬反而看不出來，這時候我們可以使用 struct 來解決這個問題。
 
 ```rust
 struct Rectangle {
@@ -59,11 +59,11 @@ fn area(rectangle: &Rectangle) -> u32 {
 }
 ```
 
-使用 struct 可以組合一組相關聯的參數，並給這些參數賦予命名，使其他人能更容易理解這段程式碼在做什麼
+使用 struct 可以組合一組相關聯的參數，並給這些參數賦予命名，使其他人能更容易理解這段程式碼在做什麼。
 
 ## 通過 Derived Trait 增加實用的功能
 
-嘗試一下印出 Rectangle struct 的值
+嘗試一下印出 Rectangle struct 的值。
 
 ```rust
 struct Rectangle {
@@ -78,19 +78,19 @@ fn main() {
 }
 ```
 
-雖然 `println!` 能夠印出很多類型 (例如數字與字串)，不過 `{}` 默認使用被稱為 `Display` 的格式
+雖然 `println!` 能夠印出很多類型 (例如數字與字串)，不過 `{}` 默認使用被稱為 `Display` 的格式。
 
-不過 struct 並沒有提供 `Display` 格式，`println!` 會不知道該用什麼格式印出
+不過 `Rectangle` 並沒有提供 `Display` 格式，`println!` 會不知道該用什麼格式印出。
 
-這個時候我們可以在使用 `{:?}`，代表我們要使用 `Debug` 的格式印出
+這個時候我們可以使用 `{:?}`，代表我們要使用 `Debug` 的格式印出 `Rectangle`。
 
 ```rust
 println!("rect1 is {:?}", rect1);
 ```
 
-`Debug` 是一個 trait，它允許我們以一種對開發者有幫助的方式印出 struct
+`Debug` 是一個 trait，它允許我們以一種對開發者有幫助的方式印出 struct。
 
-但上述的打印方式依舊行不通，會出現以下的錯誤
+但上述的打印方式依舊行不通，會出現以下的錯誤。
 
 ```text
   = help: the trait `Debug` is not implemented for `Rectangle`
@@ -99,7 +99,7 @@ println!("rect1 is {:?}", rect1);
 help: consider annotating `Rectangle` with `#[derive(Debug)]`
 ```
 
-Rust 確實包含為 struct 印出其結構的功能，但是我們必須在程式碼中註明要為 struct 使用這個功能
+Rust 確實包含為 struct 印出其結構的功能，但是我們必須在程式碼中註明要為 struct 使用這個功能。
 
 因此在 struct 前面，我們必須要加上 `#[derive(Debug)]`
 
@@ -119,13 +119,13 @@ fn main() {
 
 使用註解來派生 `Debug` 的 trait，就可以使用除錯格式印出 `Rectangle` 實例
 
-不過印出來的格式並不是很漂亮
+不過印出來的格式並不是很漂亮。
 
 ```text
 rect1 is Rectangle { width: 30, height: 50 }
 ```
 
-我們可以使用 `{:#?}`，那麼最後印出來的結果就會經過排版
+我們可以使用 `{:#?}`，那麼最後印出來的結果就會經過排版。
 
 ```text
 rect1 is Rectangle {

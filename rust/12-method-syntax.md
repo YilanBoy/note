@@ -1,12 +1,14 @@
 # 方法語法
 
-struct 可以定義方法，方法與函式類似，使用 `fn` 關鍵字，也擁有參數與回傳值
+struct 可以定義方法，方法與函式類似，使用 `fn` 關鍵字，也擁有參數與回傳值。
 
-與函式不同，方法的第一個參數總是 `self`，它代表調用該方法的 struct 實例
+> [!IMPORTANT]
+>
+> 與函式不同，方法的第一個參數總是 `self`，它代表調用該方法的 struct 實例。
 
 ## 定義方法
 
-將之前的 `area` 函式改寫成 `Rectangle` struct 上的一個 `area` 方法
+將之前的 `area` 函式改寫成 `Rectangle` struct 上的一個 `area` 方法。
 
 ```rust
 #[derive(Debug)]
@@ -31,9 +33,9 @@ fn main() {
 }
 ```
 
-Rust 有一個叫自動引用與解引用 (automatic referencing and dereferencing) 的功能
+Rust 有一個叫自動引用與解引用 (automatic referencing and dereferencing) 的功能。
 
-當使用 `object.something()` 時，Rust 會根據 `something()` 中 `self` 參數設定，自動為 object 加上 `&`、`&mut` 或 `*`
+當使用 `object.something()` 時，Rust 會根據 `something()` 中 `self` 參數設定，自動為 object 加上 `&`、`&mut` 或 `*`。
 
 ```rust
 #[derive(Debug,Copy,Clone)]
@@ -43,11 +45,12 @@ struct Point {
 }
 
 impl Point {
-   fn distance(&self, other: &Point) -> f64 {
-       let x_squared = f64::powi(other.x - self.x, 2);
-       let y_squared = f64::powi(other.y - self.y, 2);
-       f64::sqrt(x_squared + y_squared)
-   }
+    // 因為 self 有加上 &，因此當我們呼叫 distance() 時，Rust 會自動為實例加上 &
+    fn distance(&self, other: &Point) -> f64 {
+        let x_squared = f64::powi(other.x - self.x, 2);
+        let y_squared = f64::powi(other.y - self.y, 2);
+        f64::sqrt(x_squared + y_squared)
+    }
 }
 
 fn main() {
@@ -62,7 +65,7 @@ fn main() {
 
 ## 帶有更多參數的方法
 
-我們再加上一個可以用來判斷是否可以包含另外一個長方形的方法，如以下的範例
+我們再加上一個可以用來判斷是否可以包含另外一個長方形的方法，如以下的範例。
 
 ```rust
 fn main() {
@@ -75,7 +78,7 @@ fn main() {
 }
 ```
 
-實作 `can_hold` 方法
+實作 `can_hold` 方法。
 
 ```rust
 #[derive(Debug)]
@@ -97,9 +100,13 @@ impl Rectangle {
 
 ## 關聯函式
 
-`impl` 還有另外一個功能，允許在其中定義一個不以 `self` 當作第一個參數的函式，也被稱為關聯函式
+`impl` 還有另外一個功能，允許在其中定義一個不以 `self` 當作第一個參數的函式，也被稱為關聯函式。
 
-關聯函式與 struct 相關聯，但並不是方法，**因為他們與 struct 的實例無關**，前面使用的 `String::from` 就是一種關聯函式
+關聯函式與 struct 相關聯，但並不是方法，**因為他們與 struct 的實例無關**，前面使用的 `String::from` 就是一種關聯函式。
+
+> [!NOTE]
+>
+> 感覺有點類似於 PHP 的靜態方法。即使沒有實例，也可以直接使用。
 
 ```rust
 #[derive(Debug)]
@@ -116,7 +123,7 @@ impl Rectangle {
 }
 ```
 
-關聯函式使用 `::` 調用，例如下方的例子
+關聯函式使用 `::` 調用，例如下方的例子。
 
 ```rust
 let sq = Rectangle::square(10);
@@ -124,7 +131,7 @@ let sq = Rectangle::square(10);
 
 ## 多個 impl
 
-struct 允許擁有多個 `impl`
+struct 允許擁有多個 `impl`。
 
 ```rust
 #[derive(Debug)]

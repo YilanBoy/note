@@ -120,6 +120,7 @@ struct Point(i32, i32, i32);
 let black = Color(0, 0, 0);
 let origin = Point(0, 0, 0);
 ```
+
 > [!IMPORTANT]
 >
 > 注意 black 與 origin 雖然組成方式一樣，但他們是不同的類型。
