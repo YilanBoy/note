@@ -88,3 +88,60 @@ fn main() {
         .unwrap();
 }
 ```
+
+## Fn 特徵以及將獲取的數值移出閉包
+
+閉包從周圍環境獲取數值後，其處理方式會影響閉包實作哪種 `Fn` 特徵。
+
+- `FnOnce`：會將獲取的數值移出本體的閉包
+- `FnMut`：適用於不會將獲取數值移出本體，而且可能會改變獲取數值的閉包。這種閉包可以被呼叫多次。
+- `Fn`：適用於不會將獲取數值移出本體，而且不會改變獲取數值或是甚至不從環境獲取數值的閉包。這種閉包可以被呼叫多次。
+
+以 `Option<T>` 的 `unwrap_or_else` 方法定義為例：
+
+```rust
+impl<T> Option<T> {
+    pub fn unwrap_or_else<F>(self, f: F) -> T
+    where
+        F: FnOnce() -> T
+    {
+        match self {
+            Some(x) => x,
+            None => f(),
+        }
+    }
+}
+```
+
+泛型型別 `F` 指定的特徵界限是 `FnOnce() -> T`，也就是說 `F` 必須要能夠呼叫一次、不帶任何引數然後回傳 `T`。
+
+如果 `Option` 是 `Some` 的話，`f` 就不會被呼叫。如果 `Option` 是 `None` 的話，`f` 就會被呼叫一次。
+
+標準函式庫中切片定義的 sort_by_key 方法，也是使用 `Fn` 特徵，但它是使用 `FnMut` 特徵。
+
+```rust
+#[derive(Debug)]
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
+fn main() {
+    let mut list = [
+        Rectangle { width: 10, height: 1 },
+        Rectangle { width: 3, height: 5 },
+        Rectangle { width: 7, height: 12 },
+    ];
+
+    let mut num_sort_operations = 0;
+
+    // 使用 sort_by_key 重新排列 list，並傳入一個閉包計算總共執行了幾次排序
+    // 這裡的閉包是 FnMut 特徵，因為它會改變獲取的數值，並且會被呼叫多次
+    list.sort_by_key(|r| {
+        num_sort_operations += 1;
+        r.width
+    });
+
+    println!("{:#?} 的排序經過 {num_sort_operations} 次運算", list);
+}
+```
