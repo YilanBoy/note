@@ -23,7 +23,7 @@ metadata:
   name: mysecret
   namespace: mynamespace
 data:
-  foo: YmFy  # <- base64 encoded "bar"
+  foo: YmFy # <- base64 encoded "bar"
 ```
 
 我們可以使用 sealed secret 將其變成加密後的 `SealedSecret` 設定檔案：
@@ -67,11 +67,7 @@ brew install kubeseal
 安裝完成之後就可以使用 kubeseal 將原本的 `Secret` 轉換成 `SealedSecret`。
 
 ```shell
-# option 1
-kubeseal <mysql-secret.yaml -o yaml > mysql-sealed-secret.yaml
-
-# option 2
-cat mysql-secret.yaml | kubeseal -o yaml > mysql-sealed-secret.yaml
+kubeseal -f mysecret.yaml -w mysealedsecret.yaml
 ```
 
 ## 將 SealedSecret 部署到叢集中，讓 Controller 幫我們解密並部署 Secret
@@ -93,7 +89,7 @@ stringData:
 使用 `kubeseal` 將其轉換成 `SealedSecret`。
 
 ```shell
-cat mysql-secret.yaml | kubeseal -o yaml > mysql-sealed-secret.yaml
+kubeseal -f mysql-secret.yaml -w mysql-sealed-secret.yaml
 ```
 
 `mysql-sealed-secret.yaml` 的內容如下。
