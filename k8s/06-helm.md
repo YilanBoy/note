@@ -74,3 +74,176 @@ helm install -f values.yaml bitnami/wordpress --generate-name
 helm install bitnami/wordpress --generate-name \
 --set mariadb.auth.database=user0db,mariadb.auth.username=user0
 ```
+
+## 建立自己的 Chart
+
+可以使用 `helm create` 來建立一個新的 Chart。
+
+```shell
+helm create mychart
+```
+
+`mychart` 資料夾的結構如下：
+
+```text
+mychart
+├── Chart.yaml <- Chart 的描述檔，包含了 Chart 的名稱、版本、描述等資訊
+├── charts <- 用來存放其他 Chart 的資料夾，剛建立是空的
+├── templates <- 用來存放 Kubernetes 資源描述檔的資料夾
+│   ├── NOTES.txt
+│   ├── _helpers.tpl
+│   ├── deployment.yaml
+│   ├── hpa.yaml
+│   ├── ingress.yaml
+│   ├── service.yaml
+│   ├── serviceaccount.yaml
+│   └── tests
+│       └── test-connection.yaml
+└── values.yaml
+```
+
+你可以在 `templates` 中，放置你的 K8s 資源描述檔案。
+
+Helm Template 提供一些**特殊語法與控制流**，讓你在寫資源描述檔時更得心應手。
+
+## 內建物件 (Built-in Object)
+
+Helm 提供了一些內建物件，你可以在 template 中使用這些物件。
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  # Helm 中提供一種叫做 Release 的內置物件
+  # 使用 {{ .Release.Name }} 可以取得 Chart 的發佈版本
+  name: {{ .Release.Name }}-configmap
+data:
+  myvalue: "Hello World"
+```
+
+更多內建物件可以參考[文件](https://helm.sh/zh/docs/chart_template_guide/builtin_objects/)。
+
+## Pipeline
+
+你可以在 template 中使用 Pipeline，來處理一些複雜的邏輯。例如將一個字串轉換成小寫。
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+data:
+  # 將 myvalue 轉換成小寫
+  # 這裡的 .Values.global.myvalue 是從 values.yaml 中取得的
+  myvalue: {{ .Values.global.myvalue | lower }}
+```
+
+Pipeline 可以串接多個函式，例如將一個字串轉換成小寫，再將第一個字母轉換成大寫。
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+data:
+  # 將 myvalue 轉換成小寫，再將第一個字母轉換成大寫
+  myvalue: {{ .Values.global.myvalue | lower | title }}
+```
+
+## 控制流
+
+Helm Template 提供了一些控制流，讓你可以在 template 中使用 `if`、`else`、`range` 等語法。
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+data:
+  # 如果 .Values.global.myvalue 為空，則使用預設值
+  myvalue: {{ if .Values.global.myvalue }} {{ .Values.global.myvalue }} {{ else }} default value {{ end }}
+```
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+data:
+  # 如果 .Values.global.say 為 hello，則多一個 res: world 的欄位
+  myvalue: foobar
+  {{ if eq .Values.global.say "hello" }} res: world {{ end }}
+```
+
+還有類似於 `for` 的 `range` 語法，可以用來迭代一個 list。
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+data:
+# 迭代 .Values.global.list，並將每個元素轉換成小寫
+{{- range .Values.global.list }}
+  - {{ . | lower }}
+{{- end }}
+```
+
+### 將自己的 Charts 上傳到 GitHub Pages 供別人使用
+
+建立好你的 Chart 之後，就可以將它上傳到 GitHub Pages 供別人使用。
+
+首先，你需要在 GitHub 上建立一個 Repository，資料夾結構如下：
+
+```text
+mychart-repo
+├── .github
+│   └── workflows
+│       └── release.yaml <- 用來自動發佈 Chart 的 GitHub Action
+├── README.md
+└── charts
+    └── mychart <- 將你的 Chart 放在這裡
+```
+
+`release.yaml` 的內容如下：
+
+````yaml
+
+```yaml
+name: Release Charts
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@v1.6.0
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+````
+
+接著，你需要在 GitHub 上建立一個分支 `gh-pages`。
+
+接下來，當你將 Chart 推到 `main` 分支時，GitHub Action 會自動將 Chart 發佈到 `gh-pages` 分支。
+
+## 參考資料
+
+- [Helm 官方文件](https://helm.sh/zh/docs/)
+- [Helm Example Repository](https://github.com/helm/examples)
