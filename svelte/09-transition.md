@@ -162,3 +162,53 @@ Key blocks 可以讓你追蹤值的變化，來摧毀並重新建立元素。
 </p>
 {/key}
 ```
+
+## Deferred transitions
+
+當你的元素會從一個位置移動到另外一個位置時，可以使用 `crossfade` 來提供一個移動的效果。
+
+`crossfade` 會回傳 `send` 與 `receive` 兩個函式，分別用來設定元素的移動效果。
+
+```javascript
+// transition.js
+import { crossfade } from "svelte/transition";
+import { quintOut } from "svelte/easing";
+
+export const [send, receive] = crossfade({
+  duration: (d) => Math.sqrt(d * 200),
+
+  fallback(node, params) {
+    const style = getComputedStyle(node);
+    const transform = style.transform === "none" ? "" : style.transform;
+
+    return {
+      duration: 600,
+      easing: quintOut,
+      css: (t) => `
+        transform: ${transform} scale(${t});
+        opacity: ${t}
+      `,
+    };
+  },
+});
+```
+
+以常見的 Todo List 為例子，當你勾選一個項目時，該項目會有一個移動的效果，將項目移動到已完成的項目列表中。
+
+```svelte
+<script>
+import { send, receive } from './transition.js';
+
+// ...
+</script>
+
+<!-- ... -->
+
+<li
+    class:done
+    in:receive={{ key: todo.id, duration: 400 }}
+    out:send={{ key: todo.id, duration: 400 }}
+>
+    <!-- ... -->
+</li>
+```
