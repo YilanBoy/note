@@ -76,7 +76,7 @@
 
 ## Component Styles
 
-你可以傳入一個 CSS 變數來設定組件的樣式：
+你可以傳入一個 CSS 變數來設定元件的樣式：
 
 ```svelte
 <!-- App.svelte -->

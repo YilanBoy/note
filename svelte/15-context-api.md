@@ -2,7 +2,7 @@
 
 ## `setContext` and `getContext`
 
-Context API 為組件提供了一種相互「對話」的機制，無需將資料和函數作為 props 傳遞，也無需調度大量事件。
+Context API 為元件提供了一種相互「對話」的機制，無需將資料和函數作為 props 傳遞，也無需調度大量事件。
 
 ```svelte
 <!-- ComponentA.svelte -->

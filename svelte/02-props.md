@@ -2,7 +2,7 @@
 
 ## Declaring Props
 
-如果你需要將變數從父 component 傳遞到子 component，你可以在子組件使用 `export` 關鍵字來宣告一個 `name` prop：
+如果你需要將變數從父 component 傳遞到子 component，你可以在子元件使用 `export` 關鍵字來宣告一個 `name` prop：
 
 ```svelte
 <script>

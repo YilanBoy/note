@@ -91,21 +91,21 @@ gcloud config set compute/region asia-east1
 gcloud config list compute/region
 ```
 
-## 更新 CLI 組件 (Component)
+## 更新 CLI 元件 (Component)
 
-查看目前的 Google Cloud CLI 有安裝那些組件。
+查看目前的 Google Cloud CLI 有安裝那些元件。
 
 ```shell
 gcloud components list
 ```
 
-安裝組件。
+安裝元件。
 
 ```shell
 gcloud components install COMPONENT_ID
 ```
 
-更新所有組件。
+更新所有元件。
 
 ```shell
 gcloud components update

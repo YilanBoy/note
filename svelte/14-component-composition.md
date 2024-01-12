@@ -81,7 +81,7 @@ Slot 可以設定屬性：
 
 ## Checking for Slot Content
 
-你可以根據 slot 是否有傳入內容，來決定要不要顯示組件的內容：
+你可以根據 slot 是否有傳入內容，來決定要不要顯示元件的內容：
 
 ```svelte
 <!-- 如果沒有使用 slot="header" 傳入內容，下面的區塊就不顯示了 -->

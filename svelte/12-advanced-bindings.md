@@ -101,7 +101,7 @@ onMount(() => {
 
 ## Component bindings
 
-你可以在組件上使用 `bind` 來綁定組件的屬性。
+你可以在元件上使用 `bind` 來綁定元件的屬性。
 
 ```svelte
 <Keypad
@@ -123,11 +123,11 @@ onMount(() => {
 
 > [!NOTE]
 >
-> 使用 Svelte 的組件綁定時要謹慎，如果使用過多，尤其是在沒有「唯一數據來源」的情況下，可能會很難追蹤應用程式中資料的流動。
+> 使用 Svelte 的元件綁定時要謹慎，如果使用過多，尤其是在沒有「唯一數據來源」的情況下，可能會很難追蹤應用程式中資料的流動。
 
 ## Binding to Component Instances
 
-你可以在組件上使用 `bind:this` 來綁定組件的實例。
+你可以在元件上使用 `bind:this` 來綁定元件的實例。
 
 ```svelte
 <!-- Canvas.svelte -->
