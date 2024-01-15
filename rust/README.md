@@ -6,3 +6,4 @@
 
 - [The Rust Programming Language](https://doc.rust-lang.org/book/title-page.html)
 - [The Rust Programming Language - 正體中文版本](https://github.com/rust-tw/book-tw)
+- [Rust By Practice](https://practice.rs/why-exercise.html)
