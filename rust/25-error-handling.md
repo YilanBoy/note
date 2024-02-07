@@ -3,7 +3,7 @@
 Rust 的錯誤有兩個主要類別
 
 - 可恢復錯誤 (recoverable)，在 Rust 中可以用 `Result<T, E>` 處理
-- 不可恢復錯誤 (unrecoverable)，在 Rust 中可以用 `panic!` 這個巨集  (macro) 來處理並終止程式
+- 不可恢復錯誤 (unrecoverable)，在 Rust 中可以用 `panic!` 這個巨集 (macro) 來處理並終止程式
 
 大部分程式語言會將這兩類錯誤統一成例外 (Exception)，但 Rust 並沒有例外
 
@@ -109,3 +109,7 @@ note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose bac
 ```
 
 可以看到 backtrace 的 `6:...` 標示出我們造成問題的地方
+
+## 參考資料
+
+- [How to Use the “thiserror” Crate in Rust](https://betterprogramming.pub/a-simple-guide-to-using-thiserror-crate-in-rust-eee6e442409b)

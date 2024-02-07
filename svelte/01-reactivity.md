@@ -85,6 +85,13 @@ function addNumber() {
   // it will trigger reactivity
   numbers = [...numbers, numbers.length + 1];
 }
+
+function removeNumber() {
+  // this line will remove the last element, but it won't trigger reactivity
+  numbers = numbers.slice(0, -1);
+  // it will trigger reactivity
+  numbers = numbers
+}
 </script>
 ```
 

@@ -88,3 +88,25 @@ cargo tauri init
 ```bash
 cargo test
 ```
+
+## 發佈設定檔 (release profiles)
+
+Cargo 有兩個主要的設定檔：
+
+- `dev` 設定檔會在當你對 Cargo 執行 cargo build 時所使用。
+- `release` 設定檔會在當你對 Cargo 執行 cargo build --release 時所使用。
+
+dev 設定檔預設定義為適用於開發時使用，而 release 設定檔預設定義為適用於發佈時使用。
+
+```toml
+# opt-level 設定控制了 Rust 對程式碼進行優化的程度，範圍從 0 到 3
+# 0: 不進行優化
+# 3: 進行最大優化，但會增加編譯時間
+[profile.dev]
+opt-level = 0
+
+[profile.release]
+opt-level = 3
+```
+
+對於完整的設置選項與每個設定檔的預設列表，請查閱 [Cargo 的技術文件](https://doc.rust-lang.org/cargo/reference/profiles.html)。
