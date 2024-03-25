@@ -1,6 +1,6 @@
 # `thiserror`
 
-`thiserror` 是一個用來定義自定義錯誤類型的庫，它提供了一個宏 `Error` 來定義錯誤類型，並且可以自動實現 `std::error::Error` trait。
+`thiserror` 是一個用來定義自定義錯誤類型的庫，它提供了一個巨集 `Error` 來定義錯誤類型，並且可以自動實現 `std::error::Error` trait。
 
 來看下面一個不使用 `thiserror` 的例子：
 
@@ -88,4 +88,5 @@ fn read_file() -> Result<(), CustomError> {
 
 ## 參考資料
 
+- [Unwraps EVERYWHERE](https://www.reddit.com/r/rust/comments/mjaoq7/unwraps_everywhere/)
 - [How to Use the “thiserror” Crate in Rust](https://betterprogramming.pub/a-simple-guide-to-using-thiserror-crate-in-rust-eee6e442409b)

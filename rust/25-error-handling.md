@@ -109,7 +109,3 @@ note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose bac
 ```
 
 可以看到 backtrace 的 `6:...` 標示出我們造成問題的地方
-
-## 參考資料
-
-- [How to Use the “thiserror” Crate in Rust](https://betterprogramming.pub/a-simple-guide-to-using-thiserror-crate-in-rust-eee6e442409b)
