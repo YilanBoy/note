@@ -52,3 +52,18 @@ Gateway Load Balancer (GWLB) 可以將流量導入到如防火牆、入侵偵測
 Gateway Load Balancer 屬於在網路七層中屬於第 3 層的網路層。
 
 體會在連接埠 6081 上使用 GENEVE 協定交換應用程式流量。
+
+## SAA 筆記
+
+- ELB 轉發請求的目標是 Target Group。
+- NLB 支援 UDP 與 TCP 協議。
+- NLB 預設關閉 cross-zone。
+- 只有 NLB 可以設定固定 IP。
+- ALB 支援 HTTP 與 HTTP/2 協議，也支援基於 HTTP/2 的 gRPC。
+- ALB 預設開啟 cross-zone。
+- ALB 也是部署在 public subnet 上，但 ALB 本身是沒有 public IP 的，只有 FQDN。
+- ALB 支援 Weighted Target Group，可以讓你設定權重，將流量導向不同的 Target Group (包含地端)。
+- ELB 可以看 access log。
+- Network Firewall 後面無法接 ALB，WAF 後面才可以接 ALB。
+- 多個 FQDN 都可以透過同一個 ALB 轉送請求，ALB 上面可以掛多個憑證並使用 Server Name Indication (SNI) 將指定憑證套用在指定的 FQDN。
+- ALB 上單一 port 的 listener 只能有一個 (有點廢話)。
