@@ -108,9 +108,22 @@ fn main() {
 
 ## 匹配 Option
 
-可以利用剛剛的方式，將 `Option` 中的 `T` 給拿出來。
+可以使用 `match`，將 `Option` 中的 `T` 給拿出來。
 
-寫一個函式，它獲取一個 `Option<32>` 參數，如果有值就將其加一，沒有值就返回 `None`。
+```rust
+let some_value = Some(1);
+
+let result = match some_value {
+    Some(i) => i,
+    None => {
+        panic!("There is no value");
+    }
+};
+
+println!("{}", result); // 1
+```
+
+來寫一個函式，它獲取一個 `Option<32>` 參數，如果有值就將其加一，沒有值就返回 `None`。
 
 ```rust
 fn plus_one(x: Option<i32>) -> Option<i32> {
@@ -145,7 +158,7 @@ Some(i) => Some(i + 1),
 
 ## 匹配是窮盡的
 
-`match` 有一個特性需要特別討論，首先看一下下方的程式碼，這段程式碼是無法執行的。
+`match` 有一個特性需要特別討論。以下方的程式碼為例，這段程式碼是無法執行的。
 
 ```rust
 fn plus_one(x: Option<i32>) -> Option<i32> {
@@ -166,9 +179,9 @@ rror[E0004]: non-exhaustive patterns: `None` not covered
   |
 ```
 
-Rust 知道我們沒有覆蓋到所有可能的情況，甚至知道有哪些情況被我們忽略了，Rust 中的匹配是窮盡 (exhaustive) 的，必須要窮舉所有可能性來使程式碼可以執行。
+Rust 知道我們沒有覆蓋到所有可能的情況，甚至知道有哪些情況被我們忽略了，Rust 中的**匹配是窮盡 (exhaustive) 的，必須要窮舉所有可能性來使程式碼可以執行**。
 
-## 通配符 \_
+## 通配符 **\_**
 
 Rust 也提供一個模式 `_` 用於囊括所有不符合其他模式的處理方式。
 
@@ -176,6 +189,7 @@ Rust 也提供一個模式 `_` 用於囊括所有不符合其他模式的處理�
 
 ```rust
 let some_u8_value = 0u8;
+
 match some_u8_value {
     1 => println!("one"),
     2 => println!("two"),
