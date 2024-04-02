@@ -15,3 +15,10 @@ AWS 相關的憑證管理服務。
 ## AWS Private CA
 
 AWS Private CA 是一種高度可用的多功能 CA (Certificate Authority)，可協助組織使用私有憑證來保護其應用程式和裝置的安全。
+
+## AWS CloudHSM
+
+- AWS CloudHSM 可讓你在經過 FIPS (Federal Information Processing Standard) 驗證的硬體上管理和存取您的金鑰。可用來與 KMS 一起使用。
+- 如果 HSM 出現問題導致金鑰遺失，AWS 也無法幫用戶找回金鑰。因此 AWS 建議使用 Multi-AZ 來避免這種情況發生。
+
+> HSM (Hardware security module) 又稱硬體安全模組，是一種用於保障和管理強認證系統所使用的數字金鑰，並同時提供相關密碼學操作的電腦硬體裝置。
