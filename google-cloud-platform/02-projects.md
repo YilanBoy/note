@@ -23,6 +23,14 @@ PROJECT_ID              NAME                    PROJECT_NUMBER
 container-platform-123  container-platform      123456789012
 ```
 
+## 切換專案
+
+你可以透過 gcloud CLI 來切換專案。
+
+```shell
+gcloud config set project $MY_PROJECT_ID
+```
+
 ## 刪除專案
 
 你可以使用 gcloud CLI 刪除專案
