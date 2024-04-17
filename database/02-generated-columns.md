@@ -1,6 +1,6 @@
 # Generated Columns
 
-某天看到一個影片，是 PlanetScale 介紹如何使用 Generated Columns 來阻擋分身信箱的註冊。
+某天看到一個影片，是 PlanetScale 介紹如何在 MySQL 中使用 Generated Columns 來阻擋分身信箱的註冊。
 
 分身信箱是指用戶可以使用 `+` 符號來讓信箱看起來不同，但實際上是同一個信箱。
 假設我的信箱是 `allen@gmail.com`，我可以使用 `allen+video@gmail.com` 來註冊網站上的帳號。
