@@ -1,6 +1,10 @@
 # VXLAN
 
-VXLAN 全稱為 Virtual Extensible LAN，是一種 Overlay Network 技術，主要用於解決 VLAN 數量不足的問題。VXLAN 通過在原有的 Layer 2 網路上建立一個 Overlay Network，使得不同的 VLAN 可以通過 VXLAN Tunnel 進行通訊。
+VXLAN 全稱為 Virtual Extensible LAN，是一種覆蓋網路 (Overlay Network)技術，主要用於解決 VLAN 數量不足的問題。VXLAN 通過在原有的 Layer 2 網路上建立一個覆蓋網路，使得不同的 VLAN 可以通過 VXLAN Tunnel 進行通訊。
+
+> 覆蓋網路（Overlay Network）是一種建立在底層基礎網路之上的虛擬網路，通常用於在分散式系統中實現複雜的通信和服務。
+>
+> 覆蓋網路在現代分散式系統和雲計算中得到了廣泛的應用，例如在軟體定義網路（SDN）、軟體定義廣域網路（SD-WAN）、容器化和微服務架構等方面。它為複雜的系統架構提供了一種彈性、可靠且高效的通信方式。
 
 ## LAN 的演進
 
@@ -14,11 +18,11 @@ VXLAN 全稱為 Virtual Extensible LAN，是一種 Overlay Network 技術，主�
 
 ### VLAN (Virtual Local Area Network)
 
-「虛擬區域網路」是一種在物理上單一的 LAN 上建立多個邏輯上分隔的網路的技術。 就好比在同一個房間裡設定兩個獨立的 LAN，每個 LAN 都有自己的路由器和網際網路連線。
+「虛擬區域網路」是一種在物理上單一的 LAN 上建立多個邏輯上分隔的網路的技術。就好比在同一個區域裡再設定兩個獨立的 LAN，每個 LAN 彼此之間是隔離的，但實際上是共享同一個物理網路。VLAN 通常是在交換器上實現的，交換器可以根據 VLAN ID 將流量從一個 VLAN 轉發到另一個 VLAN。
 
-通過 VLAN，一個單一的物理網路可以被劃分成多個虛擬的區域，每個區域可以有不同的設置和安全性要求。這使得網路管理更靈活，可以更好地控制流量和資源共享。
+VLAN 可以有不同的設置和安全性要求。這使得網路管理更靈活，可以更好地控制流量和資源共享。
 
-> 注意 VLAN 與子網路 (Subnet) 並不是一樣的東西。VLAN 實現對同一物理網路的邏輯分隔，而子網路則是對 IP 地址空間的分割
+> 注意 VLAN 與子網路 (Subnet) 並不是一樣的東西。VLAN 實現對同一物理網路的邏輯分隔，而子網路則是對 IP 地址空間的分割。
 
 ### VXLAN (Virtual Extensible LAN)
 
