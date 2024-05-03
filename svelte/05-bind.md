@@ -14,7 +14,7 @@
 <h1>Hello {name}!</h1>
 ```
 
-當我們在 `<input>`  中輸入文字時，`name` 這個變數的值也會跟著改變。
+當我們在 `<input>` 中輸入文字時，`name` 這個變數的值也會跟著改變。
 而反過來也是，當我們改變 `name` 這個變數的值時，`<input>` 中的文字也會跟著改變。
 
 ## Numeric Inputs
@@ -60,16 +60,18 @@ Svelte 中也提供 `bind` 來綁定 checkbox 的 checked 屬性。
 
 ```svelte
 <script>
+    let selected;
+
     let items = [
         { id: 1, name: 'one' },
         { id: 2, name: 'two' },
-        { id: 3, name: 'three' }
-    ]
+        { id: 3, name: 'three' },
+    ];
 </script>
 
 <select
     bind:value={selected}
-    on:change="{() => console.log(`selected: ${selected}`)}"
+    on:change="{() => console.log(`selected: ${selected.name}`)}"
 >
     {#each items as item}
         <!-- note the <option> values are objects, rather than strings. Svelte doesn't mind -->
