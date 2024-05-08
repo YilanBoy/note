@@ -9,7 +9,7 @@ CloudFront 是 AWS 的 CDN (Content Delivery Network) 服務，可以用來加�
 - 如果想在 CloudFront 限制用戶訪問你的內容，可以使用
   - Signed URLs：支援 Adobe's Real-Time Message Protocol (RTMP)
   - Signed cookies：不想更改 URL 可以用 cookie
-  - Origin Access Identiy (OAI)
+  - Origin Access Identity (OAI)
   - Origin Access Control (OAC)，官方建議使用 OAC，其支援所有地區
 - CloudFront geo-restriction 是用來避免部分地區的用戶訪問你的 CDN 內容
 - Lambda@Edge 可以讓你在各個 CDN 端點使用程式做一些小任務，例如登入
