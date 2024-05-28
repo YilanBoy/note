@@ -11,3 +11,21 @@
   - 所謂 "inflight" 指的是這些消息已經被接收到並由消費者元件處理，但尚未從佇列中刪除。
 - 先進先出類型的佇列（FIFO queue），"inflight" 上限為 20,000 條。
 - 在 CloudWatch 上可以監測 `ApproximateAgeOfOldestMessage` 狀態。
+- SQS 的訊息大小，最大可以設定為 256KB。
+
+## 當作 Lambda 的事件來源
+
+SQS 可以當作 Lambda 的事件來源，當我們向 SQS 送入新的訊息時，接著觸發 Lambda 去處理新送入的訊息。
+
+> [!INFO]
+>
+> Lambda 有可能重複處理 SQS 的訊息，因此要確保你的 Lambda 函式是幂等的。即多次執行相同的操作，結果都是一樣的。
+
+如果你想要控制 Lambda 處理 SQS 訊息的最大並行數量，有兩種方式可以設定：
+
+1. 在 Lambda 上面設定 `Reserved Concurrency`。假設 Lambda 數量已達到上限，新的 SQS 訊息會被保留在佇列中，直到有空出來的 Lambda 可以進行處理。但有個問題是，還沒被處理的 SQS 的訊息有可能會超時。超時的 SQS 訊息會被放入到死信佇列中 (Dead Letter Queue)。
+2. 在 SQS 的 Event Source 設定 `Maximum Concurrency`。這個設定與上面雷同，差別在於訊息會被保留在 SQS 佇列中，直到有空出來的 Lambda 可以進行處理。不會有超時的問題。
+
+## 參考資料
+
+- [Introducing maximum concurrency of AWS Lambda functions when using Amazon SQS as an event source](https://aws.amazon.com/tw/blogs/compute/introducing-maximum-concurrency-of-aws-lambda-functions-when-using-amazon-sqs-as-an-event-source/)
