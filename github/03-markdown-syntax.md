@@ -49,3 +49,7 @@ Github 上提供了幾種不同的警告訊息樣式，可以用來強調文件�
 
 > [!CAUTION]
 > Advises about risks or negative outcomes of certain actions.
+
+## 參考資料
+
+- [Basic writing and formatting syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
