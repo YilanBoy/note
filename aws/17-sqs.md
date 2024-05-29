@@ -26,6 +26,21 @@ SQS 可以當作 Lambda 的事件來源，當我們向 SQS 送入新的訊息時
 1. 在 Lambda 上面設定 `Reserved Concurrency`。假設 Lambda 數量已達到上限，新的 SQS 訊息會被保留在佇列中，直到有空出來的 Lambda 可以進行處理。但有個問題是，還沒被處理的 SQS 的訊息有可能會超時。超時的 SQS 訊息會被放入到死信佇列中 (Dead Letter Queue)。
 2. 在 SQS 的 Event Source 設定 `Maximum Concurrency`。這個設定與上面雷同，差別在於訊息會被保留在 SQS 佇列中，直到有空出來的 Lambda 可以進行處理。不會有超時的問題。
 
+在 Terraform 的寫法中，可以透過 `scaling_config` 方式來設定 `Maximum Concurrency`：
+
+```hcl
+resource "aws_lambda_event_source_mapping" "event_source_mapping" {
+  event_source_arn = aws_sqs_queue.my_queue.arn
+  enabled          = true
+  function_name    = aws_lambda_function.my_function.arn
+  batch_size       = 1
+
+  scaling_config {
+    maximum_concurrency = 20
+  }
+}
+```
+
 ## 參考資料
 
 - [Introducing maximum concurrency of AWS Lambda functions when using Amazon SQS as an event source](https://aws.amazon.com/tw/blogs/compute/introducing-maximum-concurrency-of-aws-lambda-functions-when-using-amazon-sqs-as-an-event-source/)
