@@ -1,8 +1,15 @@
-# Use Prometheus to Get Node Exporter Metrics and Send to Grafana Cloud
+# Prometheus
+
+Prometheus 是一個由 Grafana Lab 開發並維護的開源監控系統，用於記錄和查詢系統的監控資料。Prometheus 透過 HTTP 協定來收集監控資料，並且提供一個簡單的查詢語言 PromQL 來查詢監控資料。
+
+> [!IMPORTANT]
+> Prometheus 是一個時間序列資料庫
+
+## Use Prometheus to Get Node Exporter Metrics and Send to Grafana Cloud
 
 安裝 Prometheus，以便收集 Node Exporter 的監控資料，並將監控的資料送往 Grafana Cloud 的 Prometheus。
 
-## Install Prometheus
+### Install Prometheus
 
 新增一個 prometheus 使用者，並且不要建立家目錄，也不要讓他可以登入。
 
@@ -44,7 +51,7 @@ sudo chown -R prometheus:prometheus /etc/prometheus/console_libraries
 rm -rf prometheus-2.45.0.linux-arm64.tar.gz prometheus-2.45.0.linux-arm64
 ```
 
-## Create Prometheus Service
+### Create Prometheus Service
 
 建立一個 service 檔案，讓 Prometheus 可以在背景執行。
 
@@ -81,7 +88,7 @@ sudo systemctl daemon-reload
 sudo systemctl start prometheus
 ```
 
-## Prometheus Configuration
+### Prometheus Configuration
 
 在 `/etc/prometheus/` 目錄下建立一個 `prometheus.yml` 檔案，並且將內容貼上。
 
@@ -92,10 +99,10 @@ global:
 scrape_configs:
   - job_name: k3s
     static_configs:
-      - targets: ['10.0.1.10:9100', '10.0.1.11:9100', '10.0.1.12:9100']
+      - targets: ["10.0.1.10:9100", "10.0.1.11:9100", "10.0.1.12:9100"]
 
 remote_write:
-  - url: '<grafana cloud prometheus>'
+  - url: "<grafana cloud prometheus>"
     basic_auth:
       username: <username>
       password: <password>
