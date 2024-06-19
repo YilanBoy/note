@@ -19,8 +19,11 @@
 
 ## Numeric Inputs
 
-在 DOM 中，所有數值都是字串。
-但 Svelte 的 `bind` 會自動將 `<input>` 類型為 `type="number"` 與 `type="range"` 的輸入值轉換成數值。
+Svelte 的 `bind` 會自動將 `<input>` 類型為 `type="number"` 與 `type="range"` 的輸入值轉換成數值。
+
+> [!NOTE]
+>
+> 在 DOM 中，所有數值都是字串。
 
 ```svelte
 <script>

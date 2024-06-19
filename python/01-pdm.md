@@ -112,7 +112,7 @@ pdm add requests
 6 directories, 2 files
 ```
 
-> **Note**
+> [!Note]
 >
 > 注意 `__pypackages__` 這個資料夾不應該加入版本控制，請在 `.gitignore` 中將此資料夾排除
 

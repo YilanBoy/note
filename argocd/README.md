@@ -14,7 +14,7 @@ kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 ```
 
-> **Note**
+> [!Note]
 >
 > 如果需要 HA (High Availability) 部署，官方有提供 HA 部署的 yaml 檔案，可以參考[官方文件](https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/)
 
@@ -58,7 +58,7 @@ argocd-server-metrics                     ClusterIP   10.107.181.67    <none>   
 brew install argocd
 ```
 
-> **Note**
+> [!Note]
 >
 > 其他 argo CLI 安裝方式可以參考[這裡](https://argo-cd.readthedocs.io/en/stable/cli_installation/)。
 
@@ -79,7 +79,7 @@ argocd admin initial-password -n argocd
 
 首先關閉 `argocd-server` 的 TLS 設定，這裡使用 `kubectl patch` 更新部署的設定。
 
-> **Note**
+> [!Note]
 >
 > kubectl patch 的的更動會立刻套用，不需要重新啟動 k8s 上的資源。
 
@@ -113,7 +113,7 @@ kubectl get svc argocd-server -n argocd -o yaml
 
 在 `/etc/nginx/sites-available` 中新增一個檔案 `argocd.example.com.conf`，內容如下：
 
-> **Note**
+> [!Note]
 >
 > `argocd.example.com` 需要修改成你自己的網域。
 
