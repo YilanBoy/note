@@ -26,4 +26,6 @@
 - 當 log 被上傳至 blob storage，會觸發 event grid 通知 ADX 進行 ingestion。將資料倒入 ADX 中。
 - ADX 上也會設定 retention policy，根據時間自動刪除資料。我這裡設計是保存一個月，超過一個月的資料會自動刪除，以節省成本。
 
-> Fluent bit 本身支援將資料送往 blob storage 或是 ADX，我之前嘗試過在 fluent bit 將資料複製一份同時送往 blog storage 與 ADX，但非常不穩定。
+> [!NOTE]
+>
+> Fluent bit 本身支援將資料送往 blob storage 或是 ADX，我之前嘗試過在 fluent bit 將資料複製一份同時送往 blog storage 與 ADX，但非常不穩定，時常發生掉資料的情況。
