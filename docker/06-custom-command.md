@@ -39,9 +39,9 @@ chmod a+x pg_dump.sh
 ```bash
 #!/bin/bash
 
-# -v .:/app：此參數將當前工作目錄（.）掛載到容器內部的 /app 目錄。這意味著容器內部的 pg_dump 命令將能夠訪問你的當前工作目錄中的檔案。
+# -v ${PWD}:/app：此參數將當前工作目錄掛載到容器內部的 /app 目錄。這意味著容器內部的 pg_dump 命令將能夠訪問你的當前工作目錄中的檔案。
 # -w /app：此參數將容器內部的工作目錄設定為 /app。這意味著 pg_dump 命令將在 /app 目錄中執行。
-docker run -it --rm -v .:/app -w /app postgres:16.3 pg_dump "$@"
+docker run -it --rm -v ${PWD}:/app -w /app postgres:16.3 pg_dump "$@"
 ```
 
 再次使用 `pg_dump.sh` 來備份資料庫中的資料，就可以看到 `db.sql` 出現囉。
