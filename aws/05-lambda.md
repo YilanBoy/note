@@ -19,6 +19,61 @@ Layer 可以給多個 Function 重復使用，當 Function 會解壓縮 Layer �
 
 **注意每個 Function 至多只能使用 5 個 Layer**。
 
+## 使用 AWS CLI 更新 Lambda 的環境變數
+
+在 AWS CLI 中可以透過以下指令取得 Lambda Function 的設定。
+
+```bash
+aws lambda get-function-configuration \
+--function-name my-function \
+--region us-west-2
+```
+
+指令會以 JSON 格式顯示結果，可以搭配 `jq` 指令使用。
+
+```bash
+# 顯示 Lambda Function 某個環境變數 MAINTENANCE_MODE 的值
+aws lambda get-function-configuration \
+--function-name my-function \
+--region us-west-2 | jq -r '.Environment.Variables.MAINTENANCE_MODE'
+```
+
+既然可以取得環境變數，那麼當然也能更新環境變數，我們可以透過 `update-function-configuration` 來做到這件事情。
+
+```bash
+aws lambda update-function-configuration \
+--function-name my-function \
+--region us-west-2 \
+--environment "Variables={BUCKET=DOC-EXAMPLE-BUCKET,KEY=file.txt}"
+```
+
+但注意這裡有個坑，你無法只更新部分的環境變數。舉個例子，假設你有一個 Function 擁有 10 個環境變數，而你只想更新其中某 1 個環境變數的值，你不能這樣做。
+
+```bash
+# 這樣除了 MAINTENANCE_MODE 這個環境變數會保留以外，其他的環境變數都會被刪除
+aws lambda update-function-configuration \
+--function-name my-function \
+--region us-west-2 \
+--environment "Variables={MAINTENANCE_MODE='1'}"
+```
+
+正確做法是提供全部的環境變數，但寫一長串環境變數可能過於麻煩，我們可以結合剛剛的指令 `get-function-configuration` 一起使用。
+
+```bash
+ENVIRONMENT=$(aws lambda get-function-configuration \
+--function-name my-function \
+--region us-west-2 | jq -r '.Environment')
+
+# 更新環境變數
+NEW_ENVIRONMENT=$(echo $ENVIRONMENT | jq -r '.Variables.MAINTENANCE_MODE="1"|tostring')
+
+# https://github.com/aws/aws-cli/issues/2638
+aws lambda update-function-configuration \
+--function-name my-function \
+--region us-west-2 \
+--environment $NEW_ENVIRONMENT
+```
+
 ## SAA 筆記
 
 - **Lambda 執行時間最多為 15 分鐘**，超過這個時間的任務就不適合使用 Lambda。
