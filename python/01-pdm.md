@@ -33,7 +33,7 @@ pdm init
 
 初始化會詢問一些問題，例如 python interpreter 版本，以及要使用虛擬環境還是 PEP582 來管理依賴套件
 
-```plaintext
+```text
 Creating a pyproject.toml for PDM...
 
 Please enter the Python interpreter to use
@@ -99,7 +99,7 @@ pdm add requests
 
 可以使用 `tree -L 3 .` 指令查看此時的目錄結構
 
-```plaintext
+```text
 .
 ├── __pypackages__
 │   └── 3.11

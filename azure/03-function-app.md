@@ -64,7 +64,7 @@ def main(req):
 
 根據不同的語言，azure function 所包含的檔案也會有所不同，下面以 python 為例子
 
-```plaintext
+```text
 <project_root>/
  | - .venv/
  | - .vscode/
