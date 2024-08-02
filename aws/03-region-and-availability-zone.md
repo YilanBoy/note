@@ -1,3 +1,8 @@
+---
+layout: default
+parent: AWS
+---
+
 # Region and Availability Zone
 
 ## Region

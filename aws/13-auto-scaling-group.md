@@ -1,3 +1,8 @@
+---
+layout: default
+parent: AWS
+---
+
 # Auto Scaling Group (ASG)
 
 - ASG 的 Policy 種類：

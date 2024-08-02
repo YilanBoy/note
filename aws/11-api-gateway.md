@@ -1,3 +1,8 @@
+---
+layout: default
+parent: AWS
+---
+
 # API Gateway
 
 - 可以將回傳結果做 cache，減少後面 server 或是 Lambda 的負擔

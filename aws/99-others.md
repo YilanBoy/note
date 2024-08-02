@@ -1,3 +1,8 @@
+---
+layout: default
+parent: AWS
+---
+
 # 其他大大小小的 AWS 服務
 
 ## Kinesis

@@ -1,3 +1,8 @@
+---
+layout: default
+parent: AWS
+---
+
 # Lambda
 
 為 AWS 無伺服器運算服務，優點是根據用量付費，沒有最低消費，完全不使用就不會有費用產生

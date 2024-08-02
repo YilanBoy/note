@@ -1,3 +1,8 @@
+---
+layout: default
+parent: AWS
+---
+
 # Storage Service
 
 ## Elastic Block Storage (EBS)

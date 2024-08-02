@@ -1,3 +1,8 @@
+---
+layout: default
+parent: AWS
+---
+
 # Network
 
 ## Virtual Private Cloud (VPC)

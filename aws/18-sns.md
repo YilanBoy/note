@@ -1,3 +1,8 @@
+---
+layout: default
+parent: AWS
+---
+
 # Simple Notification Service (SNS)
 
 - SNS 是一個全託管的消息訂閱服務，訂閱者可以是 AWS SQS、Lambda、HTTP endpoint、email address 或是 mobile SMS (簡訊)。

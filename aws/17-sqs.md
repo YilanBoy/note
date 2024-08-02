@@ -1,3 +1,8 @@
+---
+layout: default
+parent: AWS
+---
+
 # Simple Queue Service (SQS)
 
 - SQS 是一個全託管的服務，用來解耦服務間的依賴性 (例如一定要等到什麼工作完成才能繼續下一個工作)。

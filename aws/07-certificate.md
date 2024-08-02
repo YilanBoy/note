@@ -1,3 +1,8 @@
+---
+layout: default
+parent: AWS
+---
+
 # AWS Certificate Service
 
 AWS 相關的憑證管理服務。

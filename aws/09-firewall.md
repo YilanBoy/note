@@ -1,3 +1,8 @@
+---
+layout: default
+parent: AWS
+---
+
 # WAF (Firewall)
 
 AWS 相關的防火牆服務，可以對訪問服務的請求做各種過濾。

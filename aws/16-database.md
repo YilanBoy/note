@@ -1,3 +1,8 @@
+---
+layout: default
+parent: AWS
+---
+
 # Database Service
 
 ## Relational Database Service (RDS)

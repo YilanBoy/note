@@ -1,3 +1,8 @@
+---
+layout: default
+has_children: true
+---
+
 # Argo CD
 
 Argo CD 是用於 Kubernetes 的宣告式 (Declarative) GitOps 持續交付工具。

@@ -1,3 +1,8 @@
+---
+layout: default
+parent: AWS
+---
+
 # Route53
 
 為 AWS 販售並管理域名的服務。
