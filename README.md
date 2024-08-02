@@ -43,7 +43,7 @@
 - [Database](./database/README.md)
 - [Docker](./docker/README.md)
 - [Git](./git/README.md)
-- [Google Cloud Platform](./google-cloud-platfrom/README.md)
+- [Google Cloud Platform](./google-cloud-platform/README.md)
 - [Grafana](./grafana/README.md)
 - [K8s](./k8s/README.md)
 - [Laravel](./laravel/README.md)

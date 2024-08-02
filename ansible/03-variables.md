@@ -1,10 +1,15 @@
+---
+layout: default
+parent: Ansible
+---
+
 # Variables
 
 在 playbook 中可以使用 `vars` 來定義變數，例如：
 
 ```yaml
 # playbook.yml
-- name : update apt packages
+- name: update apt packages
   hosts: web_servers
   become: true
   vars:

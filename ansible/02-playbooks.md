@@ -1,3 +1,8 @@
+---
+layout: default
+parent: Ansible
+---
+
 # Playbooks
 
 Ansible playbooks 提供了一個更進階的方式來管理主機上的設定，它是一個 YAML 格式的檔案。
@@ -8,7 +13,7 @@ Ansible playbooks 提供了一個更進階的方式來管理主機上的設定�
 
 ```yaml
 # playbook.yml
-- name : update apt packages
+- name: update apt packages
   hosts: web_servers
   become: true
   tasks:
@@ -30,7 +35,7 @@ Ansible playbooks 提供了一個更進階的方式來管理主機上的設定�
       ansible.builtin.copy:
         src: nginx.conf
         dest: /etc/nginx/nginx.conf
-        mode: '0644'
+        mode: "0644"
 
     - name: Start nginx
       ansible.builtin.service:

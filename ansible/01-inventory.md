@@ -1,3 +1,8 @@
+---
+layout: default
+parent: Ansible
+---
+
 # Inventory
 
 Ansible 的 inventory 是一個用來定義主機連線資訊的清單。你可以在 inventory 中設定主機的 IP 位址、使用者名稱、密碼、SSH 金鑰等等。Ansible 會根據 inventory 的設定來連線主機並且執行指令。

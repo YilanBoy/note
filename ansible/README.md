@@ -1,3 +1,9 @@
+---
+layout: default
+nav_order: 1
+has_children: true
+---
+
 # Ansible 學習筆記
 
 Ansible 是一套知名的 IaC (Infrastructure as Code) 工具

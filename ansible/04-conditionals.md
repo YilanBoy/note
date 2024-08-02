@@ -1,3 +1,8 @@
+---
+layout: default
+parent: Ansible
+---
+
 # Conditionals
 
 Ansible 提供控制流程，可以讓你根據條件來決定是否執行某個任務。
