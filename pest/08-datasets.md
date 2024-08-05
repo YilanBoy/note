@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Pest
+nav_order: 8
+---
+
 # 使用 Datasets 測試多組資料
 
 如果你想要在一個流程測試中，測試多筆資料，你會怎麼做呢？

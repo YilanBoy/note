@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Rust
+nav_order: 25
+---
+
 # Error Handling
 
 Rust 的錯誤有兩個主要類別。

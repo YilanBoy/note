@@ -1,4 +1,10 @@
-# Introduction
+---
+layout: default
+has_children: true
+nav_order: 18
+---
+
+# Svelte
 
 Svelte 是一個新穎的現代前端框架。
 
@@ -15,8 +21,8 @@ Svelte 是一個新穎的現代前端框架。
 
 ```vue
 <script setup>
-  import { ref } from "vue";
-  const name = ref("John");
+import { ref } from "vue";
+const name = ref("John");
 </script>
 
 <template>

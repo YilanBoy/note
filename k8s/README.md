@@ -1,3 +1,9 @@
+---
+layout: default
+has_children: true
+nav_order: 11
+---
+
 # Kubernetes (K8s)
 
 一直想學習如何使用 k8s，因此計畫自己在雲端上面開一些機器然後搭建一個 k3s 叢集，

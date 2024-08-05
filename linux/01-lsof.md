@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Linux
+nav_order: 1
+---
+
 # lsof (list open files) 指令
 
 在 Linux 系統之下，幾乎所有的系統資源都是以檔案的形式呈現的 (包含一般檔案、目錄、連結檔、裝置檔、管線檔、網路 socket 等)

@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Pest
+nav_order: 13
+---
+
 # Parallel
 
 Pest 的測試預設都是使用單線程 (Single process)

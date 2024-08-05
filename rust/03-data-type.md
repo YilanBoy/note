@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Rust
+nav_order: 3
+---
+
 # 數據類型
 
 Rust 為**靜態類型**的語言，代表編譯時就必須知道所有變數的資料類型。

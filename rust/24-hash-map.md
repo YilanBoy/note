@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Rust
+nav_order: 24
+---
+
 # Hash Map
 
 Hash Map 是常見的一種資料集合。

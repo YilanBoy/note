@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Kubernetes (K8s)
+nav_order: 5
+---
+
 # Helm
 
 Helm 是一個 Kubernetes 的套件管理工具，可以用來部署應用程式到 Kubernetes 叢集中。

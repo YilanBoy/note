@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Rust
+nav_order: 18
+---
+
 # Paths for Referring to an Item in the Module Tree
 
 要使用一個模組 (Module) 中的項目 (Item)，需要先知道它的路徑 (Path)。

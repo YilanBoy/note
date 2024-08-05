@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Rust
+nav_order: 27
+---
+
 # 什麼時候使用 `panic!`？什麼時候使用 `Result`？
 
 如果發生 `panic!`，就代表程式會立即中斷，並且沒有恢復的可能性。

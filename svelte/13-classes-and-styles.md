@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Svelte
+nav_order: 13
+---
+
 # Classes and Styles
 
 ## Class Directive

@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Pest
+nav_order: 12
+---
+
 # 查看測試覆蓋度 (Code Coverage)
 
 Laravel 在 `test` 指令中可以使用 `--coverage` 顯示程式碼的測試覆蓋度

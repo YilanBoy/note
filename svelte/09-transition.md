@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Svelte
+nav_order: 9
+---
+
 # Transition
 
 Svelte 的 `transition` 可以為元素的變化提供一個簡單的效果。

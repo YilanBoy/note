@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Network
+nav_order: 7
+---
+
 # DNS
 
 DNS 是網域名稱系統（Domain Name System）的縮寫，它就像網際網路的電話簿，將人們易於記憶的網域名稱（例如 google.com）轉換為電腦可以理解的 IP 位址（例如 142.250.189.142）。

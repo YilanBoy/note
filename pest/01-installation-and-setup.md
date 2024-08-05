@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Pest
+nav_order: 1
+---
+
 # 安裝與設定 Pest
 
 透過 composer 安裝 Pest

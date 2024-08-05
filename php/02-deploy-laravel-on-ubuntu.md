@@ -1,3 +1,9 @@
+---
+layout: default
+parent: PHP
+nav_order: 2
+---
+
 # 在 Ubuntu 上面部署 Laravel
 
 最近想將 Laravel 部署在 Ubuntu 上，記錄一下 PHP 8.3 的安裝方式。

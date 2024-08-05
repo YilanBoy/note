@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Rust
+nav_order: 38
+---
+
 # 透過 Deref (解參考) 取得指標追蹤的值
 
 我們常用的參考 `&` 就是一種指標。在 Rust 中，指標無法與一般的值進行比較，因為它們屬於不同的類型。

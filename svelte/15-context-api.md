@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Svelte
+nav_order: 15
+---
+
 # Context API
 
 ## `setContext` and `getContext`

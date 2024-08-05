@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Linux
+nav_order: 3
+---
+
 # 在 Linux 中建立記憶體硬碟
 
 記憶體硬碟 (RAM Disk) 相較於傳統機械硬碟或固態硬碟，其讀寫速度更快，但是資料無法永久保存，只要一重新開機，資料就會消失。

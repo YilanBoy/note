@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Rust
+nav_order: 33
+---
+
 # Test Organization
 
 Rust 社群將測試分為兩大分類術語：單元測試和整合測試。

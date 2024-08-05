@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Rust
+nav_order: 28
+---
+
 # Generic、Traits 與 Lifetimes
 
 如果你有一段程式碼可以接收不同種類型的值，並使用相同的邏輯處理，那麼就可以考慮使用泛型。

@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Vim
+nav_order: 3
+---
+
 # Map
 
 使用 `map` 可以修改按鍵的對應，例如將 `zl` 對應到 `$`，這樣就可以在 normal mode 底下使用 `zl` 來移動到行尾。

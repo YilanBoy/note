@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Svelte
+nav_order: 18
+---
+
 # Miscellaneous
 
 ## The `@debug` tag

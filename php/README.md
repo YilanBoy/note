@@ -1,3 +1,9 @@
+---
+layout: default
+has_children: true
+nav_order: 16
+---
+
 # PHP
 
 用來開發網站後端十分方便，也有許多好用的框架可以使用。**是世界上最好的語言 (反串要註明！)**。

@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Warp
+nav_order: 2
+---
+
 # 修改主題
 
 Warp 預設提供一些基本主題，但也可以自己設定終端機背景與字體顏色

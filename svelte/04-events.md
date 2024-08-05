@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Svelte
+nav_order: 4
+---
+
 # Events
 
 ## DOM Events

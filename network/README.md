@@ -1,3 +1,9 @@
-# 網路相關筆記
+---
+layout: default
+has_children: true
+nav_order: 14
+---
 
-紀錄網路相關知識，最近會補上更多筆記。
+# Network
+
+紀錄網路相關知識。

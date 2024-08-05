@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Kubernetes (K8s)
+nav_order: 4
+---
+
 # 使用 K8s CronJob 來備份資料庫
 
 我的部落格目前是搭建在自己架的 K3s (K8s 輕量版)上，資料庫是使用 MySQL，為了以防萬一導致資料遺失，平常我會以人工的方式下指令來備份部落格的資料庫。

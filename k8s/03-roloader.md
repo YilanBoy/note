@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Kubernetes (K8s)
+nav_order: 3
+---
+
 # Reloader
 
 為開源專案，當更新 `ConfigMap` 與 `Secret` 時，會重新建立與之相依的 `Pod`，讓 `Pod` 使用最新的設定。

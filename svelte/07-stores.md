@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Svelte
+nav_order: 7
+---
+
 # Stores
 
 有時候你會想要在不同的 component 之間共享一個值，這時候你可以使用 store。
@@ -10,7 +16,7 @@
 
 ```js
 // stores.js
-import { writable } from 'svelte/store';
+import { writable } from "svelte/store";
 
 export const count = writable(0);
 ```
@@ -120,19 +126,19 @@ export const count = writable(0);
 ```js
 // stores.js
 
-import { readable } from 'svelte/store';
+import { readable } from "svelte/store";
 
 // new Date() is the initial value, you can set it null or undefined
 // the start function is called when the store get its first subscriber
 export const time = readable(new Date(), function start(set) {
-    const interval = setInterval(() => {
-        set(new Date());
-    }, 1000);
+  const interval = setInterval(() => {
+    set(new Date());
+  }, 1000);
 
-    // the stop function is called when the last subscriber unsubscribes
-    return function stop() {
-        clearInterval(interval);
-    };
+  // the stop function is called when the last subscriber unsubscribes
+  return function stop() {
+    clearInterval(interval);
+  };
 });
 ```
 
@@ -151,24 +157,23 @@ export const time = readable(new Date(), function start(set) {
 ```js
 // stores.js
 
-import { readable, derived } from 'svelte/store';
+import { readable, derived } from "svelte/store";
 
 export const time = readable(new Date(), function start(set) {
-    const interval = setInterval(() => {
-        set(new Date());
-    }, 1000);
+  const interval = setInterval(() => {
+    set(new Date());
+  }, 1000);
 
-    return function stop() {
-        clearInterval(interval);
-    };
+  return function stop() {
+    clearInterval(interval);
+  };
 });
 
 const start = new Date();
 
 // create a new store that is derived from the time store
-export const elapsed = derived(
-    time,
-    $time => Math.round(($time - start) / 1000)
+export const elapsed = derived(time, ($time) =>
+  Math.round(($time - start) / 1000)
 );
 ```
 

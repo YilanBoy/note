@@ -1,3 +1,9 @@
+---
+layout: default
+has_children: true
+nav_order: 20
+---
+
 # Vim
 
 Vim 是一個很強大的編輯器，搭配多種快捷鍵，可以讓你的快速的編寫任何文件或是撰寫程式碼

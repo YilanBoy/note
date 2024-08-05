@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Svelte
+nav_order: 8
+---
+
 # Motion (動態效果)
 
 ## Tweens

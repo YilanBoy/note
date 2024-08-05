@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Svelte
+nav_order: 16
+---
+
 # Special Elements
 
 Svelte 有提供一些特別元素，用來幫助你更好的建置前端應用程式。

@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Svelte
+nav_order: 3
+---
+
 # Logic
 
 ## If Blocks

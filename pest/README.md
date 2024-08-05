@@ -1,4 +1,10 @@
-# Pest 筆記
+---
+layout: default
+has_children: true
+nav_order: 15
+---
+
+# Pest
 
 Pest 是一個 PHP 的測試框架，由 Laravel 維護團隊中的 Nuno 所開發。
 

@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Rust
+nav_order: 16
+---
+
 # Packages 與 Crates
 
 Crate 是 Rust 編譯器能執行成功的最小程式碼量。

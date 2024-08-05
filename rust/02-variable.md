@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Rust
+nav_order: 2
+---
+
 # 變數
 
 ## 變數與常量

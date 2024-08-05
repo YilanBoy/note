@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Kubernetes (K8s)
+nav_order: 2
+---
+
 # Sealed Secrets
 
 K8s 的 Secret 主要用來存放敏感資訊，但它是以 base64 的編碼來儲存，並非使用加密，所以 Secret 不能放入版本控制中的，避免洩漏機密的風險。

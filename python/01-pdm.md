@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Python
+nav_order: 1
+---
+
 # PDM
 
 PDM 是一個新興的 Python 套件管理工具，它提供了一個現代化的方式來管理 Python 套件

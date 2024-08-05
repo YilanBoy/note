@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Rust
+nav_order: 10
+---
+
 # struct (結構體)
 
 struct 或者稱 structure，是一個自定義的資料類型，允許你命名和包裝多個相關的值，形成一個有意義的組合。

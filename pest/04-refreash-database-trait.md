@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Pest
+nav_order: 4
+---
+
 # 使用 RefreshDatabase Trait 重置資料庫
 
 通常在測試時，我們很常使用 `RefreshDatabase` 這個 Trait 來重置整個資料庫，方便進行測試

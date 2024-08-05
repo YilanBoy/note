@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Windows
+nav_order: 1
+---
+
 # 設定 windows 開發環境
 
 嘗試一下不使用 WSL2，直接在 Windows 上設定開發環境。

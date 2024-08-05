@@ -1,4 +1,10 @@
-# 整合 starship
+---
+layout: default
+parent: Warp
+nav_order: 4
+---
+
+# 整合 Starship
 
 如果你有使用 [starship](https://starship.rs/) 客製命令提示字元 (prompt) 的話
 

@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Vim
+nav_order: 2
+---
+
 # 指令
 
 在 normal mode 輸入 `:` 即可開始輸入指令

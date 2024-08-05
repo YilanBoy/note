@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Warp
+nav_order: 1
+---
+
 # 安裝 Warp
 
 Mac 用戶可以使用 Homebrew 安裝 warp

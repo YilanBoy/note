@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Rust
+nav_order: 31
+---
+
 # 如何寫測試
 
 一個測試函式通常會有三個步驟

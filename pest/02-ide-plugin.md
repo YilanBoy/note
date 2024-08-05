@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Pest
+nav_order: 2
+---
+
 # IDE Plugin
 
 Pest 官方有提供多種 IDE 的 plugin，詳細可以上官方網站查看 : [Pest - IDE plugins](https://pestphp.com/docs/ide-plugins)

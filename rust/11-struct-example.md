@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Rust
+nav_order: 11
+---
+
 # 寫一個使用 struct 的範例程式
 
 使用 Rust 寫一個計算長方形面積的程式。

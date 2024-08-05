@@ -1,3 +1,9 @@
+---
+layout: default
+parent: PHP
+nav_order: 4
+---
+
 # Shell Exec
 
 在 PHP 中，你可以使用 `exec()` 來執行外部指令。

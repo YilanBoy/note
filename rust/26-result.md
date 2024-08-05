@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Rust
+nav_order: 26
+---
+
 # Result 與可恢復錯誤
 
 如果錯誤沒有嚴重到必須停止程式時，可以使用 `Result`。

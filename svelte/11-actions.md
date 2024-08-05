@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Svelte
+nav_order: 11
+---
+
 # Actions
 
 Actions 本質上是元素級生命週期 (element-level lifecycle) 的函式，會在元素被建立時呼叫。常常用在

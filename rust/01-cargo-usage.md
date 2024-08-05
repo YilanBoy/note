@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Rust
+nav_order: 1
+---
+
 # Cargo 筆記
 
 Cargo 為 Rust 為的套件管理工具，可以使用 Cargo 來新建專案與安裝套件。

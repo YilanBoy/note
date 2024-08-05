@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Rust
+nav_order: 14
+---
+
 # match 控制流運算符
 
 Rust 提供一種 `match` 控制流程，可以將一個值與一系列的模式相比較，根據相匹配的結果執行對應的程式碼。

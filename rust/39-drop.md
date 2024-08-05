@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Rust
+nav_order: 39
+---
+
 # Drop
 
 Drop 特徵可以讓你自訂數值離開作用域時的行為。

@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Laravel
+nav_order: 1
+---
+
 # 使用 Livewire 時應該注意的幾個問題
 
 本篇文章會介紹幾個我使用 laravel livewire 時曾不小心犯的幾個錯誤。

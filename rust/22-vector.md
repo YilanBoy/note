@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Rust
+nav_order: 22
+---
+
 # Vector
 
 可以用 vector 儲存多於一個的值，它們會在記憶體中彼此相鄰排列。

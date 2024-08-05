@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Network
+nav_order: 6
+---
+
 # Static Route
 
 靜態路由是一種手動設定的路由，通常用於小型網路或是網路設備。靜態路由的優點是簡單、容易設定，但缺點是不具備自動更新的功能，需要手動維護。

@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Laravel
+nav_order: 2
+---
+
 # Livewire 升級到 v3 的筆記
 
 萬眾期待，Livewire 終於在今天推出了 v3 的正式版本，這個版本做了相當多更動，也提供了許多新功能。

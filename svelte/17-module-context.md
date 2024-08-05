@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Svelte
+nav_order: 17
+---
+
 # Module Context
 
 ## Sharing Data Between Components

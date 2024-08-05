@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Rust
+nav_order: 21
+---
+
 # 通用集合類型
 
 Rust 標準函式庫中有一系列被稱為**集合 (collections)** 資料結構，非常有用。

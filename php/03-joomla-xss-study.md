@@ -1,3 +1,9 @@
+---
+layout: default
+parent: PHP
+nav_order: 3
+---
+
 # Joomla! XSS 漏洞研究
 
 前陣子，在全世界 CMS (Content Management System) 市場擁有 2% 市占率的 Joomla 被發現含有 XSS (Cross-Site Scripting) 漏洞。 造成這個漏洞的原因並非是 Joomla 的程式邏輯有什麼問題，而是 PHP 本身提供的函式有一個奇怪的 Bug。

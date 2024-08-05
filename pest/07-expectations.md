@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Pest
+nav_order: 7
+---
+
 # 優雅的 Expect API
 
 斷定 (Assert) 是測試中最關鍵的部分，用來確定我們想測試的流程是否符合我們的預期

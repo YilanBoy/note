@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Svelte
+nav_order: 14
+---
+
 # Component Composition
 
 ## Slots

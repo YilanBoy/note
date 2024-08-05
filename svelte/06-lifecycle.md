@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Svelte
+nav_order: 6
+---
+
 # Lifecycle
 
 每個 component 都有自己的生命週期，當 component 被建立、更新或銷毀時，會觸發不同的生命週期方法。

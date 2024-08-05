@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Svelte
+nav_order: 10
+---
+
 # Animations
 
 剛剛的 `crossfade` 雖然可以讓 Todo List 在勾選項目時有移動的效果，但其他項目的遞補移動卻沒有。

@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Vim
+nav_order: 1
+---
+
 # Shortcut
 
 ## 移動

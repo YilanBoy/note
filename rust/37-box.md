@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Rust
+nav_order: 37
+---
+
 # 使用 `Box<T>` 指向堆積上的資料
 
 Rust 中有一個智慧指標功能叫做 Box。

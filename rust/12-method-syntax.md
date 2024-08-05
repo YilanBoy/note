@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Rust
+nav_order: 12
+---
+
 # 方法語法
 
 struct 可以定義方法，方法與函式類似，使用 `fn` 關鍵字，也擁有參數與回傳值。

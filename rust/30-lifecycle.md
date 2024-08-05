@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Rust
+nav_order: 30
+---
+
 # 生命週期與引用有效性
 
 Rust 中的每一個引用都有其生命週期（lifetime），也就是引用的有效作用域。

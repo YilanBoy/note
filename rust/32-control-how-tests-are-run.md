@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Rust
+nav_order: 32
+---
+
 # 控制程式如何執行
 
 就跟 `cargo run` 一樣，`cargo test` 也會產生用於測試的執行檔，並執行它。

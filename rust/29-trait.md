@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Rust
+nav_order: 29
+---
+
 # Trait
 
 Trait 可以為不同的類型定義一個共享的行為。

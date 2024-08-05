@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Rust
+nav_order: 23
+---
+
 # String
 
 ## 什麼是字串？

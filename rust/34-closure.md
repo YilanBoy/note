@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Rust
+nav_order: 34
+---
+
 # Closures
 
 Rust 的閉包（closures）是個你能賦值給變數或作為其他函式引數的匿名函式。

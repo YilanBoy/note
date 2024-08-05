@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Rust
+nav_order: 4
+---
+
 # 函式
 
 函式需要在前面加上 `fn` 關鍵字。

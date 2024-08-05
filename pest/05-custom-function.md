@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Pest
+nav_order: 5
+---
+
 # 定義自己的方法
 
 剛剛提到的我們可以使用 `actingAs()` 在測試中模擬某個用戶登入

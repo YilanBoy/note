@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Pest
+nav_order: 11
+---
+
 # 使用 Skip 根據情況跳過測試
 
 Pest 中可以使用 `skip()` 方法跳過測試

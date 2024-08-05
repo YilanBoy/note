@@ -1,4 +1,10 @@
-# warp 相關功能
+---
+layout: default
+parent: Warp
+nav_order: 3
+---
+
+# Warp 相關功能
 
 ## Autosuggestions 與 Syntax Highlighting
 
