@@ -1,8 +1,3 @@
----
-layout: default
-nav_order: 1
----
-
 # 個人學習筆記
 
 此專案用來存放我的技術學習筆記，基本上有接觸到的技術都會寫在這裡，主要是為了方便自己之後查詢。
@@ -41,24 +36,25 @@ nav_order: 1
 
 ## 目錄
 
-- [Ansible](./ansible/README.md)
-- [Argo CD](./argocd/README.md)
-- [AWS](./aws/README.md)
-- [Azure](./azure/README.md)
-- [Database](./database/README.md)
-- [Docker](./docker/README.md)
-- [Git](./git/README.md)
-- [Google Cloud Platform](./google-cloud-platform/README.md)
-- [Grafana](./grafana/README.md)
-- [K8s](./k8s/README.md)
-- [Laravel](./laravel/README.md)
-- [Linux](./linux/README.md)
-- [Network](./network/README.md)
-- [Python](./python/README.md)
-- [Pest](./pest/README.md)
-- [PHP](./php/README.md)
-- [Rust](./rust/README.md)
-- [Svelte](./svelte/README.md)
-- [Vim](./vim/README.md)
-- [Warp](./warp/README.md)
-- [Windows](./windows/README.md)
+1. [AWS](./aws/README.md)
+2. [Azure](./azure/README.md)
+3. [Google Cloud Platform](./google-cloud-platform/README.md)
+4. [Terraform](./terraform/README.md)
+5. [Ansible](./ansible/README.md)
+6. [Docker](./docker/README.md)
+7. [K8s](./k8s/README.md)
+8. [Argo CD](./argocd/README.md)
+9. [Grafana](./grafana/README.md)
+10. [Network](./network/README.md)
+11. [Linux](./linux/README.md)
+12. [Windows](./windows/README.md)
+13. [Database](./database/README.md)
+14. [PHP](./php/README.md)
+15. [Pest](./pest/README.md)
+16. [Laravel](./laravel/README.md)
+17. [Python](./python/README.md)
+18. [Rust](./rust/README.md)
+19. [Svelte](./svelte/README.md)
+20. [Git](./git/README.md)
+21. [Vim](./vim/README.md)
+22. [Warp](./warp/README.md)

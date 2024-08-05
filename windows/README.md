@@ -1,7 +1,7 @@
 ---
 layout: default
 has_children: true
-nav_order: 22
+nav_order: 12
 ---
 
 # Windows

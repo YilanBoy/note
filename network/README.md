@@ -1,7 +1,7 @@
 ---
 layout: default
 has_children: true
-nav_order: 14
+nav_order: 10
 ---
 
 # Network
