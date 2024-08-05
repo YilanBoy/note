@@ -1,6 +1,7 @@
 ---
 layout: default
 parent: Ansible
+nav_order: 1
 ---
 
 # Inventory

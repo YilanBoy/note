@@ -1,6 +1,7 @@
 ---
 layout: default
 parent: AWS
+nav_order: 99
 ---
 
 # 其他大大小小的 AWS 服務

@@ -1,6 +1,7 @@
 ---
 layout: default
 parent: AWS
+nav_order: 6
 ---
 
 # AWS Identity and Access Management (IAM)

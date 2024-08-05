@@ -1,6 +1,7 @@
 ---
 layout: default
 parent: Argo CD
+nav_order: 1
 ---
 
 # Resource Hooks

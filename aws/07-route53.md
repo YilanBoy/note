@@ -1,6 +1,7 @@
 ---
 layout: default
 parent: AWS
+nav_order: 7
 ---
 
 # Route53
