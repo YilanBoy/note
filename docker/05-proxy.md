@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Docker
+nav_order: 5
+---
+
 # 使用自己的 Proxy
 
 部分公司較為嚴謹，內部伺服器會要求使用公司的 proxy 來對外連線，這時候就需要修改伺服器系統預設的 proxy。

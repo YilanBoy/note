@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Google Cloud Platform
+nav_order: 3
+---
+
 # Service Account
 
 Service Account 有點類似 Azure 的 Managed Identity。

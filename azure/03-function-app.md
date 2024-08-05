@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Azure
+nav_order: 3
+---
+
 # App Function
 
 Azure 的無伺服器 (serverless) 服務

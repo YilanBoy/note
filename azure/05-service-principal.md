@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Azure
+nav_order: 5
+---
+
 # Service Principal
 
 ## 使用 Azure CLI 建立一個 Service Principal 給 Terraform 部署資源

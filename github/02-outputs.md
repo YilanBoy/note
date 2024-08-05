@@ -1,3 +1,9 @@
+---
+layout: default
+parent: GitHub
+nav_order: 2
+---
+
 # Defining Outputs for Jobs
 
 如果你想設定一個變數讓後續的 Job 使用，可以使用 GitHub Action 提供的 `GITHUB_OUTPUT` 環境變數。

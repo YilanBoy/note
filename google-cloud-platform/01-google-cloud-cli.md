@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Google Cloud Platform
+nav_order: 1
+---
+
 # Google Cloud CLI
 
 紀錄 Google Cloud CLI 安裝流程。

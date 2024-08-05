@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Database
+nav_order: 2
+---
+
 # Generated Columns
 
 某天看到一個影片，是 PlanetScale 介紹如何在 MySQL 中使用 Generated Columns 來阻擋分身信箱的註冊。

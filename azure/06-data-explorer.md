@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Azure
+nav_order: 6
+---
+
 # Azure Data Explorer
 
 記錄一下使用 Azure Data Explorer (以下簡稱 ADX)的過程。

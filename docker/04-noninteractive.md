@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Docker
+nav_order: 4
+---
+
 # 遇到交互式問題時的處理
 
 當你在安裝套件時，有可能會遇到詢問時區的問題：

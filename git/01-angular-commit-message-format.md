@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Git
+nav_order: 1
+---
+
 # Angular Commit Message Format
 
 由 Angular 團隊制定的 commit message 規範

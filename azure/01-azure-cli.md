@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Azure
+nav_order: 1
+---
+
 # Azure CLI
 
 安裝 azure cli (MacOS)

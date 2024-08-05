@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Grafana
+nav_order: 1
+---
+
 # Use Node Exporter to monitor the host
 
 在主機上安裝 Node Exporter，以便 Prometheus 可以收集主機的監控資料。

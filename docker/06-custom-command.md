@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Docker
+nav_order: 6
+---
+
 # 使用 Docker Container 來製作自己的指令
 
 我不太想為了 `pg_dump` 安裝 `PostgreSQL` 資料庫 ，所以就打算使用 Docker Container 來製作自己的 `pg_dump` 指令。首先新增一個檔案 `pg_dump.sh`

@@ -1,3 +1,9 @@
+---
+layout: default
+parent: GitHub
+nav_order: 3
+---
+
 # GitHub Markdown Syntax
 
 記錄一些在 Github 上撰寫文件時會用到的特殊 Markdown 語法。

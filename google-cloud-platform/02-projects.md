@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Google Cloud Platform
+nav_order: 2
+---
+
 # Project
 
 在 GCP 中，如果要建立資源，就需要先建立一個 project (專案)，你可以將你的資源建立在專案中
