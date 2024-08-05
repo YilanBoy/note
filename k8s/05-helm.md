@@ -213,8 +213,6 @@ mychart-repo
 
 `release.yaml` 的內容如下：
 
-````yaml
-
 ```yaml
 name: Release Charts
 
@@ -243,7 +241,7 @@ jobs:
         uses: helm/chart-releaser-action@v1.6.0
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-````
+```
 
 接著，你需要在 GitHub 上建立一個分支 `gh-pages`。
 
