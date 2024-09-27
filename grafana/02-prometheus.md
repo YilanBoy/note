@@ -116,6 +116,20 @@ remote_write:
 
 這樣 prometheus 就可以收集到 node exporter 的資料，並將 node exporter 的資料送往 Grafana Cloud 的 Prometheus。
 
+如果你想移除從 exporter 取得的部分 metrics 資料，可以使用 `metric_relabel_configs`。
+
+```yaml
+scrape_configs:
+  - job_name: k3s
+    static_configs:
+      - targets: ["10.0.1.10:9100", "10.0.1.11:9100", "10.0.1.12:9100"]
+
+    metric_relabel_configs:
+      - source_labels: [__name__]
+        regex: "^(go_).*"
+        action: drop
+```
+
 ## 參考資料
 
 - [教學課程：在 Amazon Lightsail 中於以 Linux 為基礎的執行個體上安裝 Prometheus](https://lightsail.aws.amazon.com/ls/docs/zh_tw/articles/amazon-lightsail-install-prometheus)

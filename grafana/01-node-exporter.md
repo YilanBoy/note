@@ -55,7 +55,8 @@ Restart=always
 WantedBy=multi-user.target
 ```
 
-`--web.disable-exporter-metrics` 參數是為了避免 Node Exporter 收集自己軟體本身的監控資料。
+`--web.disable-exporter-metrics` 參數是為了避免 Node Exporter 收集自己軟體本身的監控資料，
+會移除 `go_*`、`process_*` 與 `promhttp_*` 等開頭的 Metrics 資訊，詳細可以參考這這個 [PR 討論串](https://github.com/prometheus/node_exporter/pull/1148)。
 
 ```bash
 sudo systemctl daemon-reload
@@ -75,3 +76,4 @@ curl localhost:9100/metrics
 - [教學課程：在 Amazon Lightsail 中於以 Linux 為基礎的執行個體上安裝 Prometheus](https://lightsail.aws.amazon.com/ls/docs/zh_tw/articles/amazon-lightsail-install-prometheus)
 - [How To Configure a Linux Service to Start Automatically After a Crash or Reboot – Part 1: Practical Examples](https://www.digitalocean.com/community/tutorials/how-to-configure-a-linux-service-to-start-automatically-after-a-crash-or-reboot-part-1-practical-examples)
 - [鳥哥私房菜 - 服務管理與開機流程管理](https://linux.vbird.org/linux_basic_train/centos7/unit13.php)
+- [Add --web.disable-exporter-metrics flag](https://github.com/prometheus/node_exporter/pull/1148)
