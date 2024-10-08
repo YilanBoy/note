@@ -80,6 +80,26 @@ def main(myblob: func.InputStream):
                  f"Blob Size: {myblob.length} bytes")
 ```
 
+## Use Curl to Get Token in Azure VM
+
+Azure VM 可以建立一個 Managed Identity，只要在其它服務給予 VM 的 Managed Identity 權限。
+就可以在 VM 中取得 API Token，然後呼叫 Azure API 來取得其他服務的資源。
+
+```bash
+# azure service
+export SCOPE = "https://management.azure.com"
+# key vault service
+export SCOPE = "https://vault.azure.net"
+
+# get api token
+curl --header "Metadata: true" -X GET "http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=${SCOPE}"
+
+export API_TOKEN = '...'
+
+# use api token to call azure api
+curl -H "Accept: application/json" -H "Authorization: Bearer ${API_TOKEN}" -X GET "https://datacenter-hlcqygfouf.vault.azure.net/secrets/sdz-vpn-tunnel-psk/74050e1725584f449fe81d14b2e2b779?api-version=7.4"
+```
+
 ## References
 
 - [Unable to create Azure Data Explorer linked service in Azure Data Factory](https://learn.microsoft.com/en-us/answers/questions/758303/unable-to-create-azure-data-explorer-linked-servic)
