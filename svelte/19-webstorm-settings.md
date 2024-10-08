@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Svelte
+nav_order: 19
+---
+
 # WebStorm IDE 設定
 
 目前寫 SvelteKit 是用 JetBrains 的 WebStorm 來進行開發。這裡記錄一些對於 WebStorm 的設定。

@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Database
+nav_order: 5
+---
+
 # 資料庫中的各種語句
 
 簡單記錄一下資料庫中常看到的 DDL、DML、DQL、DCL 與 TCL，這些簡寫是什麼意思？

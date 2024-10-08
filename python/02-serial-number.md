@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Python
+nav_order: 2
+---
+
 # 從憑證取得 Serial Number
 
 你可以使用 Python 從公有憑證中取得 Serial Number。

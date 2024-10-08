@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Git
+nav_order: 5
+---
+
 # Revert
 
 與 `git reset` 不同，你可以用新增一個 commit 的方式來取消上一次 commit 的修改。

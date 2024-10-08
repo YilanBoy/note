@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Terraform
+nav_order: 2
+---
+
 # Time Rotating
 
 Terraform 中有提供一個叫做 `time_rotating` 的資源，讓你可以超過一定時間後，重新部署資源。

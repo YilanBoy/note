@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Git
+nav_order: 4
+---
+
 # Reset
 
 如果你想移除所有尚未 commit 的修改時，可以使用 `git reset` 指令。
