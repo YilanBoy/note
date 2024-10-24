@@ -13,6 +13,9 @@ nav_order: 5
 
 放在 Lambda 上面的程式稱為 Function。Lambda 背後的技術是使用 AWS 自己研發的 [Firecracker](https://firecracker-microvm.github.io/)，可以快速地開啟一個 MicroVM。
 
+Lambda 會在事件進來之後立刻開啟一個 MicroVM 來處理進來的事件。並在處理完事件之後關閉 MicroVM。
+所以 Lambda 上面除了程式碼之外，無法儲存任何檔案 (例如靜態資源就無法放在 Lambda 上面)。
+
 如果你有一個服務需要多個 Function 在背後運行，可以建立一個 Lambda Application，並將所有 Function 放在這個 Application 中。
 
 ## Layer
@@ -24,6 +27,24 @@ Layer 可以給多個 Function 重復使用，當 Function 會解壓縮 Layer �
 可以參考[這篇文章](https://community.aws/content/2d6gQDnHqIbWLLKikuSfwmOZrym/step-by-step-guide-to-creating-an-aws-lambda-function-layer)學習如何打包 Python 的依賴套件檔案。
 
 **注意每個 Function 至多只能使用 5 個 Layer**。
+
+## Network
+
+Lambda 可以放置在 VPC 底下，讓 Lambda 其他服務放在一起並在私有網路底下快速的存取它們，
+例如 ElastiCache 與 RDS (Relational Database Service)。
+
+但要注意放在 VPC 底下的 Lambda 無法對外部發送請求，因為 Lambda 不具備 Public IP 也無法綁定一個 Public IP。
+所以必須要再加上一個 NAT 來讓 Lambda 與外部互通。
+
+## Persistent Storage with EFS
+
+Lambda 上可以掛 EFS (Elastic File System)，讓其擁有持久性的儲存空間用來放置檔案。
+但注意有幾個前置條件。
+
+- Lambda 需要與 EFS 一同放置在 VPC 底下 (這樣 Lambda 就會失去與外面直接互通的能力)。
+- Lambda 的 IAM 需要幾個操作 EFS 的權限。有 `elasticfilesystem:ClientMount` 與 `elasticfilesystem:ClientWrite` (唯讀連線則不需要)。
+- EFS 檔案系統的安全群組中必須允許傳入 NFS 通訊 (連接埠 2049)
+- 在 Lambda 上掛載檔案系統的位置，以 **「/mnt/」開頭。例如「/mnt/lambda」**。
 
 ## 使用 AWS CLI 更新 Lambda 的環境變數
 
@@ -89,3 +110,7 @@ aws lambda update-function-configuration \
   如果想使用自己的 FQDN，可以搭配 API Gateway 做 Custom Domain Name 的 Mapping。
 - 提供 10GB 暫時性的存儲空間，詳細可以參考[這裡](https://aws.amazon.com/tw/blogs/aws/aws-lambda-now-supports-up-to-10-gb-ephemeral-storage/)。
 - 你可以將你的程式打包成容器在 Lambda 上面運行，但執行速度取決於容器的啟動速度，較為大型的應用，效果通常不會太好
+
+## 參考資料
+
+- [如何建立正確的 EFS 存取點組態，以使用 Lambda 函數掛載我的檔案系統？](https://repost.aws/zh-Hant/knowledge-center/efs-mount-with-lambda-function)

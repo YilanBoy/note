@@ -31,7 +31,7 @@ nav_order: 16
 - IOPS SSD，在 io1 可以提供 4GB 到 16TB 的存儲空間，根據你的硬碟大小，可以提供的 IOPS 也會提高。
   - 1GB 的硬碟大小可以提供 50 IOPS。
 
-## Elastic Elastic File System (EFS)
+## Elastic File System (EFS)
 
 - 支援 POSIX (Portable Operating System Interface) 標準。
 - EFS 可以同時被**上千台 EC2** 掛載。
