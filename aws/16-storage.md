@@ -36,7 +36,7 @@ nav_order: 16
 - 支援 POSIX (Portable Operating System Interface) 標準。
 - EFS 可以同時被**上千台 EC2** 掛載。
 - EFS 的生命週期管理無法刪除檔案，根據時間可以將資料移往。
-  - 不常存取 (Infrequent Acess, Standard-IA)。
+  - 不常存取 (Infrequent Access, Standard-IA)。
   - 單區域不常存取 (One-Zone IA)。
 
 ## Amazon FSx 檔案系統
