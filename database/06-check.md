@@ -1,3 +1,9 @@
+---
+layout: default
+parent: Database
+nav_order: 6
+---
+
 # Check
 
 在 PostgreSQL 中，可以使用 `CHECK` 來避免某些錯誤的資料被寫入。
